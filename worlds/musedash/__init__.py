@@ -13,7 +13,7 @@ client_version = 1
 
 
 class MuseDashWebWorld(WebWorld):
-    theme: "partyTime"
+    theme = "partyTime"
 
     bug_report_page = "https://github.com/DeamonHunter/ArchipelagoMuseDash/issues"
     setup_en = Tutorial(
