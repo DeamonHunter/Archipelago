@@ -15,6 +15,9 @@ class MuseDashCollections:
     MUSIC_SHEET_NAME: str = "Music Sheet"
     MUSIC_SHEET_CODE: int = STARTING_CODE
 
+    FEVER_FILLER_NAME: str = "Full Fever Guage"
+    FEVER_FILLER_CODE: int = STARTING_CODE + 49
+
     FREE_ALBUMS = [
         "Default Music",
         "Budget Is Burning: Nano Core",

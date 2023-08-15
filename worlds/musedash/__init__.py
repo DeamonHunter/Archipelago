@@ -55,6 +55,7 @@ class MuseDashWorld(World):
     included_songs: List[str]
     needed_token_count: int
     location_count: int
+    filler_pool: List[str]
 
     def generate_early(self):
         dlc_songs = self.multiworld.allow_just_as_planned_dlc_songs[self.player]
@@ -159,6 +160,10 @@ class MuseDashWorld(World):
             return MuseDashFixedItem(name, ItemClassification.progression_skip_balancing,
                                      self.md_collection.MUSIC_SHEET_CODE, self.player)
 
+        if name == self.md_collection.FEVER_FILLER_NAME:
+            return MuseDashFixedItem(name, ItemClassification.filler,
+                                     self.md_collection.FEVER_FILLER_CODE, self.player)
+
         trap = self.md_collection.vfx_trap_items.get(name)
         if trap:
             return MuseDashFixedItem(name, ItemClassification.trap, trap, self.player)
@@ -246,6 +251,13 @@ class MuseDashWorld(World):
     def set_rules(self) -> None:
         self.multiworld.completion_condition[self.player] = lambda state: \
             state.has(self.md_collection.MUSIC_SHEET_NAME, self.player, self.get_music_sheet_win_count())
+
+    def get_filler_item_name(self):
+        if (not self.filler_pool):
+            self.filler_pool = self.get_available_traps()
+            self.filler_pool.append(self.md_collection.FEVER_FILLER_NAME)
+
+        return self.multiworld.random.choice(self.filler_pool)
 
     def get_available_traps(self) -> List[str]:
         dlc_songs = self.multiworld.allow_just_as_planned_dlc_songs[self.player]
