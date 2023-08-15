@@ -198,23 +198,31 @@ class MuseDashWorld(World):
 
             item_count += trap_count
 
-        # Next fill all remaining slots with song items
-        needed_item_count = self.location_count
-        while item_count < needed_item_count:
-            # If we have more items needed than keys, just iterate the list and add them all
-            if len(song_keys_in_pool) <= needed_item_count - item_count:
-                for key in song_keys_in_pool:
-                    self.multiworld.itempool.append(self.create_item(key))
+        items_left = self.location_count - item_count
+        if (items_left <= 0):
+            return
 
-                item_count += len(song_keys_in_pool)
-                continue
+        # When it comes to filling remaining spaces, we have 2 options. A useless filler or additional songs.
+        # First fill 25% with the filler. The rest is to be duplicate songs.
+        filler_count = floor(0.25 * items_left)
+        items_left -= filler_count
 
-            # Otherwise add a random assortment of songs
-            self.random.shuffle(song_keys_in_pool)
-            for i in range(0, needed_item_count - item_count):
-                self.multiworld.itempool.append(self.create_item(song_keys_in_pool[i]))
+        for _ in range(0, filler_count):
+            self.multiworld.itempool.append(self.create_item(self.md_collection.FEVER_FILLER_NAME))
 
-            item_count = needed_item_count
+        # This is for the extraordinary case of needing to fill a lot of items.
+        while items_left > len(song_keys_in_pool):
+            for key in song_keys_in_pool:
+                self.multiworld.itempool.append(self.create_item(key))
+
+            items_left -= len(song_keys_in_pool)
+            continue
+
+        # Otherwise add a random assortment of songs
+        self.random.shuffle(song_keys_in_pool)
+        for i in range(0, items_left):
+            self.multiworld.itempool.append(self.create_item(song_keys_in_pool[i]))
+
 
     def create_regions(self) -> None:
         menu_region = Region("Menu", self.player, self.multiworld)
