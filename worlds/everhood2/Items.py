@@ -1,19 +1,20 @@
 ﻿from typing import NamedTuple, Optional
 from BaseClasses import Item, ItemClassification
+from collections import ChainMap
 
 class Everhood2Item(Item):
-    game: str = "Muse Dash"
+    game: str = "Everhood 2"
 
 class Everhood2ItemData(NamedTuple):
     code: Optional[int] = None
     type: ItemClassification = ItemClassification.filler
-    count: int = 1 
 
 # Todo: Need to confirm names of various areas.
 
 # Todo: Do we need level logic?
 xp_items: dict[str, Everhood2ItemData] = {
     "0xp": Everhood2ItemData(100, ItemClassification.filler),
+    "5xp": Everhood2ItemData(100, ItemClassification.filler),
     "15xp": Everhood2ItemData(100, ItemClassification.filler),
     "20xp": Everhood2ItemData(100, ItemClassification.filler),
     "25xp": Everhood2ItemData(100, ItemClassification.filler),
@@ -42,7 +43,7 @@ major_items: dict[str, Everhood2ItemData] = {
     "Room 23 Key": Everhood2ItemData(100, ItemClassification.progression),
     "Gold Key": Everhood2ItemData(100, ItemClassification.progression),
     "Green Key": Everhood2ItemData(100, ItemClassification.progression), # Todo: Self Lockable.
-    "Bandanna": Everhood2ItemData(100, ItemClassification.useful),
+    "Crimson Bandanna": Everhood2ItemData(100, ItemClassification.useful),
     "Power Gem x3": Everhood2ItemData(100, ItemClassification.progression),
     "Power Gem x25": Everhood2ItemData(100, ItemClassification.progression),
     "Moon Emblem": Everhood2ItemData(100, ItemClassification.progression), # Todo: Is this actually needed?
@@ -84,7 +85,9 @@ misc_items: dict[str, Everhood2ItemData] = {
     "Druffle": Everhood2ItemData(100, ItemClassification.filler), # Todo: Filler? Maybe keep the one druffle stuck to Sam
 }
 
-groups: dict[str, list[str]] = {
+all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, cosmetics, misc_items)
+
+item_groups: dict[str, list[str]] = {
     "Soul Weapon": ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"],
     "Cosmetic": cosmetics.values(),
     "XP": xp_items.values(),

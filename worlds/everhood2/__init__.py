@@ -1,44 +1,33 @@
 ﻿from worlds.AutoWorld import World, WebWorld
-from BaseClasses import Region, Item, ItemClassification, Tutorial
-from typing import List, ClassVar, Type, Set
-from math import floor
+from BaseClasses import Region, Item, Tutorial
+from typing import ClassVar, Type
 from Options import PerGameCommonOptions
 
-from .Options import MuseDashOptions, md_option_groups
-from .Items import MuseDashSongItem, MuseDashFixedItem
-from .Locations import MuseDashLocation
-from .MuseDashCollection import MuseDashCollections
-from .Presets import MuseDashPresets
+from .Options import Everhood2Options, everhood2_option_groups
+from .Items import Everhood2Item, all_items, item_groups, misc_items
+from .Locations import Everhood2Location, all_locations, LocationType
+from .Regions import region_data_table
+# from .Presets import Everhood2Presets
 
 
-class MuseDashWebWorld(WebWorld):
+class Everhood2WebWorld(WebWorld):
     theme = "partyTime"
 
-    bug_report_page = "https://github.com/DeamonHunter/ArchipelagoMuseDash/issues"
+    bug_report_page = "https://github.com/DeamonHunter/ArchipelagoEverhood2/issues"
     setup_en = Tutorial(
         "Mod Setup and Use Guide",
-        "A guide to setting up the Muse Dash Archipelago Mod on your computer.",
+        "A guide to setting up the Everhood 2 Archipelago Mod on your computer.",
         "English",
         "setup_en.md",
         "setup/en",
         ["DeamonHunter"]
     )
-
-    setup_es = Tutorial(
-        setup_en.tutorial_name,
-        setup_en.description,
-        "Español",
-        "setup_es.md",
-        "setup/es",
-        ["Shiny"]
-    )
-
-    tutorials = [setup_en, setup_es]
-    options_presets = MuseDashPresets
-    option_groups = md_option_groups
+    tutorials = [setup_en]
+    # options_presets = Everhood2Presets
+    option_groups = everhood2_option_groups
 
 
-class MuseDashWorld(World):
+class Everhood2World(World):
     """Muse Dash is a rhythm game where you hit objects to the beat of one of 400+ songs.
     Play through a selection of randomly chosen songs, collecting music sheets
     until you have enough to play and complete the goal song!"""
@@ -49,241 +38,95 @@ class MuseDashWorld(World):
     # - Support for blacklisting/plando-ing certain songs.
 
     # World Options
-    game = "Muse Dash"
-    options_dataclass: ClassVar[Type[PerGameCommonOptions]] = MuseDashOptions
-    options: MuseDashOptions
+    game = "Everhood 2"
+    options_dataclass: ClassVar[Type[PerGameCommonOptions]] = Everhood2Options
+    options: Everhood2Options
 
     topology_present = False
-    web = MuseDashWebWorld()
+    web = Everhood2WebWorld()
 
     # Necessary Data
-    md_collection = MuseDashCollections()
-    filler_item_names = list(md_collection.filler_item_weights.keys())
-    filler_item_weights = list(md_collection.filler_item_weights.values())
-
-    item_name_to_id = {name: code for name, code in md_collection.item_names_to_id.items()}
-    location_name_to_id = {name: code for name, code in md_collection.location_names_to_id.items()}
-    item_name_groups = {
-        "Songs": {name for name in md_collection.song_items.keys()},
-        "Filler Items": {name for name in md_collection.filler_items.keys()},
-        "Traps": {name for name in md_collection.trap_items.keys()}
-    }
-
-    # Working Data
-    victory_song_name: str = ""
-    starting_songs: List[str]
-    included_songs: List[str]
-    needed_token_count: int
-    location_count: int
-
-    def generate_early(self):
-        dlc_songs = {key for key in self.options.dlc_packs.value}
-
-        streamer_mode = self.options.streamer_mode_enabled
-        (lower_diff_threshold, higher_diff_threshold) = self.get_difficulty_range()
-
-        # The minimum amount of songs to make an ok rando would be Starting Songs + 10 interim songs + Goal song.
-        # - Interim songs being equal to max starting song count.
-        # Note: The worst settings still allow 25 songs (Streamer Mode + No DLC).
-        starter_song_count = self.options.starting_song_count.value
-
-        while True:
-            # In most cases this should only need to run once
-            available_song_keys = self.md_collection.get_songs_with_settings(
-                dlc_songs, bool(streamer_mode.value), lower_diff_threshold, higher_diff_threshold)
-
-            available_song_keys = self.handle_plando(available_song_keys, dlc_songs)
-
-            count_needed_for_start = max(0, starter_song_count - len(self.starting_songs))
-            if len(available_song_keys) + len(self.included_songs) >= count_needed_for_start + 11:
-                final_song_list = available_song_keys
-                break
-
-            # If the above fails, we want to adjust the difficulty thresholds.
-            # Easier first, then harder
-            if lower_diff_threshold <= 1 and higher_diff_threshold >= 11:
-                raise Exception("Failed to find enough songs, even with maximum difficulty thresholds.")
-            elif lower_diff_threshold <= 1:
-                higher_diff_threshold += 1
-            else:
-                lower_diff_threshold -= 1
-
-        self.create_song_pool(final_song_list)
-
-        for song in self.starting_songs:
-            self.multiworld.push_precollected(self.create_item(song))
-
-    def handle_plando(self, available_song_keys: List[str], dlc_songs: Set[str]) -> List[str]:
-        song_items = self.md_collection.song_items
-
-        start_items = self.options.start_inventory.value.keys()
-        include_songs = self.options.include_songs.value
-        exclude_songs = self.options.exclude_songs.value
-
-        self.starting_songs = [s for s in start_items if s in song_items]
-        self.starting_songs = self.md_collection.filter_songs_to_dlc(self.starting_songs, dlc_songs)
-        self.included_songs = [s for s in include_songs if s in song_items and s not in self.starting_songs]
-        self.included_songs = self.md_collection.filter_songs_to_dlc(self.included_songs, dlc_songs)
-
-        return [s for s in available_song_keys if s not in start_items
-                and s not in include_songs and s not in exclude_songs]
-
-    def create_song_pool(self, available_song_keys: List[str]):
-        starting_song_count = self.options.starting_song_count.value
-        additional_song_count = self.options.additional_song_count.value
-
-        self.random.shuffle(available_song_keys)
-
-        # First, we must double check if the player has included too many guaranteed songs
-        included_song_count = len(self.included_songs)
-        if included_song_count > additional_song_count:
-            # If so, we want to thin the list, thus let's get the goal song and starter songs while we are at it.
-            self.random.shuffle(self.included_songs)
-            self.victory_song_name = self.included_songs.pop()
-            while len(self.included_songs) > additional_song_count:
-                next_song = self.included_songs.pop()
-                if len(self.starting_songs) < starting_song_count:
-                    self.starting_songs.append(next_song)
-        else:
-            # If not, choose a random victory song from the available songs
-            chosen_song = self.random.randrange(0, len(available_song_keys) + included_song_count)
-            if chosen_song < included_song_count:
-                self.victory_song_name = self.included_songs[chosen_song]
-                del self.included_songs[chosen_song]
-            else:
-                self.victory_song_name = available_song_keys[chosen_song - included_song_count]
-                del available_song_keys[chosen_song - included_song_count]
-
-        # Next, make sure the starting songs are fulfilled
-        if len(self.starting_songs) < starting_song_count:
-            for _ in range(len(self.starting_songs), starting_song_count):
-                if len(available_song_keys) > 0:
-                    self.starting_songs.append(available_song_keys.pop())
-                else:
-                    self.starting_songs.append(self.included_songs.pop())
-
-        # Then attempt to fulfill any remaining songs for interim songs
-        if len(self.included_songs) < additional_song_count:
-            for _ in range(len(self.included_songs), self.options.additional_song_count):
-                if len(available_song_keys) <= 0:
-                    break
-                self.included_songs.append(available_song_keys.pop())
-
-        self.location_count = 2 * (len(self.starting_songs) + len(self.included_songs))
+    
+    item_name_to_id = {name: code for name, code in all_items.items()}
+    location_name_to_id = {name: code for name, code in all_locations.items()}
+    item_name_groups = item_groups
 
     def create_item(self, name: str) -> Item:
-        if name == self.md_collection.MUSIC_SHEET_NAME:
-            return MuseDashFixedItem(name, ItemClassification.progression_skip_balancing,
-                                     self.md_collection.MUSIC_SHEET_CODE, self.player)
-
-        filler = self.md_collection.filler_items.get(name)
-        if filler:
-            return MuseDashFixedItem(name, ItemClassification.filler, filler, self.player)
-
-        trap = self.md_collection.trap_items.get(name)
-        if trap:
-            return MuseDashFixedItem(name, ItemClassification.trap, trap, self.player)
-
-        song = self.md_collection.song_items[name]
-        return MuseDashSongItem(name, self.player, song)
+        item = all_items[name]
+        return Everhood2Item(name, item.type, item.code, self.player)
 
     def get_filler_item_name(self) -> str:
-        return self.random.choices(self.filler_item_names, self.filler_item_weights)[0]
+        return self.random.choice([x for x in misc_items.keys()])
 
     def create_items(self) -> None:
-        song_keys_in_pool = self.included_songs.copy()
-
-        # Note: Item count will be off if plando is involved.
-        item_count = self.get_music_sheet_count()
-
-        # First add all goal song tokens
-        for _ in range(0, item_count):
-            self.multiworld.itempool.append(self.create_item(self.md_collection.MUSIC_SHEET_NAME))
-
-        # Then add 1 copy of every song
-        item_count += len(self.included_songs)
-        for song in self.included_songs:
-            self.multiworld.itempool.append(self.create_item(song))
-
-        # Then add all traps, making sure we don't over fill
-        trap_count = min(self.location_count - item_count, self.get_trap_count())
-        trap_list = self.get_available_traps()
-        if len(trap_list) > 0 and trap_count > 0:
-            for _ in range(0, trap_count):
-                index = self.random.randrange(0, len(trap_list))
-                self.multiworld.itempool.append(self.create_item(trap_list[index]))
-
-            item_count += trap_count
-
-        # At this point, if a player is using traps, it's possible that they have filled all locations
-        items_left = self.location_count - item_count
-        if items_left <= 0:
-            return
-
-        # When it comes to filling remaining spaces, we have 2 options. A useless filler or additional songs.
-        # First fill 50% with the filler. The rest is to be duplicate songs.
-        filler_count = floor(0.5 * items_left)
-        items_left -= filler_count
-
-        for _ in range(0, filler_count):
-            self.multiworld.itempool.append(self.create_item(self.get_filler_item_name()))
-
-        # All remaining spots are filled with duplicate songs. Duplicates are set to useful instead of progression
-        # to cut down on the number of progression items that Muse Dash puts into the pool.
-
-        # This is for the extraordinary case of needing to fill a lot of items.
-        while items_left > len(song_keys_in_pool):
-            for key in song_keys_in_pool:
-                item = self.create_item(key)
-                item.classification = ItemClassification.useful
-                self.multiworld.itempool.append(item)
-
-            items_left -= len(song_keys_in_pool)
-            continue
-
-        # Otherwise add a random assortment of songs
-        self.random.shuffle(song_keys_in_pool)
-        for i in range(0, items_left):
-            item = self.create_item(song_keys_in_pool[i])
-            item.classification = ItemClassification.useful
-            self.multiworld.itempool.append(item)
+        valid_types = self.valid_location_types()
+        for location in self.multiworld.get_locations(self.player):
+            data = all_locations[location.name]
+            if data.type in valid_types:
+                self.multiworld.itempool.append(self.create_item(data.item_name))
 
     def create_regions(self) -> None:
-        menu_region = Region("Menu", self.player, self.multiworld)
-        self.multiworld.regions += [menu_region]
+        valid_types = self.valid_location_types()
+        created_regions = {x: Region(x, self.player, self.multiworld) for x, y in region_data_table.items() if y.include_type in valid_types}
 
-        # Make a collection of all songs available for this rando.
-        # 1. All starting songs
-        # 2. All other songs shuffled
-        # Doing it in this order ensures that starting songs are first in line to getting 2 locations.
-        # Final song is excluded as for the purpose of this rando, it doesn't matter.
+        for region_name, region_data in region_data_table.items():
+            if not region_data.include_type in valid_types:
+                continue
+            
+            region = created_regions[region_name]
+            self.multiworld.regions.append(region)
+            
+            for name in region_data.connecting_regions:
+                connection = created_regions.get(name)
+                if connection is not None:
+                    region.connect(connection)
+        
+        for location_name, location_data in all_locations.items():
+            if not location_data.type in valid_types:
+                continue
+                
+            region = created_regions[location_data.region]
+            region.add_locations({location_name: location_data.code}, Everhood2Location)
 
-        all_selected_locations = self.starting_songs.copy()
-        included_song_copy = self.included_songs.copy()
+    def valid_location_types(self) -> set[LocationType]:
+        valid_types = { LocationType.item }
+        if self.options.cosmetics.value:
+            valid_types.add(LocationType.cosmetic)
+        if self.options.battle_rewards.value == self.options.battle_rewards.option_Minor:
+            valid_types.add(LocationType.major_battle)
+            valid_types.add(LocationType.trash_battle)
+        elif self.options.battle_rewards.value == self.options.battle_rewards.option_Major:
+            valid_types.add(LocationType.major_battle)
 
-        self.random.shuffle(included_song_copy)
-        all_selected_locations.extend(included_song_copy)
+        if self.options.hillbert_hotel.value:
+            valid_types.add(LocationType.hillbert_item)
+            if LocationType.cosmetic in valid_types:
+                valid_types.add(LocationType.hillbert_cosmetic)
+            if LocationType.major_battle in valid_types:
+                valid_types.add(LocationType.hillbert_battle)
 
-        # Adds 2 item locations per song/album to the menu region.
-        for i in range(0, len(all_selected_locations)):
-            name = all_selected_locations[i]
-            loc1 = MuseDashLocation(self.player,  name + "-0", self.md_collection.song_locations[name + "-0"], menu_region)
-            loc1.access_rule = lambda state, place=name: state.has(place, self.player)
-            menu_region.locations.append(loc1)
-
-            loc2 = MuseDashLocation(self.player,  name + "-1", self.md_collection.song_locations[name + "-1"], menu_region)
-            loc2.access_rule = lambda state, place=name: state.has(place, self.player)
-            menu_region.locations.append(loc2)
+        return valid_types
 
     def set_rules(self) -> None:
-        self.multiworld.completion_condition[self.player] = lambda state: \
-            state.has(self.md_collection.MUSIC_SHEET_NAME, self.player, self.get_music_sheet_win_count())
-
+        valid_types = self.valid_location_types()
+        self.multiworld.completion_condition[self.player] = lambda state: state.has("Power Gem", self.player, 3)
+        
+        if LocationType.hillbert_item in valid_types:
+            self.get_entrance("Hillbert Hotel -> Floor 23").access_rule = lambda state: state.has("Floor 23 Key")
+            self.get_location("Floor 23 Complete Chest").access_rule = lambda state: state.has("Floor 23 Key")
+            
+            self.get_entrance("Hillbert Hotel -> Floor Gold").access_rule = lambda state: state.has("Floor Gold Key")
+            self.get_location("Floor Gold Complete Chest").access_rule = lambda state: state.has("Floor Gold Key")
+            
+            if LocationType.hillbert_cosmetic in valid_types:
+                self.get_location("Cat Ears").access_rule = lambda state: state.has("Floor 23 Key")
+                self.get_location("Cat Ears Bald").access_rule = lambda state: state.has("Floor 23 Key")
+                self.get_location("Oingo Boingo").access_rule = lambda state: state.has("Floor Gold Key")  
 
     def fill_slot_data(self):
         return {
-            "victoryLocation": self.victory_song_name,
-            "deathLink": self.options.death_link.value,
-            "musicSheetWinCount": self.get_music_sheet_win_count(),
-            "gradeNeeded": self.options.grade_needed.value,
+            # "victoryLocation": self.victory_song_name,
+            # "deathLink": self.options.death_link.value,
+            # "musicSheetWinCount": self.get_music_sheet_win_count(),
+            # "gradeNeeded": self.options.grade_needed.value,
         }
