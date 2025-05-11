@@ -47,8 +47,8 @@ class Everhood2World(World):
 
     # Necessary Data
     
-    item_name_to_id = {name: code for name, code in all_items.items()}
-    location_name_to_id = {name: code for name, code in all_locations.items()}
+    item_name_to_id = {name: code.code for name, code in all_items.items()}
+    location_name_to_id = {name: code.code for name, code in all_locations.items()}
     item_name_groups = item_groups
 
     def create_item(self, name: str) -> Item:
