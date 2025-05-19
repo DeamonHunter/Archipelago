@@ -112,9 +112,9 @@ battle_locations: Dict[str, Everhood2LocationData] = {
 
     # Marzian Era 0 Base
     "Insect Abomination Battle": Everhood2LocationData(BATTLE_LOCATION_START + 23, "Marzian Era 0 - Mining Base", LocationType.major_battle, "50xp"),
-    "Chase (Bad) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 24, "Marzian Era 0 - Mining Base", LocationType.major_battle, "5xp"),
+    "Chase (Bad) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 24, "Marzian Era 0 - Mining Base", LocationType.major_battle, "2xp"),
     "Howler & Razor & Maggot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 25, "Marzian Era 0 - Mining Base", LocationType.trash_battle, "75xp"),
-    "Dimension Master Battle": Everhood2LocationData(BATTLE_LOCATION_START + 26, "Marzian Era 0 - Mining Base", LocationType.major_battle, "75xp"),
+    "Dimension Master Battle": Everhood2LocationData(BATTLE_LOCATION_START + 26, "Marzian Era 0 - Mining Base", LocationType.major_battle, "200xp"),
 
     # Eternal War Desert
     "Red Onion Battle": Everhood2LocationData(BATTLE_LOCATION_START + 29, "Eternal War - Battlefield", LocationType.trash_battle, "15xp"),

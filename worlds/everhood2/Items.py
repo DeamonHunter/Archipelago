@@ -31,7 +31,8 @@ major_items: dict[str, Everhood2ItemData] = {
 # Todo: Do we need level logic?
 xp_items: dict[str, Everhood2ItemData] = {
     "0xp": Everhood2ItemData(200, ItemClassification.filler),
-    "5xp": Everhood2ItemData(201, ItemClassification.filler),
+    "2xp": Everhood2ItemData(201, ItemClassification.filler),
+    # "5xp": Everhood2ItemData(201, ItemClassification.filler),
     "15xp": Everhood2ItemData(202, ItemClassification.filler),
     "20xp": Everhood2ItemData(203, ItemClassification.filler),
     "25xp": Everhood2ItemData(204, ItemClassification.filler),
@@ -47,7 +48,8 @@ xp_items: dict[str, Everhood2ItemData] = {
     "80xp": Everhood2ItemData(214, ItemClassification.filler),
     "100xp": Everhood2ItemData(215, ItemClassification.filler),
     "150xp": Everhood2ItemData(216, ItemClassification.filler),
-    "400xp": Everhood2ItemData(217, ItemClassification.filler),
+    "200xp": Everhood2ItemData(217, ItemClassification.filler),
+    "400xp": Everhood2ItemData(218, ItemClassification.filler),
 }
 
 door_randomizer_keys: dict[str, Everhood2ItemData] = {
