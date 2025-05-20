@@ -112,7 +112,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
 
     # Marzian Era 0 Base
     "Insect Abomination Battle": Everhood2LocationData(BATTLE_LOCATION_START + 23, "Marzian Era 0 - Mining Base", LocationType.major_battle, "50xp"),
-    "Chase (Bad) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 24, "Marzian Era 0 - Mining Base", LocationType.major_battle, "2xp"),
+    "Anxious Chase Battle": Everhood2LocationData(BATTLE_LOCATION_START + 24, "Marzian Era 0 - Mining Base", LocationType.major_battle, "2xp"),
     "Howler & Razor & Maggot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 25, "Marzian Era 0 - Mining Base", LocationType.trash_battle, "75xp"),
     "Dimension Master Battle": Everhood2LocationData(BATTLE_LOCATION_START + 26, "Marzian Era 0 - Mining Base", LocationType.major_battle, "200xp"),
 
@@ -131,9 +131,9 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Chili Battle": Everhood2LocationData(BATTLE_LOCATION_START + 40, "Eternal War - Battlefield", LocationType.trash_battle, "15xp"),
 
     # Eternal War Castle
-    "Capsicum Battle": Everhood2LocationData(BATTLE_LOCATION_START + 41, "Eternal War - Castle", LocationType.major_battle, "15xp"),
-    "Carrot Mage Battle": Everhood2LocationData(BATTLE_LOCATION_START + 42, "Eternal War - Castle", LocationType.major_battle, "15xp"),
-    "Juice Master#4671 Battle": Everhood2LocationData(BATTLE_LOCATION_START + 43, "Eternal War - Castle", LocationType.major_battle, "15xp"),
+    "Capsicum Battle": Everhood2LocationData(BATTLE_LOCATION_START + 41, "Eternal War - Castle", LocationType.major_battle, "70xp"),
+    "Carrot Mage Battle": Everhood2LocationData(BATTLE_LOCATION_START + 42, "Eternal War - Castle", LocationType.major_battle, "45xp"),
+    "Juice Master#4671 Battle": Everhood2LocationData(BATTLE_LOCATION_START + 43, "Eternal War - Castle", LocationType.major_battle, "150xp"),
     
     # Hillbert Hotel Fights
     # Angry Wizard Todo

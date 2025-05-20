@@ -43,13 +43,14 @@ xp_items: dict[str, Everhood2ItemData] = {
     "50xp": Everhood2ItemData(209, ItemClassification.filler),
     "60xp": Everhood2ItemData(210, ItemClassification.filler),
     "64xp": Everhood2ItemData(211, ItemClassification.filler),
-    "75xp": Everhood2ItemData(212, ItemClassification.filler),
-    "76xp": Everhood2ItemData(213, ItemClassification.filler),
-    "80xp": Everhood2ItemData(214, ItemClassification.filler),
-    "100xp": Everhood2ItemData(215, ItemClassification.filler),
-    "150xp": Everhood2ItemData(216, ItemClassification.filler),
-    "200xp": Everhood2ItemData(217, ItemClassification.filler),
-    "400xp": Everhood2ItemData(218, ItemClassification.filler),
+    "70xp": Everhood2ItemData(212, ItemClassification.filler),
+    "75xp": Everhood2ItemData(213, ItemClassification.filler),
+    "76xp": Everhood2ItemData(214, ItemClassification.filler),
+    "80xp": Everhood2ItemData(215, ItemClassification.filler),
+    "100xp": Everhood2ItemData(216, ItemClassification.filler),
+    "150xp": Everhood2ItemData(217, ItemClassification.filler),
+    "200xp": Everhood2ItemData(218, ItemClassification.filler),
+    "400xp": Everhood2ItemData(219, ItemClassification.filler),
 }
 
 door_randomizer_keys: dict[str, Everhood2ItemData] = {
