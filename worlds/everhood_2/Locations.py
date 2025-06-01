@@ -69,10 +69,10 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Floor Gold Key": Everhood2LocationData(ITEM_LOCATION_START + 30, "Hillbert Hotel", LocationType.hillbert_item, "Gold Key"),
     "Floor Gold Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Hillbert Hotel", LocationType.hillbert_item, "50xp"),
     "Oingo Boingo": Everhood2LocationData(ITEM_LOCATION_START + 32, "Hillbert Hotel", LocationType.hillbert_cosmetic, "Oingo Boingo Cosmetic"),
-    
-    "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 33, "Floor 23", LocationType.hillbert_item, "50xp"),
-    "Floor 23 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 34, "Floor 23", LocationType.hillbert_item, "50xp"),
-    "Floor 23 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23", LocationType.hillbert_item, "50xp"),
+
+    "Floor 23 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 33, "Floor 23", LocationType.hillbert_item, "50xp"),
+    "Floor 23 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 34, "Floor 23", LocationType.hillbert_item, "50xp"),
+    "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23", LocationType.hillbert_item, "50xp"),
     
     "Floor Gold Chest": Everhood2LocationData(ITEM_LOCATION_START + 36, "Floor Gold", LocationType.hillbert_item, "50xp"),
 }
@@ -137,9 +137,9 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     
     # Hillbert Hotel Fights
     # Angry Wizard Todo
-    "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 44, "Floor 23", LocationType.hillbert_battle, "64xp"),
-    "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23", LocationType.hillbert_battle, "100xp"),
-    "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor Gold", LocationType.hillbert_battle, "80xp"),
+    "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23", LocationType.hillbert_battle, "64xp"),
+    "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.hillbert_battle, "100xp"),
+    "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.hillbert_battle, "80xp"),
 }
 
 all_locations: ChainMap[str, Everhood2LocationData] = ChainMap(item_locations, battle_locations)

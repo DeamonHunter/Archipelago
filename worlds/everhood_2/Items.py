@@ -80,11 +80,10 @@ cosmetics: dict[str, Everhood2ItemData] = {
     "Cat Ears Bald Cosmetic": Everhood2ItemData(406, ItemClassification.filler),
     "Reindeer Skull Cosmetic": Everhood2ItemData(407, ItemClassification.filler),
     "Hotdog Cosmetic": Everhood2ItemData(408, ItemClassification.filler),
-    "Bandanna Cosmetic": Everhood2ItemData(409, ItemClassification.filler),
+    "Red Bandana Cosmetic": Everhood2ItemData(409, ItemClassification.filler),
     "Oingo Boingo Cosmetic": Everhood2ItemData(410, ItemClassification.filler),
     "Mage Hat Cosmetic": Everhood2ItemData(411, ItemClassification.filler),
     "Afro Cosmetic": Everhood2ItemData(412, ItemClassification.filler),
-    "Red Bandana Cosmetic": Everhood2ItemData(413, ItemClassification.filler),
 }
 
 misc_items: dict[str, Everhood2ItemData] = {
