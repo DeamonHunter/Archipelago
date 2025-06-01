@@ -36,7 +36,7 @@ class Colloseum(Toggle):
     """
     Whether to include the Colloseum and its battles to the pool. Does nothing without Battles
     """
-    display_name = "Include Hillbert Hotel"
+    display_name = "Include Colloseum"
 
 
 class BattleRandomisation(Choice):

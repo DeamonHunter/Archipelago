@@ -28,14 +28,7 @@ class Everhood2WebWorld(WebWorld):
 
 
 class Everhood2World(World):
-    """Muse Dash is a rhythm game where you hit objects to the beat of one of 400+ songs.
-    Play through a selection of randomly chosen songs, collecting music sheets
-    until you have enough to play and complete the goal song!"""
-
-    # FUTURE OPTIONS
-    # - Album Rando.
-    # - Added items for characters/elfin/portraits.
-    # - Support for blacklisting/plando-ing certain songs.
+    """Everhood 2 is a psychedelic rpg cross a rhythm game. Dodge notes sent by enemies and reflect those notes back to them."""
 
     # World Options
     game = "Everhood 2"
@@ -112,16 +105,16 @@ class Everhood2World(World):
         self.multiworld.completion_condition[self.player] = lambda state: state.has("Power Gem", self.player, 3)
         
         if LocationType.hillbert_item in valid_types:
-            self.get_entrance("Hillbert Hotel -> Floor 23").access_rule = lambda state: state.has("Floor 23 Key")
-            self.get_location("Floor 23 Complete Chest").access_rule = lambda state: state.has("Floor 23 Key")
+            self.get_entrance("Hillbert Hotel -> Floor 23").access_rule = lambda state: state.has("Floor 23 Key", self.player)
+            self.get_location("Floor 23 Complete Chest").access_rule = lambda state: state.has("Floor 23 Key", self.player)
             
-            self.get_entrance("Hillbert Hotel -> Floor Gold").access_rule = lambda state: state.has("Floor Gold Key")
-            self.get_location("Floor Gold Complete Chest").access_rule = lambda state: state.has("Floor Gold Key")
+            self.get_entrance("Hillbert Hotel -> Floor Gold").access_rule = lambda state: state.has("Gold Key", self.player)
+            self.get_location("Floor Gold Complete Chest").access_rule = lambda state: state.has("Gold Key", self.player)
             
             if LocationType.hillbert_cosmetic in valid_types:
-                self.get_location("Cat Ears").access_rule = lambda state: state.has("Floor 23 Key")
-                self.get_location("Cat Ears Bald").access_rule = lambda state: state.has("Floor 23 Key")
-                self.get_location("Oingo Boingo").access_rule = lambda state: state.has("Floor Gold Key")  
+                self.get_location("Cat Ears").access_rule = lambda state: state.has("Floor 23 Key", self.player)
+                self.get_location("Cat Ears Bald").access_rule = lambda state: state.has("Floor 23 Key", self.player)
+                self.get_location("Oingo Boingo").access_rule = lambda state: state.has("Gold Key", self.player)  
 
     def fill_slot_data(self):
         return {

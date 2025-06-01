@@ -18,7 +18,7 @@ major_items: dict[str, Everhood2ItemData] = {
     "Green Soul Spear": Everhood2ItemData(103, ItemClassification.progression),
     "Blue Soul Knives": Everhood2ItemData(104, ItemClassification.progression),
     "Katana": Everhood2ItemData(105, ItemClassification.useful),
-    "Room 23 Key": Everhood2ItemData(106, ItemClassification.progression),
+    "Floor 23 Key": Everhood2ItemData(106, ItemClassification.progression),
     "Gold Key": Everhood2ItemData(107, ItemClassification.progression),
     "Green Key": Everhood2ItemData(108, ItemClassification.progression), # Todo: Self Lockable.
     "Crimson Bandanna": Everhood2ItemData(109, ItemClassification.useful),
@@ -79,9 +79,12 @@ cosmetics: dict[str, Everhood2ItemData] = {
     "Cat Ears Cosmetic": Everhood2ItemData(405, ItemClassification.filler),
     "Cat Ears Bald Cosmetic": Everhood2ItemData(406, ItemClassification.filler),
     "Reindeer Skull Cosmetic": Everhood2ItemData(407, ItemClassification.filler),
-    "Hot Dog Cosmetic": Everhood2ItemData(408, ItemClassification.filler),
+    "Hotdog Cosmetic": Everhood2ItemData(408, ItemClassification.filler),
     "Bandanna Cosmetic": Everhood2ItemData(409, ItemClassification.filler),
     "Oingo Boingo Cosmetic": Everhood2ItemData(410, ItemClassification.filler),
+    "Mage Hat Cosmetic": Everhood2ItemData(411, ItemClassification.filler),
+    "Afro Cosmetic": Everhood2ItemData(412, ItemClassification.filler),
+    "Red Bandana Cosmetic": Everhood2ItemData(413, ItemClassification.filler),
 }
 
 misc_items: dict[str, Everhood2ItemData] = {
