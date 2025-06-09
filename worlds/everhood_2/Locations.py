@@ -115,6 +115,9 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Anxious Chase Battle": Everhood2LocationData(BATTLE_LOCATION_START + 24, "Marzian Era 0 - Mining Base", LocationType.major_battle, "2xp"),
     "Howler & Razor & Maggot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 25, "Marzian Era 0 - Mining Base", LocationType.trash_battle, "75xp"),
     "Dimension Master Battle": Everhood2LocationData(BATTLE_LOCATION_START + 26, "Marzian Era 0 - Mining Base", LocationType.major_battle, "200xp"),
+    
+    "Dimension Portal Battle": Everhood2LocationData(BATTLE_LOCATION_START + 27, "Marzian Era 1000", LocationType.major_battle, "400xp"),
+    "Blue Stonegrunt Battle": Everhood2LocationData(BATTLE_LOCATION_START + 28, "Marzian Era 2000", LocationType.major_battle, "150xp"),
 
     # Eternal War Desert
     "Red Onion Battle": Everhood2LocationData(BATTLE_LOCATION_START + 29, "Eternal War - Battlefield", LocationType.trash_battle, "15xp"),
@@ -140,6 +143,8 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23", LocationType.hillbert_battle, "64xp"),
     "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.hillbert_battle, "100xp"),
     "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.hillbert_battle, "80xp"),
+    
+    "Opus & Screech Battle": Everhood2LocationData(BATTLE_LOCATION_START + 50, "Marzian Era 0 - Mining Base", LocationType.hillbert_battle, "80xp"),
 }
 
 all_locations: ChainMap[str, Everhood2LocationData] = ChainMap(item_locations, battle_locations)
