@@ -9,7 +9,8 @@ class Everhood2RegionData(NamedTuple):
 region_data_table: Dict[str, Everhood2RegionData] = {
     "Menu": Everhood2RegionData(["Tutorial Hub"]),
     "Tutorial Hub": Everhood2RegionData(["Infinity Hub"]), # To Be Connected to a soul color
-    "Infinity Hub": Everhood2RegionData(["Eternal War - Battlefield", "Neon City", "Marzian Era 0 - Mining Area", "Marzian Era 1000", "Marzian Era 2000"]),
+    "Infinity Hub": Everhood2RegionData(["Eternal War - Battlefield", "Neon City", "Marzian Era 0 - Mining Area", "Marzian Era 1000", "Marzian Era 2000", 
+                                         "Smega Console", "Home Town", "Lab"]),
     "Eternal War - Battlefield": Everhood2RegionData(["Eternal War - Dungeon"]),
     "Eternal War - Dungeon": Everhood2RegionData(["Eternal War - Castle"]),
     "Eternal War - Castle": Everhood2RegionData(["Infinity Hub"]),
@@ -26,6 +27,11 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     # "Marzian Era 3000": Everhood2RegionData(["Infinity Hub"]),
     # "Marzian Era 4000": Everhood2RegionData(["Infinity Hub"]),
     # "Marzian Era 5000": Everhood2RegionData(["Infinity Hub"]),
+    
+    # Todo: Region Removal of irrelevant regions
+    "Smega Console": Everhood2RegionData(["Infinity Hub"]), # Todo: May need splitting up?
+    "Home Town": Everhood2RegionData(["Infinity Hub"]),
+    "Lab": Everhood2RegionData(["Infinity Hub"]),
     
     # Hillbert Hotel Rooms Todo: Maybe make an option to exclude these areas
     "Floor 23": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item),

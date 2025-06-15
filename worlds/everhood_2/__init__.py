@@ -7,6 +7,7 @@ from .Options import Everhood2Options, everhood2_option_groups
 from .Items import Everhood2Item, all_items, item_groups, misc_items
 from .Locations import Everhood2Location, all_locations, LocationType
 from .Regions import region_data_table
+from .Rules import set_everhood2_rules
 # from .Presets import Everhood2Presets
 
 
@@ -101,20 +102,7 @@ class Everhood2World(World):
         return valid_types
 
     def set_rules(self) -> None:
-        valid_types = self.valid_location_types()
-        self.multiworld.completion_condition[self.player] = lambda state: state.has("Power Gem", self.player, 3)
-        
-        if LocationType.hillbert_item in valid_types:
-            self.get_entrance("Hillbert Hotel -> Floor 23").access_rule = lambda state: state.has("Floor 23 Key", self.player)
-            self.get_location("Floor 23 Complete Chest").access_rule = lambda state: state.has("Floor 23 Key", self.player)
-            
-            self.get_entrance("Hillbert Hotel -> Floor Gold").access_rule = lambda state: state.has("Gold Key", self.player)
-            self.get_location("Floor Gold Complete Chest").access_rule = lambda state: state.has("Gold Key", self.player)
-            
-            if LocationType.hillbert_cosmetic in valid_types:
-                self.get_location("Cat Ears").access_rule = lambda state: state.has("Floor 23 Key", self.player)
-                self.get_location("Cat Ears Bald").access_rule = lambda state: state.has("Floor 23 Key", self.player)
-                self.get_location("Oingo Boingo").access_rule = lambda state: state.has("Gold Key", self.player)  
+        set_everhood2_rules(self, self.valid_location_types()) 
 
     def fill_slot_data(self):
         return {
