@@ -1,5 +1,5 @@
 ﻿from typing import Dict, NamedTuple, Optional
-from enum import IntEnum
+from enum import IntFlag
 from BaseClasses import Location
 from collections import ChainMap
 
@@ -7,15 +7,19 @@ from collections import ChainMap
 ITEM_LOCATION_START = 100
 BATTLE_LOCATION_START = 500
 
-class LocationType(IntEnum):
-    item = 0
-    hillbert_item = 1
-    cosmetic = 2
-    hillbert_cosmetic = 3
-    major_battle = 4,
-    colloseum_battle = 5,
-    hillbert_battle = 6,
-    trash_battle = 7
+
+class LocationType(IntFlag):
+    item = 1 << 0
+    cosmetic = 1 << 1
+    major_battle = 1 << 2
+    unique_battle = 1 << 3
+    trash_battle = 1 << 4
+    
+    hillbert = 1 << 5
+    colosseum = 1 << 6
+    pre_dragon_doors = 1 << 7
+    post_dragon = 1 << 8
+    post_game = 1 << 8
 
 
 class Everhood2Location(Location):
@@ -27,6 +31,11 @@ class Everhood2LocationData(NamedTuple):
     region: str
     type: LocationType
     item_name: str
+
+
+class Everhood2EventData(NamedTuple):
+    region: str
+    type: LocationType
 
 
 item_locations: Dict[str, Everhood2LocationData] = {    
@@ -62,19 +71,115 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Marzian Era 0 - Mining Base Chest": Everhood2LocationData(ITEM_LOCATION_START + 24, "Marzian Era 0 - Mining Base", LocationType.item, "Crimson Bandanna"),
     "Red Bandana Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 25, "Marzian Era 0 - Mining Base", LocationType.cosmetic, "Red Bandana Cosmetic"),
 
-    "Floor 23 Key": Everhood2LocationData(ITEM_LOCATION_START + 26, "Hillbert Hotel", LocationType.hillbert_item, "Floor 23 Key"),
-    "Floor 23 Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 27, "Hillbert Hotel", LocationType.hillbert_item, "100xp"),
-    "Cat Ears": Everhood2LocationData(ITEM_LOCATION_START + 28, "Hillbert Hotel", LocationType.hillbert_cosmetic, "Cat Ears Cosmetic"),
-    "Cat Ears Bald": Everhood2LocationData(ITEM_LOCATION_START + 29, "Hillbert Hotel", LocationType.hillbert_cosmetic, "Cat Ears Bald Cosmetic"),
-    "Floor Gold Key": Everhood2LocationData(ITEM_LOCATION_START + 30, "Hillbert Hotel", LocationType.hillbert_item, "Gold Key"),
-    "Floor Gold Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Hillbert Hotel", LocationType.hillbert_item, "50xp"),
-    "Oingo Boingo": Everhood2LocationData(ITEM_LOCATION_START + 32, "Hillbert Hotel", LocationType.hillbert_cosmetic, "Oingo Boingo Cosmetic"),
+    "Floor 23 Key": Everhood2LocationData(ITEM_LOCATION_START + 26, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Floor 23 Key"),
+    "Floor 23 Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 27, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "100xp"),
+    "Cat Ears": Everhood2LocationData(ITEM_LOCATION_START + 28, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Cosmetic"),
+    "Cat Ears Bald": Everhood2LocationData(ITEM_LOCATION_START + 29, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Bald Cosmetic"),
+    "Floor Gold Key": Everhood2LocationData(ITEM_LOCATION_START + 30, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Gold Key"),
+    "Floor Gold Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "50xp"),
+    "Oingo Boingo": Everhood2LocationData(ITEM_LOCATION_START + 32, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Oingo Boingo Cosmetic"),
 
-    "Floor 23 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 33, "Floor 23", LocationType.hillbert_item, "50xp"),
-    "Floor 23 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 34, "Floor 23", LocationType.hillbert_item, "50xp"),
-    "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23", LocationType.hillbert_item, "50xp"),
+    "Floor 23 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 33, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
+    "Floor 23 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 34, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
+    "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
     
-    "Floor Gold Chest": Everhood2LocationData(ITEM_LOCATION_START + 36, "Floor Gold", LocationType.hillbert_item, "50xp"),
+    "Floor Gold Chest": Everhood2LocationData(ITEM_LOCATION_START + 36, "Floor Gold", LocationType.item | LocationType.hillbert, "50xp"),
+    "Floor Green Key": Everhood2LocationData(ITEM_LOCATION_START + 37, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Green Key"),
+    
+    "Stopwatch Artifact": Everhood2LocationData(ITEM_LOCATION_START + 39, "Infinity Hub", LocationType.item, "Stopwatch"), # Technically in tutorial area, but not modelling that.
+    
+    "Floor Green Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 41, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Power Gem"),
+    "Floor Pinecone Key": Everhood2LocationData(ITEM_LOCATION_START + 42, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Pinecone Key"),
+    "Floor Pinecone Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 43, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Power Gem"),
+    "Reindeer Skull": Everhood2LocationData(ITEM_LOCATION_START + 44, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Reindeer Skull Cosmetic"),
+    # "Floor Omega Key": Everhood2LocationData(ITEM_LOCATION_START + 45, "Hillbert Hotel", LocationType.item | LocationType.hillbert | LocationType.post_dragon, "Omega Key"),
+    # "Floor Omega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 46, "Hillbert Hotel", LocationType.item | LocationType.hillbert | LocationType.post_dragon, "Power Gem"),
+    # "Jester Hat": Everhood2LocationData(ITEM_LOCATION_START + 47, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert | LocationType.post_dragon, "Jester Hat Cosmetic"),
+    
+    "Floor Pinecone Chest": Everhood2LocationData(ITEM_LOCATION_START + 48, "Floor Pinecone", LocationType.cosmetic | LocationType.hillbert, "50xp"),
+    
+    # "Marzian Era 3000 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 49, "Marzian Era 3000", LocationType.item | LocationType.post_dragon, "100xp"),
+    # "Marzian Era 3000 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 50, "Marzian Era 3000", LocationType.item | LocationType.post_dragon, "50xp"),
+
+    # "Marzian Era 4000 Chest": Everhood2LocationData(ITEM_LOCATION_START + 51, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "100xp"),
+
+    # "Sun Insignia": Everhood2LocationData(ITEM_LOCATION_START + 52, "Mushroom Bureau - Sun", LocationType.item | LocationType.post_dragon, "Sun Insignia"),
+    # "Mushroom Bureau Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 53, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Power Gem"),
+    # "Moon Insignia": Everhood2LocationData(ITEM_LOCATION_START + 54, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Moon Insignia"),
+    # "Mushroom Bureau Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 55, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Death Coin"),
+
+    # "Duality Artifact": Everhood2LocationData(ITEM_LOCATION_START + 56, "Lucy's Room", LocationType.item | LocationType.post_dragon, "Duality"),
+    
+    # Todo: Do we replace this with a progressive green key?
+    # "Crystal Key": Everhood2LocationData(ITEM_LOCATION_START + 57, "Sam's Room", LocationType.item | LocationType.post_dragon, "Crystal Key"),
+
+    # Todo: Determine how soul weapons are placed.
+    # "Marzian Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 58, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Green Soul Spear"),
+
+    # Todo: Correct Names
+    "Lab Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 59, "Lab", LocationType.item | LocationType.pre_dragon_doors, "35xp"),
+    "Clover Artifact": Everhood2LocationData(ITEM_LOCATION_START + 60, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Clover"),
+    "Lab Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 61, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+
+    # "Floor Omega Chest": Everhood2LocationData(ITEM_LOCATION_START + 62, "Floor Omega", LocationType.item | LocationType.post_dragon, "Power Gem"),
+
+    # "Liminal Room Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 63, "Liminal Room", LocationType.item | LocationType.post_dragon, "Power Gem"), 
+    # "Liminal Room Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 64, "Liminal Room", LocationType.item | LocationType.post_dragon, "Power Gem"),
+
+    # Todo: Give more Descriptive names
+    "Smega Station Start Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 65, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station Start Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 66, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station Start Chest 3": Everhood2LocationData(ITEM_LOCATION_START + 67, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station Audio Chest": Everhood2LocationData(ITEM_LOCATION_START + 68, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Gas Mask Artifact": Everhood2LocationData(ITEM_LOCATION_START + 69, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Gas Mask"),
+    "Gas Mask Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 70, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Gas Mask Cosmetic"),
+    "Smega Station RAM Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 71, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station RAM Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 72, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "100xp"),
+    "Smega Station RAM Chest 3": Everhood2LocationData(ITEM_LOCATION_START + 73, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station RAM Chest 4": Everhood2LocationData(ITEM_LOCATION_START + 74, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station RAM Chest 5": Everhood2LocationData(ITEM_LOCATION_START + 75, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station RAM Chest 6": Everhood2LocationData(ITEM_LOCATION_START + 76, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station RAM Chest 7": Everhood2LocationData(ITEM_LOCATION_START + 77, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station RAM Chest 8": Everhood2LocationData(ITEM_LOCATION_START + 78, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station RAM Chest 9": Everhood2LocationData(ITEM_LOCATION_START + 79, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station RAM Chest 10": Everhood2LocationData(ITEM_LOCATION_START + 80, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station RAM Chest 11": Everhood2LocationData(ITEM_LOCATION_START + 81, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station RAM Chest 12": Everhood2LocationData(ITEM_LOCATION_START + 82, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station Processor Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 83, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station Processor Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 84, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Station Processor Chest 3": Everhood2LocationData(ITEM_LOCATION_START + 85, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station Processor Chest 4": Everhood2LocationData(ITEM_LOCATION_START + 86, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Station Processor Chest 5": Everhood2LocationData(ITEM_LOCATION_START + 87, "Smega Station", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    
+    # Todo: More Descriptive Names
+    # "Death Mountain Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 88, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
+    # "Death Mountain Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 89, "Death Mountain", LocationType.item | LocationType.post_dragon, "Power Gem"),
+    # "Death Mountain Chest 3": Everhood2LocationData(ITEM_LOCATION_START + 90, "Death Mountain", LocationType.item | LocationType.post_dragon, "Power Gem"),
+    # "Death Mountain Chest 4": Everhood2LocationData(ITEM_LOCATION_START + 91, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
+    # "Death Mountain Chest 5": Everhood2LocationData(ITEM_LOCATION_START + 92, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
+    # "Death Mountain Chest 6": Everhood2LocationData(ITEM_LOCATION_START + 93, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
+    # "Death Mountain Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 94, "Death Mountain", LocationType.item | LocationType.post_dragon, "Death Coin"),
+    # "Death Mountain Chest 8": Everhood2LocationData(ITEM_LOCATION_START + 95, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
+
+    # "V.I.P. Ticket": Everhood2LocationData(ITEM_LOCATION_START + 96, "Everhood 1", LocationType.item | LocationType.post_dragon, "V.I.P. Ticket"),
+    # "Long Plank": Everhood2LocationData(ITEM_LOCATION_START + 97, "Everhood 1", LocationType.item | LocationType.post_dragon, "Long Plank"),
+    # "Yellow Mask": Everhood2LocationData(ITEM_LOCATION_START + 98, "Everhood 1", LocationType.item | LocationType.post_dragon, "Yellow Mask"),
+    # "Everhood 1 Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 99, "Everhood 1", LocationType.item | LocationType.post_dragon, "Death Coin"),
+    # "Light Being Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 100, "Everhood 1", LocationType.item | LocationType.post_dragon, "Blue Soul Knives"),
+
+    # "Colosseum Reward 1": Everhood2LocationData(ITEM_LOCATION_START + 101, "Colosseum", LocationType.item | LocationType.colosseum, "Power Gem"),
+    # "Knight Helmet Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 102, "Colosseum", LocationType.cosmetic | LocationType.colosseum, "Knight Helmet Cosmetic"),
+    # "Colosseum Reward 2": Everhood2LocationData(ITEM_LOCATION_START + 103, "Colosseum", LocationType.item | LocationType.colosseum, "Death Coin"),
+    # "Colosseum Reward 3": Everhood2LocationData(ITEM_LOCATION_START + 104, "Colosseum", LocationType.item | LocationType.colosseum, "Power Gem x2"),
+    # "Colosseum Reward 4": Everhood2LocationData(ITEM_LOCATION_START + 105, "Colosseum", LocationType.item | LocationType.colosseum, "Power Gem x3"),
+    # "Colosseum Reward 5": Everhood2LocationData(ITEM_LOCATION_START + 106, "Colosseum", LocationType.item | LocationType.colosseum | LocationType.post_game, "Power Gem x2"),
+    # "Colosseum Reward 6": Everhood2LocationData(ITEM_LOCATION_START + 107, "Colosseum", LocationType.item | LocationType.colosseum | LocationType.post_game, "Power Gem x2"),
+
+    "Pandemonium Chest": Everhood2LocationData(ITEM_LOCATION_START + 108, "Colosseum", LocationType.item | LocationType.post_dragon, "Power Gem"),
+    "Torment Room Chest": Everhood2LocationData(ITEM_LOCATION_START + 109, "Colosseum", LocationType.item | LocationType.post_dragon, "Power Gem"),
+    
+    "Katana": Everhood2LocationData(ITEM_LOCATION_START + 110, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Katana"), 
+    # "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Raven Hub", LocationType.item | LocationType.post_dragon, "Red Soul Axe"),
 }
 
 battle_locations: Dict[str, Everhood2LocationData] = {
@@ -107,7 +212,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Hyena Battle Screech": Everhood2LocationData(BATTLE_LOCATION_START + 18, "Marzian Era 0 - Mining Area", LocationType.trash_battle, "25xp"),
     "Hyena Battle Warcry": Everhood2LocationData(BATTLE_LOCATION_START + 19, "Marzian Era 0 - Mining Area", LocationType.trash_battle, "25xp"),
     "Shark Battle Bloodnose": Everhood2LocationData(BATTLE_LOCATION_START + 20, "Marzian Era 0 - Mining Area", LocationType.trash_battle, "25xp"),
-    "Howler & Razor Battle": Everhood2LocationData(BATTLE_LOCATION_START + 21, "Marzian Era 0 - Mining Area", LocationType.trash_battle, "50xp"),
+    "Howler & Razor Battle": Everhood2LocationData(BATTLE_LOCATION_START + 21, "Marzian Era 0 - Mining Area", LocationType.major_battle, "50xp"),
     "Feugo Battle": Everhood2LocationData(BATTLE_LOCATION_START + 22, "Marzian Era 0 - Mining Area", LocationType.major_battle, "100xp"),
 
     # Marzian Era 0 Base
@@ -121,9 +226,9 @@ battle_locations: Dict[str, Everhood2LocationData] = {
 
     # Eternal War Desert
     "Red Onion Battle": Everhood2LocationData(BATTLE_LOCATION_START + 29, "Eternal War - Battlefield", LocationType.trash_battle, "15xp"),
-    "Leek Battle": Everhood2LocationData(BATTLE_LOCATION_START + 30, "Eternal War - Battlefield", LocationType.trash_battle, "76xp"),
-    "Bro-ccoli": Everhood2LocationData(BATTLE_LOCATION_START + 31, "Eternal War - Battlefield", LocationType.trash_battle, "76xp"),
-    "Bell Pepper Battle": Everhood2LocationData(BATTLE_LOCATION_START + 32, "Eternal War - Battlefield", LocationType.trash_battle, "100xp"),
+    "Leek Battle": Everhood2LocationData(BATTLE_LOCATION_START + 30, "Eternal War - Battlefield", LocationType.unique_battle, "76xp"),
+    "Bro-ccoli": Everhood2LocationData(BATTLE_LOCATION_START + 31, "Eternal War - Battlefield", LocationType.unique_battle, "76xp"),
+    "Bell Pepper Battle": Everhood2LocationData(BATTLE_LOCATION_START + 32, "Eternal War - Battlefield", LocationType.unique_battle, "100xp"),
     "Tomato Rush Lower Left Battle": Everhood2LocationData(BATTLE_LOCATION_START + 33, "Eternal War - Battlefield", LocationType.trash_battle, "25xp"),
     "Tomato Rush Lower Middle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 34, "Eternal War - Battlefield", LocationType.trash_battle, "25xp"),
     "Tomato Rush Lower Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 35, "Eternal War - Battlefield", LocationType.trash_battle, "25xp"),
@@ -131,7 +236,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Tomato Rush Upper Middle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 37, "Eternal War - Battlefield", LocationType.trash_battle, "25xp"),
     "Tomato Rush Upper Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 38, "Eternal War - Battlefield", LocationType.trash_battle, "25xp"),
     "Melon Battle": Everhood2LocationData(BATTLE_LOCATION_START + 39, "Eternal War - Battlefield", LocationType.major_battle, "100xp"),
-    "Chili Battle": Everhood2LocationData(BATTLE_LOCATION_START + 40, "Eternal War - Battlefield", LocationType.trash_battle, "15xp"),
+    "Chili Battle": Everhood2LocationData(BATTLE_LOCATION_START + 40, "Eternal War - Battlefield", LocationType.unique_battle, "15xp"),
 
     # Eternal War Castle
     "Capsicum Battle": Everhood2LocationData(BATTLE_LOCATION_START + 41, "Eternal War - Castle", LocationType.major_battle, "70xp"),
@@ -140,11 +245,11 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     
     # Hillbert Hotel Fights
     # Angry Wizard Todo
-    "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23", LocationType.hillbert_battle, "64xp"),
-    "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.hillbert_battle, "100xp"),
-    "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.hillbert_battle, "80xp"),
+    "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23", LocationType.unique_battle | LocationType.hillbert, "64xp"),
+    "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.major_battle | LocationType.hillbert, "100xp"),
+    "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.major_battle | LocationType.hillbert, "80xp"),
     
-    "Opus & Screech Battle": Everhood2LocationData(BATTLE_LOCATION_START + 50, "Marzian Era 0 - Mining Base", LocationType.hillbert_battle, "80xp"),
+    "Opus & Screech Battle": Everhood2LocationData(BATTLE_LOCATION_START + 50, "Marzian Era 0 - Mining Base", LocationType.trash_battle, "80xp"),
 }
 
 all_locations: ChainMap[str, Everhood2LocationData] = ChainMap(item_locations, battle_locations)

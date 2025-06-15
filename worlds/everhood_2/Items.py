@@ -49,25 +49,31 @@ xp_items: dict[str, Everhood2ItemData] = {
     "76xp": Everhood2ItemData(215, ItemClassification.filler),
     "80xp": Everhood2ItemData(216, ItemClassification.filler),
     "100xp": Everhood2ItemData(217, ItemClassification.filler),
-    "150xp": Everhood2ItemData(218, ItemClassification.filler),
-    "200xp": Everhood2ItemData(219, ItemClassification.filler),
-    "400xp": Everhood2ItemData(220, ItemClassification.filler),
+    "128xp": Everhood2ItemData(218, ItemClassification.filler),    
+    "150xp": Everhood2ItemData(219, ItemClassification.filler),    
+    "200xp": Everhood2ItemData(220, ItemClassification.filler),
+    "250xp": Everhood2ItemData(221, ItemClassification.filler),
+    "300xp": Everhood2ItemData(222, ItemClassification.filler),
+    "350xp": Everhood2ItemData(223, ItemClassification.filler),    
+    "400xp": Everhood2ItemData(224, ItemClassification.filler),
+    "500xp": Everhood2ItemData(225, ItemClassification.filler),
+    "600xp": Everhood2ItemData(226, ItemClassification.filler),
+    "650xp": Everhood2ItemData(227, ItemClassification.filler),
+    "700xp": Everhood2ItemData(228, ItemClassification.filler),
+    "800xp": Everhood2ItemData(229, ItemClassification.filler),
+    "888xp": Everhood2ItemData(230, ItemClassification.filler),
+    "950xp": Everhood2ItemData(231, ItemClassification.filler),
+    "1000xp": Everhood2ItemData(232, ItemClassification.filler),
+    "1200xp": Everhood2ItemData(232, ItemClassification.filler),    
 }
 
 door_randomizer_keys: dict[str, Everhood2ItemData] = {
-    "Hillbert Hotel Key": Everhood2ItemData(300, ItemClassification.progression),
-    "Eternal War Key": Everhood2ItemData(301, ItemClassification.progression),
-    "Marzian Era 0 Key": Everhood2ItemData(302, ItemClassification.progression),
-    "Marzian Era 1000 Key": Everhood2ItemData(303, ItemClassification.progression),
-    "Marzian Era 2000 Key": Everhood2ItemData(304, ItemClassification.progression),
-    "Marzian Era 3000 Key": Everhood2ItemData(305, ItemClassification.progression),
-    "Marzian Era 4000 Key": Everhood2ItemData(306, ItemClassification.progression),
-    "Marzian Era 5000 Key": Everhood2ItemData(307, ItemClassification.progression),
-    "Human Town Key": Everhood2ItemData(308, ItemClassification.progression),
-    "Lab Key": Everhood2ItemData(309, ItemClassification.progression),
-    "Smega Key": Everhood2ItemData(310, ItemClassification.progression),
-    "Mushroom Bureau Key": Everhood2ItemData(311, ItemClassification.progression),
-    "4D Dimension Key": Everhood2ItemData(312, ItemClassification.progression),
+    "Neon Forest Key": Everhood2ItemData(300, ItemClassification.progression),
+    "Progressive Marzian Key": Everhood2ItemData(301, ItemClassification.progression),
+    "Eternal War Key": Everhood2ItemData(302, ItemClassification.progression),
+    "Smega Console Key": Everhood2ItemData(303, ItemClassification.progression),
+    "Lab Key": Everhood2ItemData(304, ItemClassification.progression),
+    "Home Town Key": Everhood2ItemData(305, ItemClassification.progression),
 }
 
 cosmetics: dict[str, Everhood2ItemData] = {
@@ -84,6 +90,8 @@ cosmetics: dict[str, Everhood2ItemData] = {
     "Oingo Boingo Cosmetic": Everhood2ItemData(410, ItemClassification.filler),
     "Mage Hat Cosmetic": Everhood2ItemData(411, ItemClassification.filler),
     "Afro Cosmetic": Everhood2ItemData(412, ItemClassification.filler),
+    "Jester Hat": Everhood2ItemData(413, ItemClassification.filler),
+    "Knight Helmet": Everhood2ItemData(414, ItemClassification.filler),
 }
 
 misc_items: dict[str, Everhood2ItemData] = {
