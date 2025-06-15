@@ -22,10 +22,13 @@ major_items: dict[str, Everhood2ItemData] = {
     "Gold Key": Everhood2ItemData(107, ItemClassification.progression),
     "Green Key": Everhood2ItemData(108, ItemClassification.progression), # Todo: Self Lockable.
     "Crimson Bandanna": Everhood2ItemData(109, ItemClassification.useful),
-    "Power Gem x3": Everhood2ItemData(110, ItemClassification.progression),
-    "Power Gem x25": Everhood2ItemData(111, ItemClassification.progression),
+    "Power Gem x2": Everhood2ItemData(110, ItemClassification.progression),
+    "Power Gem x3": Everhood2ItemData(111, ItemClassification.progression),
     "Moon Emblem": Everhood2ItemData(112, ItemClassification.progression), # Todo: Is this actually needed?
     "Sun Emblem": Everhood2ItemData(113, ItemClassification.progression), # Todo: Is this actually needed?
+    "Stopwatch": Everhood2ItemData(116, ItemClassification.useful),
+    "Pinecone Key": Everhood2ItemData(117, ItemClassification.progression),
+    "Clover": Everhood2ItemData(118, ItemClassification.useful),
 }
 
 # Todo: Do we need level logic?
@@ -51,20 +54,21 @@ xp_items: dict[str, Everhood2ItemData] = {
     "100xp": Everhood2ItemData(217, ItemClassification.filler),
     "128xp": Everhood2ItemData(218, ItemClassification.filler),    
     "150xp": Everhood2ItemData(219, ItemClassification.filler),    
-    "200xp": Everhood2ItemData(220, ItemClassification.filler),
-    "250xp": Everhood2ItemData(221, ItemClassification.filler),
-    "300xp": Everhood2ItemData(222, ItemClassification.filler),
-    "350xp": Everhood2ItemData(223, ItemClassification.filler),    
-    "400xp": Everhood2ItemData(224, ItemClassification.filler),
-    "500xp": Everhood2ItemData(225, ItemClassification.filler),
-    "600xp": Everhood2ItemData(226, ItemClassification.filler),
-    "650xp": Everhood2ItemData(227, ItemClassification.filler),
-    "700xp": Everhood2ItemData(228, ItemClassification.filler),
-    "800xp": Everhood2ItemData(229, ItemClassification.filler),
-    "888xp": Everhood2ItemData(230, ItemClassification.filler),
-    "950xp": Everhood2ItemData(231, ItemClassification.filler),
-    "1000xp": Everhood2ItemData(232, ItemClassification.filler),
-    "1200xp": Everhood2ItemData(232, ItemClassification.filler),    
+    "192xp": Everhood2ItemData(220, ItemClassification.filler),    
+    "200xp": Everhood2ItemData(221, ItemClassification.filler),
+    "250xp": Everhood2ItemData(222, ItemClassification.filler),
+    "300xp": Everhood2ItemData(223, ItemClassification.filler),
+    "350xp": Everhood2ItemData(224, ItemClassification.filler),    
+    "400xp": Everhood2ItemData(225, ItemClassification.filler),
+    "500xp": Everhood2ItemData(226, ItemClassification.filler),
+    "600xp": Everhood2ItemData(227, ItemClassification.filler),
+    "650xp": Everhood2ItemData(228, ItemClassification.filler),
+    "700xp": Everhood2ItemData(229, ItemClassification.filler),
+    "800xp": Everhood2ItemData(230, ItemClassification.filler),
+    "888xp": Everhood2ItemData(231, ItemClassification.filler),
+    "950xp": Everhood2ItemData(232, ItemClassification.filler),
+    "1000xp": Everhood2ItemData(233, ItemClassification.filler),
+    "1200xp": Everhood2ItemData(234, ItemClassification.filler),    
 }
 
 door_randomizer_keys: dict[str, Everhood2ItemData] = {
@@ -90,8 +94,9 @@ cosmetics: dict[str, Everhood2ItemData] = {
     "Oingo Boingo Cosmetic": Everhood2ItemData(410, ItemClassification.filler),
     "Mage Hat Cosmetic": Everhood2ItemData(411, ItemClassification.filler),
     "Afro Cosmetic": Everhood2ItemData(412, ItemClassification.filler),
-    "Jester Hat": Everhood2ItemData(413, ItemClassification.filler),
-    "Knight Helmet": Everhood2ItemData(414, ItemClassification.filler),
+    "Jester Hat Cosmetic": Everhood2ItemData(413, ItemClassification.filler),
+    "Knight Helmet Cosmetic": Everhood2ItemData(414, ItemClassification.filler),
+    "Gas Mask Cosmetic": Everhood2ItemData(415, ItemClassification.filler),
 }
 
 misc_items: dict[str, Everhood2ItemData] = {
@@ -99,7 +104,7 @@ misc_items: dict[str, Everhood2ItemData] = {
     "Druffle": Everhood2ItemData(115, ItemClassification.filler), # Todo: Filler? Maybe keep the one druffle stuck to Sam
 }
 
-all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, cosmetics, misc_items)
+all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, door_randomizer_keys, cosmetics, misc_items)
 
 item_groups: dict[str, list[str]] = {
     "Soul Weapon": ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"],

@@ -24,22 +24,22 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Marzian Era 0 - Mining Base": Everhood2RegionData(["Infinity Hub"]),
     "Marzian Era 1000": Everhood2RegionData(["Infinity Hub"]),
     "Marzian Era 2000": Everhood2RegionData(["Infinity Hub"]),
-    # "Marzian Era 3000": Everhood2RegionData(["Infinity Hub"]),
-    # "Marzian Era 4000": Everhood2RegionData(["Infinity Hub"]),
-    # "Marzian Era 5000": Everhood2RegionData(["Infinity Hub"]),
+    "Marzian Era 3000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
+    "Marzian Era 4000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
+    "Marzian Era 5000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
     
     # Todo: Region Removal of irrelevant regions
-    "Smega Console": Everhood2RegionData(["Infinity Hub"]), # Todo: May need splitting up?
-    "Home Town": Everhood2RegionData(["Infinity Hub"]),
-    "Lab": Everhood2RegionData(["Infinity Hub"]),
+    "Smega Console": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors), # Todo: May need splitting up?
+    "Home Town": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors),
+    "Lab": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors),
     
     # Hillbert Hotel Rooms Todo: Maybe make an option to exclude these areas
-    "Floor 23": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item),
-    "Floor Gold": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item),
-    "Floor Green": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item),
-    "Floor Pinecone": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item),
-    "Battle Collosseum": Everhood2RegionData(["Hillbert Hotel", "End Hub"], LocationType.colloseum_battle),
-    "Dunkey Room": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item), #Todo: Does this have anything?
-    "Sam's House": Everhood2RegionData(["Hillbert Hotel"]),
-    "Lucy's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert_item),
+    "Floor 23": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
+    "Floor Gold": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
+    "Floor Green": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
+    "Floor Pinecone": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
+    "Battle Collosseum": Everhood2RegionData(["Hillbert Hotel", "End Hub"], LocationType.colosseum),
+    "Dunkey Room": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon), #Todo: Does this have anything?
+    "Sam's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.post_dragon),
+    "Lucy's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon),
 }

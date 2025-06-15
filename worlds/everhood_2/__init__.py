@@ -1,10 +1,12 @@
-﻿from worlds.AutoWorld import World, WebWorld
+﻿from math import floor
+
+from worlds.AutoWorld import World, WebWorld
 from BaseClasses import Region, Item, Tutorial
 from typing import ClassVar, Type
-from Options import PerGameCommonOptions
+from Options import PerGameCommonOptions, OptionError
 
 from .Options import Everhood2Options, everhood2_option_groups
-from .Items import Everhood2Item, all_items, item_groups, misc_items
+from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys
 from .Locations import Everhood2Location, all_locations, LocationType
 from .Regions import region_data_table
 from .Rules import set_everhood2_rules
@@ -44,7 +46,7 @@ class Everhood2World(World):
     item_name_to_id = {name: code.code for name, code in all_items.items()}
     location_name_to_id = {name: code.code for name, code in all_locations.items()}
     item_name_groups = item_groups
-
+    
     def create_item(self, name: str) -> Item:
         item = all_items[name]
         return Everhood2Item(name, item.type, item.code, self.player)
@@ -53,11 +55,42 @@ class Everhood2World(World):
         return self.random.choice([x for x in misc_items.keys()])
 
     def create_items(self) -> None:
+        item_collection = []
         valid_types = self.valid_location_types()
-        for location in self.multiworld.get_locations(self.player):
+        for location in self.get_locations():
             data = all_locations[location.name]
             if data.type in valid_types:
-                self.multiworld.itempool.append(self.create_item(data.item_name))
+                item_collection.append(self.create_item(data.item_name))
+        
+        if self.options.door_keys.value:
+            for key in door_randomizer_keys.keys():
+                if key == "Neon Forest Key" and self.options.soul_color.value == self.options.soul_color.option_Blue:
+                    self.push_precollected(self.create_item(key))
+                elif key == "Progressive Marzian Key":
+                    if self.options.soul_color.value == self.options.soul_color.option_Green:
+                        self.push_precollected(self.create_item(key))
+                    else:
+                        item_collection.append(self.create_item(key))
+                    item_collection.append(self.create_item(key))
+                    item_collection.append(self.create_item(key))
+                elif key == "Eternal War Key" and self.options.soul_color.value == self.options.soul_color.option_Red:
+                    self.push_precollected(self.create_item(key))
+                else:
+                    item_collection.append(self.create_item(key))
+            
+            # At this point in time, the extra keys need to replace xp. We have a ton of 50xp available so lets replace those.
+            original_collection = item_collection
+            item_collection = []
+            xp_removal_count = 0
+            for item in original_collection:
+                if item.name == "50xp" and xp_removal_count < 7: #Todo: Dependant on settings
+                    xp_removal_count += 1
+                    continue
+
+                item_collection.append(item)
+            
+        for item in item_collection:
+            self.multiworld.itempool.append(item)
 
     def create_regions(self) -> None:
         valid_types = self.valid_location_types()
@@ -82,32 +115,48 @@ class Everhood2World(World):
             region = created_regions[location_data.region]
             region.add_locations({location_name: location_data.code}, Everhood2Location)
 
-    def valid_location_types(self) -> set[LocationType]:
-        valid_types = { LocationType.item }
+    def valid_location_types(self) -> LocationType:
+        valid_types = LocationType.item
+        
         if self.options.cosmetics.value:
-            valid_types.add(LocationType.cosmetic)
-        if self.options.battle_rewards.value == self.options.battle_rewards.option_Minor:
-            valid_types.add(LocationType.major_battle)
-            valid_types.add(LocationType.trash_battle)
+            valid_types |= LocationType.cosmetic
+            
+        if self.options.battle_rewards.value == self.options.battle_rewards.option_All:
+            valid_types |= LocationType.major_battle
+            valid_types |= LocationType.unique_battle
+            valid_types |= LocationType.trash_battle
+        elif self.options.battle_rewards.value == self.options.battle_rewards.option_Unique:
+            valid_types |= LocationType.major_battle
+            valid_types |= LocationType.unique_battle
         elif self.options.battle_rewards.value == self.options.battle_rewards.option_Major:
-            valid_types.add(LocationType.major_battle)
+            valid_types |= LocationType.major_battle
 
         if self.options.hillbert_hotel.value:
-            valid_types.add(LocationType.hillbert_item)
-            if LocationType.cosmetic in valid_types:
-                valid_types.add(LocationType.hillbert_cosmetic)
-            if LocationType.major_battle in valid_types:
-                valid_types.add(LocationType.hillbert_battle)
+            valid_types |= LocationType.hillbert
 
+        if self.options.door_keys.value:
+            valid_types |= LocationType.pre_dragon_doors
+            
         return valid_types
 
     def set_rules(self) -> None:
         set_everhood2_rules(self, self.valid_location_types()) 
+        
+    def get_dragon_gem_count(self, valid_types: LocationType) -> int:
+        gem_count = 5
+        if LocationType.pre_dragon_doors in valid_types:
+            gem_count += 8
+        return gem_count
+    
+    def get_needed_dragon_gem_count(self, valid_types: LocationType):
+        multiplier = self.options.dragon_gems.value / 100.0
+        gem_count = self.get_dragon_gem_count(valid_types)
+        return max(1, floor(gem_count * multiplier))
 
     def fill_slot_data(self):
+        valid_types = self.valid_location_types()
         return {
-            # "victoryLocation": self.victory_song_name,
-            # "deathLink": self.options.death_link.value,
-            # "musicSheetWinCount": self.get_music_sheet_win_count(),
-            # "gradeNeeded": self.options.grade_needed.value,
+            "DragonGems": self.get_needed_dragon_gem_count(valid_types),
+            "SoulColor": self.options.soul_color.value,
+            "DoorKeys": self.options.door_keys.value
         }

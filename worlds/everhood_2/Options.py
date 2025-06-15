@@ -1,4 +1,4 @@
-﻿from Options import Toggle, Choice, OptionSet, PerGameCommonOptions, OptionGroup
+﻿from Options import Toggle, Choice, OptionSet, PerGameCommonOptions, OptionGroup, Range
 from dataclasses import dataclass
 from .Locations import battle_locations
 
@@ -14,9 +14,19 @@ class SoulColor(Choice):
     Determines which soul color the player will be when the run is started. If combined with Door Keys, the starting route's key will be given to you.
     """
     display_name = "Soul Color"
-    option_Blue = 0
-    option_Green = 1
-    option_Red = 2
+    default = 1
+    option_Blue = 1
+    option_Green = 2
+    option_Red = 3
+    
+class DragonPowerGemPercentage(Range):
+    """
+    Determines the percentage of gems required to beat the dragon.
+    """
+    display_name = "Dragon's Power Gem Requirement"
+    range_start = 1
+    range_end = 100
+    default = 75
     
 class RandomizeCosmetics(Toggle):
     """
@@ -37,21 +47,23 @@ class HillbertHotel(Toggle):
 class RandomizeBattleRewards(Choice):
     """
     Chooses what battles will be added to the randomization. Their Battles and xps will be added.
-    - Major Battles: Battles which feature a unique character.
-    - Minor Battles: Battles which
+    - Major Battles: Unique Battles which are fought on the main path of any route.
+    - Unique Battles: Battles which feature a unique character.
+    - All Battles: All non-spaceship battles.
     """
     display_name = "Battle Rewards"
     default = 1    
     option_None = 0
     option_Major = 1
-    option_Minor = 2
+    option_Unique = 2
+    option_All = 3
 
 
-class Colloseum(Toggle):
-    """
-    Whether to include the Colloseum and its battles to the pool. Does nothing without Battles
-    """
-    display_name = "Include Colloseum"
+# class Colloseum(Toggle):
+#     """
+#     Whether to include the Colloseum and its battles to the pool. Does nothing without Battles
+#     """
+#     display_name = "Include Colloseum"
 
 
 # class BattleRandomisation(Choice):
@@ -76,13 +88,16 @@ class Colloseum(Toggle):
 
 
 everhood2_option_groups = [
-    OptionGroup("Randomisation", [
+    OptionGroup("Setup", [
         SoulColor, # Todo: Add this to a different category with difficulty options
         DoorKeys,
+        DragonPowerGemPercentage
+    ]),
+    OptionGroup("Randomisation", [
         RandomizeCosmetics,
         RandomizeBattleRewards,
         HillbertHotel,
-        Colloseum,
+        # Colloseum,
     ]),
     # OptionGroup("Enemizer", [
     #     BattleRandomisation,
@@ -95,9 +110,10 @@ everhood2_option_groups = [
 class Everhood2Options(PerGameCommonOptions):
     soul_color: SoulColor
     door_keys: DoorKeys
+    dragon_gems: DragonPowerGemPercentage
     cosmetics: RandomizeCosmetics
     battle_rewards: RandomizeBattleRewards
     hillbert_hotel: HillbertHotel
-    colloseum: Colloseum
+    # colloseum: Colloseum
     # Enemizer: BattleRandomisation
     # Enemizer_exclude: ExcludeFromEnemizer
