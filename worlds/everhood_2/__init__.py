@@ -158,5 +158,5 @@ class Everhood2World(World):
         return {
             "DragonGems": self.get_needed_dragon_gem_count(valid_types),
             "SoulColor": self.options.soul_color.value,
-            "DoorKeys": self.options.door_keys.value
+            "DoorKeys": self.options.door_keys.value != 0
         }
