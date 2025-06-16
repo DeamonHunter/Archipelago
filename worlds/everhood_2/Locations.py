@@ -96,12 +96,12 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # "Floor Omega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 46, "Hillbert Hotel", LocationType.item | LocationType.hillbert | LocationType.post_dragon, "Power Gem"),
     # "Jester Hat": Everhood2LocationData(ITEM_LOCATION_START + 47, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert | LocationType.post_dragon, "Jester Hat Cosmetic"),
     
-    "Floor Pinecone Chest": Everhood2LocationData(ITEM_LOCATION_START + 48, "Floor Pinecone", LocationType.cosmetic | LocationType.hillbert, "50xp"),
+    "Floor Pinecone Chest": Everhood2LocationData(ITEM_LOCATION_START + 48, "Floor Pinecone", LocationType.item | LocationType.hillbert, "50xp"),
     
     # "Marzian Era 3000 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 49, "Marzian Era 3000", LocationType.item | LocationType.post_dragon, "100xp"),
     # "Marzian Era 3000 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 50, "Marzian Era 3000", LocationType.item | LocationType.post_dragon, "50xp"),
 
-    # "Marzian Era 4000 Chest": Everhood2LocationData(ITEM_LOCATION_START + 51, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "100xp"),
+    # "Marzian Era 4000 Chest": Everhood2LocationData(ITEM_LOCATION_START + 51, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Power Gem"),
 
     # "Sun Insignia": Everhood2LocationData(ITEM_LOCATION_START + 52, "Mushroom Bureau - Sun", LocationType.item | LocationType.post_dragon, "Sun Insignia"),
     # "Mushroom Bureau Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 53, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Power Gem"),
@@ -330,7 +330,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     
     # "Yellow Battle": Everhood2LocationData(BATTLE_LOCATION_START + 115, "Everhood 1", LocationType.major_battle | LocationType.post_dragon, "800xp"),
     # "Cursed Castle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 116, "Everhood 1", LocationType.major_battle | LocationType.post_dragon, "800xp"),
-    # "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1", LocationType.unique_battle | LocationType.post_dragon, "800xp"),
+    # "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1", LocationType.unique_battle | LocationType.post_dragon, "600xp"),
     # "Slot Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 118, "Everhood 1", LocationType.unique_battle | LocationType.post_dragon, "500xp"), #Todo: Keep skippable?
     
     # "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.major_battle | LocationType.post_dragon, "0xp"),
