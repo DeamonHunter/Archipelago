@@ -282,12 +282,12 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Door of the Dead Battle": Everhood2LocationData(BATTLE_LOCATION_START + 74, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "0xp"),
     "Ghost Chunky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 75, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
     "Ghost Junkie Battle": Everhood2LocationData(BATTLE_LOCATION_START + 76, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
-    "Ghost Franky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 77, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
+    "Ghost Franky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 77, "Lab", LocationType.major_battle | LocationType.pre_dragon_doors, "35xp"),
 
-    # "Cazok Carrot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 78, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
-    # "Cazok Ghost Battle": Everhood2LocationData(BATTLE_LOCATION_START + 79, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
-    # "Cazok Vanguard 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 80, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
-    # "Cazok Battle": Everhood2LocationData(BATTLE_LOCATION_START + 81, "Irvine Pocket Dimension", LocationType.major_battle | LocationType.post_dragon, "950xp"),
+    # "Cazok Carrot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 78, "Floor Omega", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
+    # "Cazok Ghost Battle": Everhood2LocationData(BATTLE_LOCATION_START + 79, "Floor Omega", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
+    # "Cazok Vanguard 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 80, "Floor Omega", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
+    # "Cazok Battle": Everhood2LocationData(BATTLE_LOCATION_START + 81, "Floor Omega", LocationType.major_battle | LocationType.post_dragon, "950xp"),
 
     #Todo Categorise Better
     "Motherboard INT Battle": Everhood2LocationData(BATTLE_LOCATION_START + 82, "Smega Console", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp"),
