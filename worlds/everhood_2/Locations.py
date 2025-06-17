@@ -279,10 +279,10 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     # "Doopy Dragon 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 72, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "35xp"),
     # "Vanguard 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 73, "Irvine Pocket Dimension", LocationType.major_battle | LocationType.post_dragon, "250xp"),
     
-    # "Door of the Dead Battle": Everhood2LocationData(BATTLE_LOCATION_START + 74, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.pre_dragon_doors, "0xp"),
-    # "Ghost Chunky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 75, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
-    # "Ghost Junkie Battle": Everhood2LocationData(BATTLE_LOCATION_START + 76, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
-    # "Ghost Franky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 77, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
+    "Door of the Dead Battle": Everhood2LocationData(BATTLE_LOCATION_START + 74, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "0xp"),
+    "Ghost Chunky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 75, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
+    "Ghost Junkie Battle": Everhood2LocationData(BATTLE_LOCATION_START + 76, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
+    "Ghost Franky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 77, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
 
     # "Cazok Carrot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 78, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
     # "Cazok Ghost Battle": Everhood2LocationData(BATTLE_LOCATION_START + 79, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
