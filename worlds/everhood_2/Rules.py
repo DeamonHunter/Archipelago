@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from . import Everhood2World
 
 def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType):
-    world.multiworld.completion_condition[world.player] = lambda state: state.has("Power Gem", world.player, 3)
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
     
     if world.options.door_keys.value:
         set_door_key_rules(world, valid_types)
