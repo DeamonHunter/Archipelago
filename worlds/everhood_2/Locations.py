@@ -249,6 +249,8 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.major_battle | LocationType.hillbert, "100xp"),
     "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.major_battle | LocationType.hillbert, "80xp"),
     
+    "Squirrels Battle": Everhood2LocationData(BATTLE_LOCATION_START + 48, "Floor Pinecone", LocationType.major_battle | LocationType.hillbert, "400xp"),
+    
     "Opus & Screech Battle": Everhood2LocationData(BATTLE_LOCATION_START + 50, "Marzian Era 0 - Mining Base", LocationType.trash_battle, "80xp"),
 
     # "Thriller Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 51, "Marzian Era 3000", LocationType.trash_battle | LocationType.post_dragon, "50xp"),
