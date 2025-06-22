@@ -180,6 +180,10 @@ item_locations: Dict[str, Everhood2LocationData] = {
     
     "Katana": Everhood2LocationData(ITEM_LOCATION_START + 110, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Katana"), 
     # "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Raven Hub", LocationType.item | LocationType.post_dragon, "Red Soul Axe"),
+    "Pet the Orange Cat": Everhood2LocationData(ITEM_LOCATION_START + 112, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
+    "Pet the Grey Cat": Everhood2LocationData(ITEM_LOCATION_START + 113, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
+    "Pet the Black Cat": Everhood2LocationData(ITEM_LOCATION_START + 114, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "-2xp"),
+    "Bead Braclet": Everhood2LocationData(ITEM_LOCATION_START + 115, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "Bead Braclet"),
 }
 
 battle_locations: Dict[str, Everhood2LocationData] = {
