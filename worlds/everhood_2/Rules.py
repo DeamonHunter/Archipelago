@@ -12,7 +12,7 @@ def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType):
         set_door_key_rules(world, valid_types)
 
     if LocationType.hillbert in valid_types:
-        set_door_key_rules(world, valid_types)
+        set_hillbert_rules(world, valid_types)
 
 
 def set_door_key_rules(world: World, valid_types: LocationType) -> None:
