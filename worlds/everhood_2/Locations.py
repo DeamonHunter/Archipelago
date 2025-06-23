@@ -72,11 +72,11 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Red Bandana Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 25, "Marzian Era 0 - Mining Base", LocationType.cosmetic, "Red Bandana Cosmetic"),
 
     "Floor 23 Key": Everhood2LocationData(ITEM_LOCATION_START + 26, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Floor 23 Key"),
-    "Floor 23 Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 27, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "100xp"),
+    "Floor 23 Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 27, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "100xp"),
     "Cat Ears": Everhood2LocationData(ITEM_LOCATION_START + 28, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Cosmetic"),
     "Cat Ears Bald": Everhood2LocationData(ITEM_LOCATION_START + 29, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Bald Cosmetic"),
-    "Floor Gold Key": Everhood2LocationData(ITEM_LOCATION_START + 30, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Gold Key"),
-    "Floor Gold Complete Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "50xp"),
+    "Gold Key": Everhood2LocationData(ITEM_LOCATION_START + 30, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Gold Key"),
+    "Floor Gold Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "50xp"),
     "Oingo Boingo": Everhood2LocationData(ITEM_LOCATION_START + 32, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Oingo Boingo Cosmetic"),
 
     "Floor 23 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 33, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
@@ -84,12 +84,12 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
     
     "Floor Gold Chest": Everhood2LocationData(ITEM_LOCATION_START + 36, "Floor Gold", LocationType.item | LocationType.hillbert, "50xp"),
-    "Floor Green Key": Everhood2LocationData(ITEM_LOCATION_START + 37, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Green Key"),
+    "Green Key": Everhood2LocationData(ITEM_LOCATION_START + 37, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Green Key"),
     
     "Stopwatch Artifact": Everhood2LocationData(ITEM_LOCATION_START + 39, "Infinity Hub", LocationType.item, "Stopwatch"), # Technically in tutorial area, but not modelling that.
     
     "Floor Green Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 41, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Power Gem"),
-    "Floor Pinecone Key": Everhood2LocationData(ITEM_LOCATION_START + 42, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Pinecone Key"),
+    "Pinecone Key": Everhood2LocationData(ITEM_LOCATION_START + 42, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Pinecone Key"),
     "Floor Pinecone Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 43, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Power Gem"),
     "Reindeer Skull": Everhood2LocationData(ITEM_LOCATION_START + 44, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Reindeer Skull Cosmetic"),
     # "Floor Omega Key": Everhood2LocationData(ITEM_LOCATION_START + 45, "Hillbert Hotel", LocationType.item | LocationType.hillbert | LocationType.post_dragon, "Omega Key"),
