@@ -140,7 +140,7 @@ class Everhood2World(World):
         return valid_types
 
     def set_rules(self) -> None:
-        set_everhood2_rules(self, self.valid_location_types()) 
+        set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value == 1) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
         gem_count = 5
