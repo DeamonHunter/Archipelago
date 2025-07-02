@@ -82,6 +82,16 @@ door_randomizer_keys: dict[str, Everhood2ItemData] = {
     "Home Town Key": Everhood2ItemData(305, ItemClassification.progression),
 }
 
+colors: dict[str, Everhood2ItemData] = {
+    "Blue": Everhood2ItemData(350, ItemClassification.progression),
+    "Red": Everhood2ItemData(351, ItemClassification.progression),
+    "Green": Everhood2ItemData(352, ItemClassification.progression),
+    "Yellow": Everhood2ItemData(353, ItemClassification.progression),
+    "Brown": Everhood2ItemData(354, ItemClassification.progression),
+    "Purple": Everhood2ItemData(355, ItemClassification.progression),
+    "Orange": Everhood2ItemData(356, ItemClassification.progression),
+}
+
 cosmetics: dict[str, Everhood2ItemData] = {
     "Anime Hairstyle Cosmetic": Everhood2ItemData(400, ItemClassification.filler),
     "Wild Hairstyle Cosmetic": Everhood2ItemData(401, ItemClassification.filler),

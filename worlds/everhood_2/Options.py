@@ -8,6 +8,8 @@ class DoorKeys(Toggle):
     Blocks the ability to enter doors without the corresponding key. Adds additional checks for completing routes for these door.
     """
     display_name = "Door Keys"
+    default = True
+
     
 class SoulColor(Choice):
     """
@@ -18,7 +20,15 @@ class SoulColor(Choice):
     option_Blue = 1
     option_Green = 2
     option_Red = 3
-    
+
+
+class Colorsanity(Toggle):
+    """
+    When enabled, you can only reflect colors that have been given to you. By default, you start with your soul color.
+    """
+    display_name = "Colorsanity"
+
+
 class DragonPowerGemPercentage(Range):
     """
     Determines the percentage of gems required to beat the dragon.
@@ -27,7 +37,8 @@ class DragonPowerGemPercentage(Range):
     range_start = 1
     range_end = 100
     default = 75
-    
+
+
 class RandomizeCosmetics(Toggle):
     """
     Add cosmetics and their locations to the pool.
@@ -90,8 +101,11 @@ class RandomizeBattleRewards(Choice):
 everhood2_option_groups = [
     OptionGroup("Setup", [
         SoulColor, # Todo: Add this to a different category with difficulty options
-        DoorKeys,
         DragonPowerGemPercentage
+    ]),
+    OptionGroup("Features", [
+        DoorKeys,
+        Colorsanity,
     ]),
     OptionGroup("Randomisation", [
         RandomizeCosmetics,
@@ -114,6 +128,7 @@ class Everhood2Options(PerGameCommonOptions):
     cosmetics: RandomizeCosmetics
     battle_rewards: RandomizeBattleRewards
     hillbert_hotel: HillbertHotel
+    colorsanity: Colorsanity
     # colloseum: Colloseum
     # Enemizer: BattleRandomisation
     # Enemizer_exclude: ExcludeFromEnemizer

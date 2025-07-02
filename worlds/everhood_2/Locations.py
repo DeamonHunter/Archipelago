@@ -1,5 +1,5 @@
 ﻿from typing import Dict, NamedTuple, Optional
-from enum import IntFlag
+from enum import IntFlag, auto
 from BaseClasses import Location
 from collections import ChainMap
 
@@ -9,21 +9,27 @@ BATTLE_LOCATION_START = 500
 
 
 class LocationType(IntFlag):
-    item = 1 << 0
-    cosmetic = 1 << 1
-    major_battle = 1 << 2
-    unique_battle = 1 << 3
-    trash_battle = 1 << 4
+    item = auto()
+    cosmetic = auto()
+    major_battle = auto()
+    unique_battle = auto()
+    trash_battle = auto()
     
-    hillbert = 1 << 5
-    colosseum = 1 << 6
-    pre_dragon_doors = 1 << 7
-    post_dragon = 1 << 8
-    post_game = 1 << 8
+    hillbert = auto()
+    colosseum = auto()
+    pre_dragon_doors = auto()
+    post_dragon = auto()
+    post_game = auto()
 
 
-class Everhood2Location(Location):
-    game: str = "Everhood 2"
+class Color(IntFlag):
+    blue = auto()
+    red = auto()
+    green = auto()
+    yellow = auto()
+    brown = auto()
+    purple = auto()
+    orange = auto()
 
 
 class Everhood2LocationData(NamedTuple):
@@ -31,11 +37,16 @@ class Everhood2LocationData(NamedTuple):
     region: str
     type: LocationType
     item_name: str
+    color: Color = 0
 
 
 class Everhood2EventData(NamedTuple):
     region: str
     type: LocationType
+
+
+class Everhood2Location(Location):
+    game: str = "Everhood 2"
 
 
 item_locations: Dict[str, Everhood2LocationData] = {    
@@ -190,13 +201,13 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     # Starting Battle
     "Raven Tutorial Battle": Everhood2LocationData(BATTLE_LOCATION_START + 0, "Tutorial Hub", LocationType.major_battle, "0xp"),
     # Pre Neon City
-    "Spring Head Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 1, "Neon City", LocationType.trash_battle, "20xp"),
+    "Spring Head Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 1, "Neon City", LocationType.trash_battle, "20xp", Color.red | Color.green),
     # Neon Jungle Room 1
-    "Spring Head Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 2, "Neon Jungle", LocationType.trash_battle, "20xp"),
-    "Spring Head Battle 3": Everhood2LocationData(BATTLE_LOCATION_START + 3, "Neon Jungle", LocationType.trash_battle, "20xp"),
-    "Double Spring Head Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 4, "Neon Jungle", LocationType.trash_battle, "40xp"),
-    "Dark Pirahna 1": Everhood2LocationData(BATTLE_LOCATION_START + 5, "Neon Jungle", LocationType.trash_battle, "30xp"),
-    "Dark Pirahna 2": Everhood2LocationData(BATTLE_LOCATION_START + 6, "Neon Jungle", LocationType.trash_battle, "30xp"),
+    "Spring Head Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 2, "Neon Jungle", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Spring Head Battle 3": Everhood2LocationData(BATTLE_LOCATION_START + 3, "Neon Jungle", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Double Spring Head Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 4, "Neon Jungle", LocationType.trash_battle, "40xp", Color.red | Color.green),
+    "Dark Pirahna 1": Everhood2LocationData(BATTLE_LOCATION_START + 5, "Neon Jungle", LocationType.trash_battle, "30xp", Color.blue | Color.green),
+    "Dark Pirahna 2": Everhood2LocationData(BATTLE_LOCATION_START + 6, "Neon Jungle", LocationType.trash_battle, "30xp", Color.blue | Color.green),
     # Neon Jungle Room 2
     "Homonculus Battle": Everhood2LocationData(BATTLE_LOCATION_START + 7, "Neon Jungle", LocationType.major_battle, "35xp"),
     "Spring Head Battle 4": Everhood2LocationData(BATTLE_LOCATION_START + 8, "Neon Jungle", LocationType.trash_battle, "20xp"),

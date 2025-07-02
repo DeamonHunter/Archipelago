@@ -1,25 +1,64 @@
 from typing import Dict, List, NamedTuple
-from .Locations import LocationType
+from .Locations import LocationType, Color
 
+class Connection(NamedTuple):
+    connect_to: str
+    color: Color = 0
+    key: str = None
+    key_count: int = 1
+    
 class Everhood2RegionData(NamedTuple):
-    connecting_regions: List[str]
+    connecting_regions: List[Connection]
     include_type: LocationType = LocationType.item 
 
-# Todo: Get proper names for various areas
+# Todo: Properly name areas
+# These regions roughly replicate real regions, though are split via fights.
 region_data_table: Dict[str, Everhood2RegionData] = {
-    "Menu": Everhood2RegionData(["Tutorial Hub"]),
-    "Tutorial Hub": Everhood2RegionData(["Infinity Hub"]), # To Be Connected to a soul color
-    "Infinity Hub": Everhood2RegionData(["Eternal War - Battlefield", "Neon City", "Marzian Era 0 - Mining Area", "Marzian Era 1000", "Marzian Era 2000", 
-                                         "Smega Console", "Home Town", "Lab"]),
-    "Eternal War - Battlefield": Everhood2RegionData(["Eternal War - Dungeon"]),
-    "Eternal War - Dungeon": Everhood2RegionData(["Eternal War - Castle"]),
-    "Eternal War - Castle": Everhood2RegionData(["Infinity Hub"]),
-    "Neon City": Everhood2RegionData(["Neon Jungle", "Hillbert Hotel"]),
-    "Neon Jungle": Everhood2RegionData(["Neon City"]),
-    "Hillbert Hotel": Everhood2RegionData(["Infinity Hub", "Hangout Hub", "End Hub", "Floor 23", "Floor Gold", "Floor Green", 
-                                           "Floor Pinecone", "Battle Colosseum", "Dunkey Room", "Sam's House", "Lucy's House", 
-                                           "Mushroom Dance Room"]), # Also "Toilet A Room", "Toilet B Room"
-    # Todo: For ER type stuff, will need to add rooms here
+    "Menu": Everhood2RegionData([Connection("Tutorial Hub")]),
+    # Physically this is connected through a route, but you can always get through your starting route.
+    "Tutorial Hub": Everhood2RegionData([Connection("Infinity Hub")]),     
+    
+    #Starting Hub.
+    "Infinity Hub": Everhood2RegionData([
+        Connection("Eternal War - Battlefield", key="Eternal War Key"),
+        Connection("Neon City - City", key="Neon Forest Key"),
+        Connection("Marzian Era 0 - Mining Area", key="Progressive Marzian Key"),
+        Connection("Marzian Era 1000", key="Progressive Marzian Key", key_count=2),
+        Connection("Marzian Era 2000", key="Progressive Marzian Key", key_count=3),
+        Connection("Smega Console", key="Smega Console Key"),
+        Connection("Home Town", key="Home Town Key"),
+        Connection("Lab", key="Lab Key"),
+    ]),
+
+    # Neon City Regions.
+    "Neon City - City": Everhood2RegionData([
+        Connection("Neon City - Jungle", Color.green | Color.blue | Color.purple), 
+        Connection("Hillbert Hotel", Color.green | Color.blue)]
+    ),
+    "Neon City - Jungle": Everhood2RegionData([Connection("Neon City - Void", Color.green | Color.purple)]),
+    "Neon City - Abyss": Everhood2RegionData([]), # "Neon City - City" Removed because unnecessary without ER
+    "Hillbert Hotel": Everhood2RegionData(
+        [
+            # Removed because unnecessary without ER
+            # "Infinity Hub", "Hangout Hub", "End Hub", 
+            Connection("Floor 23", key="Floor 23 Key"),
+            Connection("Floor Gold", key="Gold Key"),
+            Connection("Floor Green", key="Green Key"),
+            Connection("Floor Pinecone", key="Pinecone Key"),
+            # Not Implemented Yet
+            # "Battle Colosseum", "Dunkey Room", "Sam's House", "Lucy's House", "Mushroom Dance Room" Temporarily Disabled
+            # Also "Toilet A Room", "Toilet B Room". Useless rooms but can be for ER
+        ]
+    ), 
+    
+    # Eternal War
+    "Eternal War - Tomato Rampages": Everhood2RegionData(["Eternal War - Bridge"], Color.red), #Todo: Color Requirements
+    "Eternal War - Bridge": Everhood2RegionData(["Eternal War - Dungeon"], Color.red), #Todo: Color Requirements
+    "Eternal War - Dungeon": Everhood2RegionData(["Eternal War - Tournament 1"], Color.red), #Todo: Color Requirements
+    "Eternal War - Tournament 1": Everhood2RegionData(["Eternal War - Tournament 2"], Color.red), #Todo: Color Requirements
+    "Eternal War - Tournament 2": Everhood2RegionData([]),
+        
+        
     "Marzian Era 0 - Mining Area": Everhood2RegionData(["Marzian Era 0 - Mining Base"]),
     "Marzian Era 0 - Mining Base": Everhood2RegionData(["Infinity Hub"]),
     "Marzian Era 1000": Everhood2RegionData(["Infinity Hub"]),

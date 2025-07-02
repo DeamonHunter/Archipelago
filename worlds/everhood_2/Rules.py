@@ -1,11 +1,11 @@
 ﻿from typing import TYPE_CHECKING
 from worlds.AutoWorld import World
-from .Locations import LocationType
+from .Locations import LocationType, battle_locations
 
 if TYPE_CHECKING:
     from . import Everhood2World
 
-def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool):
+def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool) -> None:
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
     
     if world.options.door_keys.value:
@@ -13,6 +13,9 @@ def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door
 
     if LocationType.hillbert in valid_types:
         set_hillbert_rules(world, valid_types, door_keys)
+        
+    if colorsanity:
+        set_colorsanity_rules(world, valid_types)
 
 
 def set_door_key_rules(world: World, valid_types: LocationType) -> None:
@@ -58,4 +61,19 @@ def set_hillbert_rules(world: World, valid_types: LocationType, door_keys: bool)
     world.get_location("Gold Key").access_rule = lambda state: state.has_any(["Eternal War Key", "Progressive Marzian Key"], world.player)
     world.get_location("Green Key").access_rule = lambda state: state.has("Progressive Marzian Key", world.player, 2)
     world.get_location("Pinecone Key").access_rule = lambda state: state.has("Progressive Marzian Key", world.player, 3)
+    
+def set_colorsanity_rules(world: World, valid_types: LocationType) -> None:
+    # Todo: Doesn't handle region logic.
+    for key, data in battle_locations.items():
+        # Certain fights feature plenty of white notes which will always be available.
+        # Todo: Also lock white?
+        if data.color == 0 or data.type not in valid_types:
+            continue
+        
+        loc = world.get_location(key)
+        list = []
+        for col in data.color:
+            list.append(str(col))
+        loc.access_rule = lambda state: state.has_any(list, world.player)
+    
     
