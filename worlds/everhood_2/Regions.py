@@ -3,7 +3,7 @@ from .Locations import LocationType, Color
 
 class Connection(NamedTuple):
     connect_to: str
-    color: Color = 0
+    location: str = None
     key: str = None
     key_count: int = 1
     
@@ -23,8 +23,8 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         Connection("Eternal War - Battlefield", key="Eternal War Key"),
         Connection("Neon City - City", key="Neon Forest Key"),
         Connection("Marzian Era 0 - Mining Area", key="Progressive Marzian Key"),
-        Connection("Marzian Era 1000", key="Progressive Marzian Key", key_count=2),
-        Connection("Marzian Era 2000", key="Progressive Marzian Key", key_count=3),
+        Connection("Marzian Era 1000", "Dimension Master Battle", "Progressive Marzian Key", 2),
+        Connection("Marzian Era 2000", "Dimension Portal Battle", "Progressive Marzian Key", 3),
         Connection("Smega Console", key="Smega Console Key"),
         Connection("Home Town", key="Home Town Key"),
         Connection("Lab", key="Lab Key"),
@@ -52,15 +52,20 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     ), 
     
     # Eternal War
-    "Eternal War - Tomato Rampages": Everhood2RegionData(["Eternal War - Bridge"], Color.red), #Todo: Color Requirements
-    "Eternal War - Bridge": Everhood2RegionData(["Eternal War - Dungeon"], Color.red), #Todo: Color Requirements
-    "Eternal War - Dungeon": Everhood2RegionData(["Eternal War - Tournament 1"], Color.red), #Todo: Color Requirements
-    "Eternal War - Tournament 1": Everhood2RegionData(["Eternal War - Tournament 2"], Color.red), #Todo: Color Requirements
-    "Eternal War - Tournament 2": Everhood2RegionData([]),
+    "Eternal War - Tomato Rampages": Everhood2RegionData([Connection("Eternal War - Bridge And Dungeon", "Melon Battle")]), #Todo: Color Requirements
+    "Eternal War - Bridge And Dungeon": Everhood2RegionData([Connection("Eternal War - Tournament A", "Capsicum Battle")]), #Todo: Color Requirements
+    "Eternal War - Tournament A": Everhood2RegionData([Connection("Eternal War - Tournament B", "Carrot Mage Battle")]), #Todo: Color Requirements
+    "Eternal War - Tournament B": Everhood2RegionData([Connection("Eternal War - Post Win", "Juice Master#4671 Battle")]), #Todo: Color Requirements
+    "Eternal War - Post Win": Everhood2RegionData([]),
         
-        
-    "Marzian Era 0 - Mining Area": Everhood2RegionData(["Marzian Era 0 - Mining Base"]),
-    "Marzian Era 0 - Mining Base": Everhood2RegionData(["Infinity Hub"]),
+    "Marzian Era 0 - Mines A": Everhood2RegionData([Connection("Marzian Era 0 - Mines B", "Hyena Battle Screech")]),
+    "Marzian Era 0 - Mines B": Everhood2RegionData([Connection("Marzian Era 0 - Mines C", "Howler & Razor Battle")]),
+    "Marzian Era 0 - Mines C": Everhood2RegionData([Connection("Marzian Era 0 - Base A", "Feugo Battle")]),
+    "Marzian Era 0 - Base A": Everhood2RegionData([Connection("Marzian Era 0 - Base B", "Insect Abomination Battle")]),
+    "Marzian Era 0 - Base B": Everhood2RegionData([Connection("Marzian Era 0 - Base C", "Anxious Chase Battle")]),
+    "Marzian Era 0 - Base C": Everhood2RegionData([Connection("Marzian Era 0 - Prison")]), #Todo: Custom Rule
+    "Marzian Era 0 - Base D": Everhood2RegionData([]), #Todo: Custom Rule
+    
     "Marzian Era 1000": Everhood2RegionData(["Infinity Hub"]),
     "Marzian Era 2000": Everhood2RegionData(["Infinity Hub"]),
     "Marzian Era 3000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
@@ -68,7 +73,21 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Marzian Era 5000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
     
     # Todo: Region Removal of irrelevant regions
-    "Smega Console": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors), # Todo: May need splitting up?
+    "Smega Console - Motherboard A": Everhood2RegionData([Connection("Smega Console - Motherboard B", "Motherboard INT Battle")], LocationType.pre_dragon_doors),
+    "Smega Console - Motherboard B": Everhood2RegionData(
+        [
+            Connection("Smega Console - RAM"), 
+            Connection("Smega Console - Processor", "Processor Gate Battle"),
+            Connection("Smega Console - Doctor Dump", "Corrupt Irvine Battle")
+        ], 
+        LocationType.pre_dragon_doors
+    ), 
+    "Smega Console - RAM": Everhood2RegionData([]),
+    "Smega Console - Processor A": Everhood2RegionData([Connection("Smega Console - Processor B", "Processor INT Battle")]),
+    "Smega Console - Processor B": Everhood2RegionData([Connection("Smega Console - Irvine")]), #Todo: Custom Rule. Blue | Green | Red && Blue | Orange
+    "Smega Console - Irvine": Everhood2RegionData([]),
+    "Smega Console - Doctor Dump": Everhood2RegionData([]),
+    
     "Home Town": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors),
     "Lab": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors),
     
