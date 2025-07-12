@@ -6,6 +6,8 @@ class Connection(NamedTuple):
     location: str = None
     key: str = None
     key_count: int = 1
+    color: Color = 0
+    entrance_name: str = None
     
 class Everhood2RegionData(NamedTuple):
     connecting_regions: List[Connection]
@@ -20,23 +22,23 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     
     #Starting Hub.
     "Infinity Hub": Everhood2RegionData([
-        Connection("Eternal War - Battlefield", key="Eternal War Key"),
-        Connection("Neon City - City", key="Neon Forest Key"),
-        Connection("Marzian Era 0 - Mining Area", key="Progressive Marzian Key"),
+        Connection("Eternal War - Tomato Rampages", key="Eternal War Key"),
+        Connection("Neon City - Pre Homonculus", key="Neon Forest Key"),
+        Connection("Marzian Era 0 - Mines A", key="Progressive Marzian Key"),
         Connection("Marzian Era 1000", "Dimension Master Battle", "Progressive Marzian Key", 2),
         Connection("Marzian Era 2000", "Dimension Portal Battle", "Progressive Marzian Key", 3),
-        Connection("Smega Console", key="Smega Console Key"),
+        Connection("Smega Console - Motherboard A", key="Smega Console Key"),
         Connection("Home Town", key="Home Town Key"),
-        Connection("Lab", key="Lab Key"),
+        Connection("Lab - Pre Puzzle", key="Lab Key"),
     ]),
 
     # Neon City Regions.
-    "Neon City - City": Everhood2RegionData([
-        Connection("Neon City - Jungle", Color.green | Color.blue | Color.purple), 
-        Connection("Hillbert Hotel", Color.green | Color.blue)]
+    "Neon City - Pre Homonculus": Everhood2RegionData([
+        Connection("Neon City - Post Homonculus", "Homonculus Battle"), 
+        Connection("Hillbert Hotel",  "Cowgirl Homonculus Battle")] # Requires a fight that has no color reqs and no reward.
     ),
-    "Neon City - Jungle": Everhood2RegionData([Connection("Neon City - Void", Color.green | Color.purple)]),
-    "Neon City - Abyss": Everhood2RegionData([]), # "Neon City - City" Removed because unnecessary without ER
+    "Neon City - Post Homonculus": Everhood2RegionData([Connection("Neon City - Post Cowgirl Homonculus", "Cowgirl Homonculus Battle")]),
+    "Neon City - Post Cowgirl Homonculus": Everhood2RegionData([]),
     "Hillbert Hotel": Everhood2RegionData(
         [
             # Removed because unnecessary without ER
@@ -63,21 +65,26 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Marzian Era 0 - Mines C": Everhood2RegionData([Connection("Marzian Era 0 - Base A", "Feugo Battle")]),
     "Marzian Era 0 - Base A": Everhood2RegionData([Connection("Marzian Era 0 - Base B", "Insect Abomination Battle")]),
     "Marzian Era 0 - Base B": Everhood2RegionData([Connection("Marzian Era 0 - Base C", "Anxious Chase Battle")]),
-    "Marzian Era 0 - Base C": Everhood2RegionData([Connection("Marzian Era 0 - Prison")]), #Todo: Custom Rule
-    "Marzian Era 0 - Base D": Everhood2RegionData([]), #Todo: Custom Rule
+    "Marzian Era 0 - Base C": Everhood2RegionData(
+        [
+            Connection("Marzian Era 0 - Base D", "Howler & Razor & Maggot Battle"), 
+            Connection("Marzian Era 0 - Base D", "Opus & Screech Battle", entrance_name="Marzian Era 0 - Base C -> Marzian Era 0 - Base D Alt")
+        ]
+    ),
+    "Marzian Era 0 - Base D": Everhood2RegionData([]),
     
-    "Marzian Era 1000": Everhood2RegionData(["Infinity Hub"]),
-    "Marzian Era 2000": Everhood2RegionData(["Infinity Hub"]),
-    "Marzian Era 3000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
-    "Marzian Era 4000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
-    "Marzian Era 5000": Everhood2RegionData(["Infinity Hub"], LocationType.post_dragon),
+    "Marzian Era 1000": Everhood2RegionData([]),
+    "Marzian Era 2000": Everhood2RegionData([]),
+    "Marzian Era 3000": Everhood2RegionData([], LocationType.post_dragon),
+    "Marzian Era 4000": Everhood2RegionData([], LocationType.post_dragon),
+    "Marzian Era 5000": Everhood2RegionData([], LocationType.post_dragon),
     
     # Todo: Region Removal of irrelevant regions
     "Smega Console - Motherboard A": Everhood2RegionData([Connection("Smega Console - Motherboard B", "Motherboard INT Battle")], LocationType.pre_dragon_doors),
     "Smega Console - Motherboard B": Everhood2RegionData(
         [
             Connection("Smega Console - RAM"), 
-            Connection("Smega Console - Processor", "Processor Gate Battle"),
+            Connection("Smega Console - Processor A", "Processor Gate Battle"),
             Connection("Smega Console - Doctor Dump", "Corrupt Irvine Battle")
         ], 
         LocationType.pre_dragon_doors
@@ -88,16 +95,26 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Smega Console - Irvine": Everhood2RegionData([]),
     "Smega Console - Doctor Dump": Everhood2RegionData([]),
     
-    "Home Town": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors),
-    "Lab": Everhood2RegionData(["Infinity Hub"], LocationType.pre_dragon_doors),
+    "Home Town": Everhood2RegionData([], LocationType.pre_dragon_doors),
+    "Lab - Pre Puzzle": Everhood2RegionData([Connection("Lab - Post Chunky", "Ghost Chunky Battle")], LocationType.pre_dragon_doors),
+    "Lab - Post Chunky": Everhood2RegionData([Connection("Lab - Post Junkie", "Ghost Junkie Battle")], LocationType.pre_dragon_doors),
+    "Lab - Post Junkie": Everhood2RegionData([], LocationType.pre_dragon_doors),
     
     # Hillbert Hotel Rooms Todo: Maybe make an option to exclude these areas
-    "Floor 23": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
-    "Floor Gold": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
-    "Floor Green": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
-    "Floor Pinecone": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert),
-    "Battle Collosseum": Everhood2RegionData(["Hillbert Hotel", "End Hub"], LocationType.colosseum),
-    "Dunkey Room": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon), #Todo: Does this have anything?
-    "Sam's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.post_dragon),
-    "Lucy's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon),
+    "Floor 23": Everhood2RegionData([Connection("Floor 23 - Smega", color=(Color.green | Color.blue)), Connection("Floor 23 - Rewards", "Rasputin Battle")], LocationType.hillbert),
+    "Floor 23 - Smega": Everhood2RegionData([], LocationType.hillbert),
+    "Floor 23 - Rewards": Everhood2RegionData([], LocationType.hillbert),
+    
+    "Floor Gold": Everhood2RegionData([Connection("Floor Gold - Post Bobo", "Bobo (Drunk) Battle")], LocationType.hillbert),
+    "Floor Gold - Post Bobo": Everhood2RegionData([], LocationType.hillbert),
+    
+    "Floor Green": Everhood2RegionData([], LocationType.hillbert),
+    
+    "Floor Pinecone": Everhood2RegionData([Connection("Floor Pinecone - Post Squirrels", "Squirrels Battle")], LocationType.hillbert),
+    "Floor Pinecone - Post Squirrels": Everhood2RegionData([], LocationType.hillbert),
+    
+    # "Battle Collosseum": Everhood2RegionData(["Hillbert Hotel", "End Hub"], LocationType.colosseum),
+    # "Dunkey Room": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon), #Todo: Does this have anything?
+    # "Sam's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.post_dragon),
+    # "Lucy's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon),
 }

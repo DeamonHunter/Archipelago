@@ -6,8 +6,8 @@ from typing import ClassVar, Type
 from Options import PerGameCommonOptions, OptionError
 
 from .Options import Everhood2Options, everhood2_option_groups
-from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys
-from .Locations import Everhood2Location, all_locations, LocationType
+from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys, colors
+from .Locations import Everhood2Location, all_locations, LocationType, Color
 from .Regions import region_data_table
 from .Rules import set_everhood2_rules
 # from .Presets import Everhood2Presets
@@ -62,6 +62,8 @@ class Everhood2World(World):
             if data.type in valid_types:
                 item_collection.append(self.create_item(data.item_name))
         
+        item_count = len(item_collection)
+        
         if self.options.door_keys.value:
             for key in door_randomizer_keys.keys():
                 if key == "Neon Forest Key" and self.options.soul_color.value == self.options.soul_color.option_Blue:
@@ -77,18 +79,37 @@ class Everhood2World(World):
                     self.push_precollected(self.create_item(key))
                 else:
                     item_collection.append(self.create_item(key))
-            
-            # At this point in time, the extra keys need to replace xp. We have a ton of 50xp available so lets replace those.
+                        
+
+        if self.options.colorsanity.value:
+            for c in colors.keys():
+                if c == Color.blue and self.options.soul_color.value == self.options.soul_color.option_Blue:
+                    self.push_precollected(self.create_item(c))
+                elif c == Color.red and self.options.soul_color.value == self.options.soul_color.option_Red:
+                    self.push_precollected(self.create_item(c))
+                elif c == Color.green and self.options.soul_color.value == self.options.soul_color.option_Green:
+                    self.push_precollected(self.create_item(c))
+                else:
+                    item_collection.append(self.create_item(c))
+           
+        # At this point in time, the extra keys need to replace xp. We have a ton of 50xp available so lets replace those.
+        xp_removal_count = len(item_collection) - item_count
+        removed = 0
+
+        xps = ["50xp", "0xp", "2xp", "5xp"]       
+        for xp in xps:
+            if removed >= xp_removal_count:
+                continue
+
             original_collection = item_collection
             item_collection = []
-            xp_removal_count = 0
-            for item in original_collection:
-                if item.name == "50xp" and xp_removal_count < 7: #Todo: Dependant on settings
-                    xp_removal_count += 1
+            while len(original_collection) > 0:
+                item = original_collection.pop()
+                if item.name == xp and removed < xp_removal_count:
+                    removed += 1
                     continue
-
                 item_collection.append(item)
-            
+        
         for item in item_collection:
             self.multiworld.itempool.append(item)
 
@@ -103,10 +124,10 @@ class Everhood2World(World):
             region = created_regions[region_name]
             self.multiworld.regions.append(region)
             
-            for name in region_data.connecting_regions:
-                connection = created_regions.get(name)
+            for data in region_data.connecting_regions:
+                connection = created_regions.get(data.connect_to)
                 if connection is not None:
-                    region.connect(connection)
+                    region.connect(connection, data.entrance_name)
         
         for location_name, location_data in all_locations.items():
             if not location_data.type in valid_types:
@@ -140,7 +161,7 @@ class Everhood2World(World):
         return valid_types
 
     def set_rules(self) -> None:
-        set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value == 1) 
+        set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value == 1, self.options.colorsanity.value == 1) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
         gem_count = 5

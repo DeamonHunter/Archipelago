@@ -50,21 +50,21 @@ class Everhood2Location(Location):
 
 
 item_locations: Dict[str, Everhood2LocationData] = {    
-    "Neon Jungle Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 0, "Neon Jungle", LocationType.item, "50xp"),
-    "Neon Jungle Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 1, "Neon Jungle", LocationType.item, "75xp"),
-    "Neon Jungle Chest 3": Everhood2LocationData(ITEM_LOCATION_START + 2, "Neon Jungle", LocationType.item, "50xp"),
-    "Neon Jungle Chest 4": Everhood2LocationData(ITEM_LOCATION_START + 3, "Neon Jungle", LocationType.item, "75xp"),
-    "Neon Jungle Chest 5": Everhood2LocationData(ITEM_LOCATION_START + 4, "Neon Jungle", LocationType.item, "100xp"),
-    "Neon Jungle Chest 6": Everhood2LocationData(ITEM_LOCATION_START + 5, "Neon Jungle", LocationType.item, "0xp"),
-    "Neon Jungle Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 6, "Neon Jungle", LocationType.item, "Power Gem"),
+    "Neon Jungle Chest Section 1 South East": Everhood2LocationData(ITEM_LOCATION_START + 0, "Neon City - Pre Homonculus", LocationType.item, "50xp"),
+    "Neon Jungle Chest Section 1 North West": Everhood2LocationData(ITEM_LOCATION_START + 1, "Neon City - Pre Homonculus", LocationType.item, "75xp"),
+    "Neon Jungle Chest Section 2 North West": Everhood2LocationData(ITEM_LOCATION_START + 2, "Neon City - Post Homonculus", LocationType.item, "50xp"),
+    "Neon Jungle Chest Section 2 South East": Everhood2LocationData(ITEM_LOCATION_START + 3, "Neon City - Post Homonculus", LocationType.item, "75xp"),
+    "Neon Jungle Chest Section 3 West": Everhood2LocationData(ITEM_LOCATION_START + 4, "Neon City - Post Cowgirl Homonculus", LocationType.item, "100xp"),
+    "Neon Jungle Chest Section 3 East": Everhood2LocationData(ITEM_LOCATION_START + 5, "Neon City - Post Cowgirl Homonculus", LocationType.item, "0xp"),
+    "Neon Jungle Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 6, "Neon City - Post Cowgirl Homonculus", LocationType.item, "Power Gem"),
     
-    "Anime Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 7, "Neon City", LocationType.cosmetic, "Anime Hairstyle Cosmetic"),
-    "Mage Hat Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 8, "Neon City", LocationType.cosmetic, "Mage Hat Cosmetic"),
-    "Wild Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 9, "Neon City", LocationType.cosmetic, "Wild Hairstyle Cosmetic"),
-    "Backslick Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 10, "Neon City", LocationType.cosmetic, "Backslick Hairstyle Cosmetic"),
-    "Stylish Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 11, "Neon City", LocationType.cosmetic, "Stylish Hairstyle Cosmetic"),
-    "Natural Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 12, "Neon City", LocationType.cosmetic, "Natural Hairstyle Cosmetic"), 
-    "Afro Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 13, "Neon City", LocationType.cosmetic, "Afro Cosmetic"),
+    "Anime Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 7, "Neon City - Pre Homonculus", LocationType.cosmetic, "Anime Hairstyle Cosmetic"),
+    "Mage Hat Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 8, "Neon City - Pre Homonculus", LocationType.cosmetic, "Mage Hat Cosmetic"),
+    "Wild Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 9, "Neon City - Pre Homonculus", LocationType.cosmetic, "Wild Hairstyle Cosmetic"),
+    "Backslick Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 10, "Neon City - Pre Homonculus", LocationType.cosmetic, "Backslick Hairstyle Cosmetic"),
+    "Stylish Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 11, "Neon City - Pre Homonculus", LocationType.cosmetic, "Stylish Hairstyle Cosmetic"),
+    "Natural Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 12, "Neon City - Pre Homonculus", LocationType.cosmetic, "Natural Hairstyle Cosmetic"), 
+    "Afro Hairstyle Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 13, "Neon City - Pre Homonculus", LocationType.cosmetic, "Afro Cosmetic"),
     
     "Eternal War - Chest After Melon": Everhood2LocationData(ITEM_LOCATION_START + 14, "Eternal War - Bridge And Dungeon", LocationType.item, "100xp"),
     "Hotdog Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 15, "Eternal War - Bridge And Dungeon", LocationType.cosmetic, "Hotdog Cosmetic", Color.green | Color.purple | Color.yellow),
@@ -83,31 +83,31 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Red Bandana Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 25, "Marzian Era 0 - Base C", LocationType.cosmetic, "Red Bandana Cosmetic"),
 
     "Floor 23 Key": Everhood2LocationData(ITEM_LOCATION_START + 26, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Floor 23 Key"),
-    "Floor 23 Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 27, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "100xp"),
-    "Cat Ears": Everhood2LocationData(ITEM_LOCATION_START + 28, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Cosmetic"),
-    "Cat Ears Bald": Everhood2LocationData(ITEM_LOCATION_START + 29, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Bald Cosmetic"),
+    "Floor 23 Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 27, "Floor 23 - Rewards", LocationType.item | LocationType.hillbert, "100xp"),
+    "Cat Ears": Everhood2LocationData(ITEM_LOCATION_START + 28, "Floor 23 - Rewards", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Cosmetic"),
+    "Cat Ears Bald": Everhood2LocationData(ITEM_LOCATION_START + 29, "Floor 23 - Rewards", LocationType.cosmetic | LocationType.hillbert, "Cat Ears Bald Cosmetic"),
     "Gold Key": Everhood2LocationData(ITEM_LOCATION_START + 30, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Gold Key"),
-    "Floor Gold Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "50xp"),
-    "Oingo Boingo": Everhood2LocationData(ITEM_LOCATION_START + 32, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Oingo Boingo Cosmetic"),
+    "Floor Gold Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 31, "Floor Gold - Post Bobo", LocationType.item | LocationType.hillbert, "50xp"),
+    "Oingo Boingo": Everhood2LocationData(ITEM_LOCATION_START + 32, "Floor Gold - Post Bobo", LocationType.cosmetic | LocationType.hillbert, "Oingo Boingo Cosmetic"),
 
     "Floor 23 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 33, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
     "Floor 23 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 34, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
-    "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23", LocationType.item | LocationType.hillbert, "50xp"),
+    "Floor 23 Smega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 35, "Floor 23 - Smega", LocationType.item | LocationType.hillbert, "50xp", Color.red | Color.blue),
     
     "Floor Gold Chest": Everhood2LocationData(ITEM_LOCATION_START + 36, "Floor Gold", LocationType.item | LocationType.hillbert, "50xp"),
     "Green Key": Everhood2LocationData(ITEM_LOCATION_START + 37, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Green Key"),
     
     "Stopwatch Artifact": Everhood2LocationData(ITEM_LOCATION_START + 39, "Infinity Hub", LocationType.item, "Stopwatch"), # Technically in tutorial area, but not modelling that.
     
-    "Floor Green Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 41, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Power Gem"),
+    "Floor Green Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 41, "Floor Green", LocationType.item | LocationType.hillbert, "Power Gem"),
     "Pinecone Key": Everhood2LocationData(ITEM_LOCATION_START + 42, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Pinecone Key"),
-    "Floor Pinecone Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 43, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Power Gem"),
-    "Reindeer Skull": Everhood2LocationData(ITEM_LOCATION_START + 44, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert, "Reindeer Skull Cosmetic"),
+    "Floor Pinecone Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 43, "Floor Pinecone - Post Squirrels", LocationType.item | LocationType.hillbert, "Power Gem"),
+    "Reindeer Skull": Everhood2LocationData(ITEM_LOCATION_START + 44, "Floor Pinecone - Post Squirrels", LocationType.cosmetic | LocationType.hillbert, "Reindeer Skull Cosmetic"),
     # "Floor Omega Key": Everhood2LocationData(ITEM_LOCATION_START + 45, "Hillbert Hotel", LocationType.item | LocationType.hillbert | LocationType.post_dragon, "Omega Key"),
     # "Floor Omega Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 46, "Hillbert Hotel", LocationType.item | LocationType.hillbert | LocationType.post_dragon, "Power Gem"),
     # "Jester Hat": Everhood2LocationData(ITEM_LOCATION_START + 47, "Hillbert Hotel", LocationType.cosmetic | LocationType.hillbert | LocationType.post_dragon, "Jester Hat Cosmetic"),
     
-    "Floor Pinecone Chest": Everhood2LocationData(ITEM_LOCATION_START + 48, "Floor Pinecone", LocationType.item | LocationType.hillbert, "50xp"),
+    "Floor Pinecone Chest": Everhood2LocationData(ITEM_LOCATION_START + 48, "Floor Pinecone - Post Squirrels", LocationType.item | LocationType.hillbert, "50xp"),
     
     # "Marzian Era 3000 Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 49, "Marzian Era 3000", LocationType.item | LocationType.post_dragon, "100xp"),
     # "Marzian Era 3000 Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 50, "Marzian Era 3000", LocationType.item | LocationType.post_dragon, "50xp"),
@@ -127,10 +127,9 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # Todo: Determine how soul weapons are placed.
     # "Marzian Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 58, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Green Soul Spear"),
 
-    # Todo: Correct Names
-    "Lab Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 59, "Lab", LocationType.item | LocationType.pre_dragon_doors, "35xp"),
-    "Clover Artifact": Everhood2LocationData(ITEM_LOCATION_START + 60, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Clover"),
-    "Lab Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 61, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Lab Entrance Chest": Everhood2LocationData(ITEM_LOCATION_START + 59, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "35xp"),
+    "Clover Artifact": Everhood2LocationData(ITEM_LOCATION_START + 60, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "Clover"),
+    "Lab Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 61, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
 
     # "Floor Omega Chest": Everhood2LocationData(ITEM_LOCATION_START + 62, "Floor Omega", LocationType.item | LocationType.post_dragon, "Power Gem"),
 
@@ -139,27 +138,27 @@ item_locations: Dict[str, Everhood2LocationData] = {
 
     "Smega Console - 'D' Chest": Everhood2LocationData(ITEM_LOCATION_START + 65, "Smega Console - Motherboard A", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Smega Console - Chest Before Riley": Everhood2LocationData(ITEM_LOCATION_START + 66, "Smega Console - Motherboard A", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - Chest Behind Motherboard Bool": Everhood2LocationData(ITEM_LOCATION_START + 67, "Smega Console - Motherboard B", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"), #Todo: Needs custom rule. Phase 1: Red, Green, Purple. Phase 2: Blue, Red. Phase 3: Orange Blue
+    "Smega Console - Chest Behind Motherboard Bool": Everhood2LocationData(ITEM_LOCATION_START + 67, "Smega Console - Motherboard B", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"), #Has complex color rule
     "Smega Console - Audio Chest": Everhood2LocationData(ITEM_LOCATION_START + 68, "Smega Console - Motherboard B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Gas Mask Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 69, "Smega Console - Doctor Dump", LocationType.cosmetic | LocationType.pre_dragon_doors, "Gas Mask Cosmetic"),
     "Doctor Dump Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 70, "Smega Console - Doctor Dump", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
     "Smega Console - RAM N Chest D/E": Everhood2LocationData(ITEM_LOCATION_START + 71, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Smega Console - RAM SE Chest by Dunkey": Everhood2LocationData(ITEM_LOCATION_START + 72, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "100xp"),
     "Smega Console - RAM SE Chest A/B": Everhood2LocationData(ITEM_LOCATION_START + 73, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - Ram SW Northern Chest": Everhood2LocationData(ITEM_LOCATION_START + 74, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
-    "Smega Console - RAM N Chest F": Everhood2LocationData(ITEM_LOCATION_START + 75, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - Ram SW Northern Chest": Everhood2LocationData(ITEM_LOCATION_START + 74, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Console - RAM N Chest F": Everhood2LocationData(ITEM_LOCATION_START + 75, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Smega Console - RAM SE Chest A/Y": Everhood2LocationData(ITEM_LOCATION_START + 76, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
     "Smega Console - RAM SE Chest Y/C": Everhood2LocationData(ITEM_LOCATION_START + 77, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - RAM N Chest F/C": Everhood2LocationData(ITEM_LOCATION_START + 78, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
-    "Smega Console - Ram SW Southern Chest": Everhood2LocationData(ITEM_LOCATION_START + 79, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - Ram SW Center Chest": Everhood2LocationData(ITEM_LOCATION_START + 80, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - RAM N Chest F/C": Everhood2LocationData(ITEM_LOCATION_START + 78, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Console - Ram SW Southern Chest": Everhood2LocationData(ITEM_LOCATION_START + 79, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - Ram SW Center Chest": Everhood2LocationData(ITEM_LOCATION_START + 80, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Smega Console - RAM SE Chest B/F": Everhood2LocationData(ITEM_LOCATION_START + 81, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
-    "Smega Console - Ram SW Eastern Chest": Everhood2LocationData(ITEM_LOCATION_START + 82, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - Maze Chest Behind Matrix": Everhood2LocationData(ITEM_LOCATION_START + 83, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "Power Gem", Color.red | Color.blue | Color.purple),
-    "Smega Console - Maze Chest East": Everhood2LocationData(ITEM_LOCATION_START + 84, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
-    "Smega Console - Post Maze Chest": Everhood2LocationData(ITEM_LOCATION_START + 85, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - Chest After Processor Int": Everhood2LocationData(ITEM_LOCATION_START + 86, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
-    "Smega Console - Maze Chest South": Everhood2LocationData(ITEM_LOCATION_START + 87, "Smega Console", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - Ram SW Eastern Chest": Everhood2LocationData(ITEM_LOCATION_START + 82, "Smega Console - RAM", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - Maze Chest Behind Matrix": Everhood2LocationData(ITEM_LOCATION_START + 83, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "Power Gem", Color.red | Color.blue | Color.purple),
+    "Smega Console - Maze Chest East": Everhood2LocationData(ITEM_LOCATION_START + 84, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "Power Gem"),
+    "Smega Console - Post Maze Chest": Everhood2LocationData(ITEM_LOCATION_START + 85, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - Chest After Processor Int": Everhood2LocationData(ITEM_LOCATION_START + 86, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
+    "Smega Console - Maze Chest South": Everhood2LocationData(ITEM_LOCATION_START + 87, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     
     # Todo: More Descriptive Names
     # "Death Mountain Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 88, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
@@ -188,7 +187,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # "Pandemonium Chest": Everhood2LocationData(ITEM_LOCATION_START + 108, "Colosseum", LocationType.item | LocationType.post_dragon, "Power Gem"),
     # "Torment Room Chest": Everhood2LocationData(ITEM_LOCATION_START + 109, "Colosseum", LocationType.item | LocationType.post_dragon, "Power Gem"),
     
-    "Katana": Everhood2LocationData(ITEM_LOCATION_START + 110, "Lab", LocationType.item | LocationType.pre_dragon_doors, "Katana"), 
+    "Katana": Everhood2LocationData(ITEM_LOCATION_START + 110, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "Katana"), #Technically requires white
     # "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Raven Hub", LocationType.item | LocationType.post_dragon, "Red Soul Axe"),
     "Pet the Orange Cat": Everhood2LocationData(ITEM_LOCATION_START + 112, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
     "Pet the Grey Cat": Everhood2LocationData(ITEM_LOCATION_START + 113, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
@@ -200,25 +199,25 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     # Starting Battle
     "Raven Tutorial Battle": Everhood2LocationData(BATTLE_LOCATION_START + 0, "Tutorial Hub", LocationType.major_battle, "0xp"),
     # Pre Neon City
-    "Spring Head Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 1, "Neon City", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Spring Head Battle Before City": Everhood2LocationData(BATTLE_LOCATION_START + 1, "Neon City - Pre Homonculus", LocationType.trash_battle, "20xp", Color.red | Color.green),
     # Neon Jungle Room 1
-    "Spring Head Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 2, "Neon Jungle", LocationType.trash_battle, "20xp", Color.red | Color.green),
-    "Spring Head Battle 3": Everhood2LocationData(BATTLE_LOCATION_START + 3, "Neon Jungle", LocationType.trash_battle, "20xp", Color.red | Color.green),
-    "Double Spring Head Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 4, "Neon Jungle", LocationType.trash_battle, "40xp", Color.red | Color.green),
-    "Dark Pirahna 1": Everhood2LocationData(BATTLE_LOCATION_START + 5, "Neon Jungle", LocationType.trash_battle, "30xp", Color.blue | Color.green),
-    "Dark Pirahna 2": Everhood2LocationData(BATTLE_LOCATION_START + 6, "Neon Jungle", LocationType.trash_battle, "30xp", Color.blue | Color.green),
+    "Spring Head Battle Section 1 Right": Everhood2LocationData(BATTLE_LOCATION_START + 2, "Neon City - Pre Homonculus", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Spring Head Battle Section 1 Left": Everhood2LocationData(BATTLE_LOCATION_START + 3, "Neon City - Pre Homonculus", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Double Spring Head Section 1": Everhood2LocationData(BATTLE_LOCATION_START + 4, "Neon City - Pre Homonculus", LocationType.trash_battle, "40xp", Color.red | Color.green),
+    "Dark Pirahna Section 1 Chest Protector": Everhood2LocationData(BATTLE_LOCATION_START + 5, "Neon City - Pre Homonculus", LocationType.trash_battle, "30xp", Color.blue | Color.green),
+    "Dark Pirahna Section 1 Exit": Everhood2LocationData(BATTLE_LOCATION_START + 6, "Neon City - Pre Homonculus", LocationType.trash_battle, "30xp", Color.blue | Color.green),
     # Neon Jungle Room 2
-    "Homonculus Battle": Everhood2LocationData(BATTLE_LOCATION_START + 7, "Neon Jungle", LocationType.major_battle, "35xp"),
-    "Spring Head Battle 4": Everhood2LocationData(BATTLE_LOCATION_START + 8, "Neon Jungle", LocationType.trash_battle, "20xp"),
-    "Spring Head Battle 5": Everhood2LocationData(BATTLE_LOCATION_START + 9, "Neon Jungle", LocationType.trash_battle, "20xp"),
-    "Spring Head Battle 6": Everhood2LocationData(BATTLE_LOCATION_START + 10, "Neon Jungle", LocationType.trash_battle, "20xp"),
-    "Neon String 1": Everhood2LocationData(BATTLE_LOCATION_START + 11, "Neon Jungle", LocationType.trash_battle, "50xp"),
-    "Dark Pirahna 3": Everhood2LocationData(BATTLE_LOCATION_START + 12, "Neon Jungle", LocationType.trash_battle, "30xp"),
+    "Homonculus Battle": Everhood2LocationData(BATTLE_LOCATION_START + 7, "Neon City - Pre Homonculus", LocationType.major_battle, "35xp", Color.green | Color.blue | Color.purple),
+    "Spring Head Battle Section 2 Middle": Everhood2LocationData(BATTLE_LOCATION_START + 8, "Neon City - Post Homonculus", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Spring Head Battle Section 2 North": Everhood2LocationData(BATTLE_LOCATION_START + 9, "Neon City - Post Homonculus", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Spring Head Battle Section 2 South": Everhood2LocationData(BATTLE_LOCATION_START + 10, "Neon City - Post Homonculus", LocationType.trash_battle, "20xp", Color.red | Color.green),
+    "Neon String Section 2": Everhood2LocationData(BATTLE_LOCATION_START + 11, "Neon City - Post Homonculus", LocationType.trash_battle, "50xp", Color.green | Color.red),
+    "Dark Pirahna Section 2": Everhood2LocationData(BATTLE_LOCATION_START + 12, "Neon City - Post Homonculus", LocationType.trash_battle, "30xp", Color.blue | Color.green),
     # Neon Jungle Room 3
-    "Cowgirl Homonculus Battle": Everhood2LocationData(BATTLE_LOCATION_START + 13, "Neon Jungle", LocationType.major_battle, "36xp"),
-    "Double Spring Head Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 14, "Neon Jungle", LocationType.trash_battle, "40xp"),
-    "Double Dark Pirahna Battle": Everhood2LocationData(BATTLE_LOCATION_START + 15, "Neon Jungle", LocationType.trash_battle, "60xp"),
-    "Neon String 2": Everhood2LocationData(BATTLE_LOCATION_START + 16, "Neon Jungle", LocationType.trash_battle, "50xp"),
+    "Cowgirl Homonculus Battle": Everhood2LocationData(BATTLE_LOCATION_START + 13, "Neon City - Post Homonculus", LocationType.major_battle, "36xp", Color.green | Color.blue),
+    "Double Spring Head Battle Section 3": Everhood2LocationData(BATTLE_LOCATION_START + 14, "Neon City - Post Cowgirl Homonculus", LocationType.trash_battle, "40xp", Color.red | Color.green),
+    "Double Dark Pirahna Battle": Everhood2LocationData(BATTLE_LOCATION_START + 15, "Neon City - Post Cowgirl Homonculus", LocationType.trash_battle, "60xp", Color.blue | Color.green),
+    "Neon String Section 3": Everhood2LocationData(BATTLE_LOCATION_START + 16, "Neon City - Post Cowgirl Homonculus", LocationType.trash_battle, "50xp", Color.green | Color.red),
     
     # Todo: Abyss doesn't have a proper end
     
@@ -226,13 +225,13 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Hyena Battle Screech": Everhood2LocationData(BATTLE_LOCATION_START + 18, "Marzian Era 0 - Mines A", LocationType.trash_battle, "25xp", Color.green | Color.blue),
     "Hyena Battle Warcry": Everhood2LocationData(BATTLE_LOCATION_START + 19, "Marzian Era 0 - Mines B", LocationType.trash_battle, "25xp", Color.green | Color.blue),
     "Shark Battle Bloodnose": Everhood2LocationData(BATTLE_LOCATION_START + 20, "Marzian Era 0 - Mines B", LocationType.trash_battle, "25xp", Color.green | Color.orange),
-    "Howler & Razor Battle": Everhood2LocationData(BATTLE_LOCATION_START + 21, "Marzian Era 0 - Mines B", LocationType.major_battle, "50xp"), #Todo: Needs custom rule for Color.green | Color.blue &&  Color.green | Color.orange
+    "Howler & Razor Battle": Everhood2LocationData(BATTLE_LOCATION_START + 21, "Marzian Era 0 - Mines B", LocationType.major_battle, "50xp"), # Has custom color rule
     "Feugo Battle": Everhood2LocationData(BATTLE_LOCATION_START + 22, "Marzian Era 0 - Mines C", LocationType.major_battle, "100xp", Color.green | Color.blue | Color.red), #Also has a single purple
 
     # Marzian Era 0 Base
     "Insect Abomination Battle": Everhood2LocationData(BATTLE_LOCATION_START + 23, "Marzian Era 0 - Base A", LocationType.major_battle, "50xp", Color.red | Color.green),
     "Anxious Chase Battle": Everhood2LocationData(BATTLE_LOCATION_START + 24, "Marzian Era 0 - Base B", LocationType.major_battle, "2xp", Color.green),
-    "Howler & Razor & Maggot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 25, "Marzian Era 0 - Base C", LocationType.trash_battle, "75xp"), #Todo: Needs custom rule for Color.green | Color.blue &&  Color.green | Color.orange
+    "Howler & Razor & Maggot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 25, "Marzian Era 0 - Base C", LocationType.trash_battle, "75xp"), # Has custom color rule
     "Dimension Master Battle": Everhood2LocationData(BATTLE_LOCATION_START + 26, "Marzian Era 0 - Base D", LocationType.major_battle, "200xp", Color.green | Color.blue | Color.red),
     
     "Dimension Portal Battle": Everhood2LocationData(BATTLE_LOCATION_START + 27, "Marzian Era 1000", LocationType.major_battle, "400xp", Color.green | Color.blue | Color.red),
@@ -243,29 +242,29 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Leek Battle": Everhood2LocationData(BATTLE_LOCATION_START + 30, "Eternal War - Tomato Rampages", LocationType.unique_battle, "76xp", Color.green | Color.purple),
     "Bro-ccoli": Everhood2LocationData(BATTLE_LOCATION_START + 31, "Eternal War - Tomato Rampages", LocationType.unique_battle, "76xp", Color.blue | Color.brown),
     "Bell Pepper Battle": Everhood2LocationData(BATTLE_LOCATION_START + 32, "Eternal War - Tomato Rampages", LocationType.unique_battle, "100xp", Color.blue),
-    "Tomato Rush Lower Left Battle": Everhood2LocationData(BATTLE_LOCATION_START + 33, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp"), #Red, Orange, Blue, Green, White.
-    "Tomato Rush Lower Middle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 34, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp"), #Red, Orange, Blue, Green, White.
-    "Tomato Rush Lower Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 35, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp"), #Red, Orange, Blue, Green, White.
-    "Tomato Rush Upper Left Battle": Everhood2LocationData(BATTLE_LOCATION_START + 36, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp"), #Red, Orange, Blue, Green, White.
-    "Tomato Rush Upper Middle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 37, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp"), #Red, Orange, Blue, Green, White.
-    "Tomato Rush Upper Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 38, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp"), #Red, Orange, Blue, Green, White.
+    "Tomato Rush Lower Left Battle": Everhood2LocationData(BATTLE_LOCATION_START + 33, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp", Color.red | Color.orange | Color.blue | Color.green), # White.
+    "Tomato Rush Lower Middle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 34, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp", Color.red | Color.orange | Color.blue | Color.green), # White.
+    "Tomato Rush Lower Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 35, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp", Color.red | Color.orange | Color.blue | Color.green), # White.
+    "Tomato Rush Upper Left Battle": Everhood2LocationData(BATTLE_LOCATION_START + 36, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp", Color.red | Color.orange | Color.blue | Color.green), # White.
+    "Tomato Rush Upper Middle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 37, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp", Color.red | Color.orange | Color.blue | Color.green), # White.
+    "Tomato Rush Upper Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 38, "Eternal War - Tomato Rampages", LocationType.trash_battle, "25xp", Color.red | Color.orange | Color.blue | Color.green), # White.
     "Melon Battle": Everhood2LocationData(BATTLE_LOCATION_START + 39, "Eternal War - Tomato Rampages", LocationType.major_battle, "100xp", Color.green | Color.red | Color.blue), #Yellow, Purple
     "Chili Battle": Everhood2LocationData(BATTLE_LOCATION_START + 40, "Eternal War - Bridge And Dungeon", LocationType.unique_battle, "15xp", Color.green | Color.purple | Color.yellow), #Orange also appears in phase 2, but can't beat phase 1
 
     # Eternal War Castle
     "Capsicum Battle": Everhood2LocationData(BATTLE_LOCATION_START + 41, "Eternal War - Bridge And Dungeon", LocationType.major_battle, "70xp", Color.purple),
     "Carrot Mage Battle": Everhood2LocationData(BATTLE_LOCATION_START + 42, "Eternal War - Tournament A", LocationType.major_battle, "45xp", Color.purple | Color.green | Color.red | Color.yellow),
-    "Juice Master#4671 Battle": Everhood2LocationData(BATTLE_LOCATION_START + 43, "Eternal War - Tournament B", LocationType.major_battle, "150xp", Color.green | Color.blue), #Red Waves which maybe are painful to get in a good number
+    "Juice Master#4671 Battle": Everhood2LocationData(BATTLE_LOCATION_START + 43, "Eternal War - Tournament B", LocationType.major_battle, "150xp", Color.green | Color.blue), # Red Waves which maybe are painful to get in a good number
     
     # Hillbert Hotel Fights
     # Angry Wizard Todo
-    "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23", LocationType.unique_battle | LocationType.hillbert, "64xp"),
-    "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.major_battle | LocationType.hillbert, "100xp"),
-    "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.major_battle | LocationType.hillbert, "80xp"),
+    "Hillbert Processor Int Battle": Everhood2LocationData(BATTLE_LOCATION_START + 45, "Floor 23 - Smega", LocationType.unique_battle | LocationType.hillbert, "64xp", Color.blue | Color.red),
+    "Rasputin Battle": Everhood2LocationData(BATTLE_LOCATION_START + 46, "Floor 23", LocationType.major_battle | LocationType.hillbert, "100xp", Color.red | Color.green | Color.blue), # Other colors are used, but these are the only ones in the final phase
+    "Bobo (Drunk) Battle": Everhood2LocationData(BATTLE_LOCATION_START + 47, "Floor Gold", LocationType.major_battle | LocationType.hillbert, "80xp"), #Red, Green, Blue, Brown but has a LOT of white
     
-    "Squirrels Battle": Everhood2LocationData(BATTLE_LOCATION_START + 48, "Floor Pinecone", LocationType.major_battle | LocationType.hillbert, "400xp"),
+    "Squirrels Battle": Everhood2LocationData(BATTLE_LOCATION_START + 48, "Floor Pinecone", LocationType.major_battle | LocationType.hillbert, "400xp", Color.green | Color.purple | Color.brown),
     
-    "Opus & Screech Battle": Everhood2LocationData(BATTLE_LOCATION_START + 50, "Marzian Era 0 - Base C", LocationType.trash_battle, "80xp"), #Todo: Needs custom rule for Color.green | Color.blue &&  Color.green | Color.orange
+    "Opus & Screech Battle": Everhood2LocationData(BATTLE_LOCATION_START + 50, "Marzian Era 0 - Base C", LocationType.trash_battle, "80xp"), # Has Custom Color Rule
 
     # "Thriller Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 51, "Marzian Era 3000", LocationType.trash_battle | LocationType.post_dragon, "50xp"),
     # "Lurker Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 52, "Marzian Era 3000", LocationType.trash_battle | LocationType.post_dragon, "50xp"),
@@ -295,10 +294,10 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     # "Doopy Dragon 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 72, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "35xp"),
     # "Vanguard 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 73, "Irvine Pocket Dimension", LocationType.major_battle | LocationType.post_dragon, "250xp"),
     
-    "Door of the Dead Battle": Everhood2LocationData(BATTLE_LOCATION_START + 74, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "0xp"),
-    "Ghost Chunky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 75, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
-    "Ghost Junkie Battle": Everhood2LocationData(BATTLE_LOCATION_START + 76, "Lab", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp"),
-    "Ghost Franky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 77, "Lab", LocationType.major_battle | LocationType.pre_dragon_doors, "35xp"),
+    # "Door of the Dead Battle": Everhood2LocationData(BATTLE_LOCATION_START + 74, "Lab - Pre Puzzle", LocationType.unique_battle | LocationType.pre_dragon_doors, "0xp"), # White
+    "Ghost Chunky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 75, "Lab - Pre Puzzle", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp", Color.purple),
+    "Ghost Junkie Battle": Everhood2LocationData(BATTLE_LOCATION_START + 76, "Lab - Post Chunky", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp", Color.purple | Color.blue),
+    "Ghost Franky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 77, "Lab - Post Junkie", LocationType.major_battle | LocationType.pre_dragon_doors, "35xp", Color.purple | Color.green),
 
     # "Cazok Carrot Battle": Everhood2LocationData(BATTLE_LOCATION_START + 78, "Floor Omega", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
     # "Cazok Ghost Battle": Everhood2LocationData(BATTLE_LOCATION_START + 79, "Floor Omega", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
@@ -308,7 +307,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     #Todo Categorise Better
     "Motherboard INT Battle": Everhood2LocationData(BATTLE_LOCATION_START + 82, "Smega Console - Motherboard A", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.blue | Color.red),
     "Motherboard CHAR Battle": Everhood2LocationData(BATTLE_LOCATION_START + 83, "Smega Console - Motherboard B", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.red | Color.green | Color.purple),
-    "Motherboard BOOL x3 Battle": Everhood2LocationData(BATTLE_LOCATION_START + 84, "Smega Console - Motherboard B", LocationType.trash_battle | LocationType.pre_dragon_doors, "192xp"), #Todo: Needs custom rule. Phase 1: Red, Green, Purple. Phase 2: Blue, Red. Phase 3: Orange Blue
+    "Motherboard BOOL x3 Battle": Everhood2LocationData(BATTLE_LOCATION_START + 84, "Smega Console - Motherboard B", LocationType.trash_battle | LocationType.pre_dragon_doors, "192xp"), 
     "Motherboard While Battle": Everhood2LocationData(BATTLE_LOCATION_START + 85, "Smega Console - Motherboard B", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.green | Color.yellow | Color.purple | Color.blue),
     
     "RAM N INT Battle": Everhood2LocationData(BATTLE_LOCATION_START + 86, "Smega Console - RAM", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.red | Color.blue | Color.green),
@@ -323,12 +322,12 @@ battle_locations: Dict[str, Everhood2LocationData] = {
 
     "Processor Gate Battle": Everhood2LocationData(BATTLE_LOCATION_START + 95, "Smega Console - Motherboard B", LocationType.major_battle | LocationType.pre_dragon_doors, "250xp", Color.green | Color.blue | Color.purple), # Also has white but not in a large quantity
     "Processor INT Battle": Everhood2LocationData(BATTLE_LOCATION_START + 96, "Smega Console - Processor A", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.blue | Color.red),
-    "Processor FLOAT Battle": Everhood2LocationData(BATTLE_LOCATION_START + 97, "Smega Console", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.blue | Color.red | Color.purple | Color.orange),
+    "Processor FLOAT Battle": Everhood2LocationData(BATTLE_LOCATION_START + 97, "Smega Console - Processor B", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.blue | Color.red | Color.purple | Color.orange),
     "Processor MATRIX Battle": Everhood2LocationData(BATTLE_LOCATION_START + 98, "Smega Console - Processor B", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.red | Color.blue | Color.purple),
     "Processor BOOL Battle": Everhood2LocationData(BATTLE_LOCATION_START + 99, "Smega Console - Processor B", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.blue | Color.orange),
-    "Processor CHAR Battle": Everhood2LocationData(BATTLE_LOCATION_START + 100, "Smega Console", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.purple | Color.green | Color.red),
-    "Processor WHILE Battle": Everhood2LocationData(BATTLE_LOCATION_START + 101, "Smega Console", LocationType.trash_battle | LocationType.pre_dragon_doors, "128xp", Color.blue | Color.green | Color.orange),
-    "Corrupt Irvine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 102, "Smega Console", LocationType.major_battle | LocationType.pre_dragon_doors, "1200xp", Color.red | Color.green | Color.blue | Color.orange | Color.purple),
+    "Processor CHAR Battle": Everhood2LocationData(BATTLE_LOCATION_START + 100, "Smega Console - Processor B", LocationType.trash_battle | LocationType.pre_dragon_doors, "64xp", Color.purple | Color.green | Color.red),
+    "Processor WHILE Battle": Everhood2LocationData(BATTLE_LOCATION_START + 101, "Smega Console - Processor B", LocationType.trash_battle | LocationType.pre_dragon_doors, "128xp", Color.blue | Color.green | Color.orange),
+    "Corrupt Irvine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 102, "Smega Console - Processor B", LocationType.major_battle | LocationType.pre_dragon_doors, "1200xp", Color.red | Color.green | Color.blue | Color.orange | Color.purple),
     
     # "Rock Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 103, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "200xp"),
     # "Rock Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 104, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "200xp"),

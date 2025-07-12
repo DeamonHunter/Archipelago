@@ -1,6 +1,7 @@
 ﻿from typing import NamedTuple, Optional
 from BaseClasses import Item, ItemClassification
 from collections import ChainMap
+from .Locations import Color
 
 class Everhood2Item(Item):
     game: str = "Everhood 2"
@@ -92,6 +93,16 @@ colors: dict[str, Everhood2ItemData] = {
     "Orange": Everhood2ItemData(356, ItemClassification.progression),
 }
 
+colors_to_name: dict[Color, str] = {
+    Color.blue: "Blue",
+    Color.red: "Red",
+    Color.green: "Green",
+    Color.yellow: "Yellow",
+    Color.brown: "Brown",
+    Color.purple: "Purple",
+    Color.orange: "Orange"
+}
+
 cosmetics: dict[str, Everhood2ItemData] = {
     "Anime Hairstyle Cosmetic": Everhood2ItemData(400, ItemClassification.filler),
     "Wild Hairstyle Cosmetic": Everhood2ItemData(401, ItemClassification.filler),
@@ -116,7 +127,7 @@ misc_items: dict[str, Everhood2ItemData] = {
     "Druffle": Everhood2ItemData(115, ItemClassification.filler), # Todo: Filler? Maybe keep the one druffle stuck to Sam
 }
 
-all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, door_randomizer_keys, cosmetics, misc_items)
+all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, door_randomizer_keys, cosmetics, misc_items, colors)
 
 item_groups: dict[str, list[str]] = {
     "Soul Weapon": ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"],
