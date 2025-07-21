@@ -8,7 +8,7 @@ from .Items import colors_to_name
 if TYPE_CHECKING:
     from . import Everhood2World
 
-def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool) -> None:
+def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool) -> None:
     if colorsanity:
         world.multiworld.completion_condition[world.player] = lambda state: state.has("Purple", world.player) and \
             state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))                                                              
@@ -22,9 +22,9 @@ def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door
         set_hillbert_rules(world, valid_types)
         
     if colorsanity:
-        set_colorsanity_location_rules(world, valid_types)
+        set_colorsanity_location_rules(world, valid_types, red_override)
 
-    set_additional_region_rules(world, valid_types, door_keys, colorsanity)
+    set_additional_region_rules(world, valid_types, door_keys, colorsanity, red_override)
 
 def set_door_key_rules(world: World, valid_types: LocationType, colorsanity: bool) -> None:
     for key, data in region_data_table.items():
@@ -86,7 +86,7 @@ def hillbert_rule(world: World, location: Location, valid_types: LocationType, l
             
     
 
-def set_colorsanity_location_rules(world: World, valid_types: LocationType) -> None:
+def set_colorsanity_location_rules(world: World, valid_types: LocationType, red_override: bool) -> None:
     # Todo: Doesn't handle region logic.
     for key, data in battle_locations.items():
         # Certain fights feature plenty of white notes which will always be available.
@@ -94,8 +94,12 @@ def set_colorsanity_location_rules(world: World, valid_types: LocationType) -> N
         if data.color == 0 or data.type not in valid_types:
             continue
 
-        colors = get_colors(data.color)
-        world.get_location(key).access_rule = lambda state, c=colors: state.has_any(c, world.player)
+        if red_override and (key == "Capsicum Battle" or key == "Juice Master#4671 Battle"):
+            colors = get_colors(Color.red)
+            world.get_location(key).access_rule = lambda state, c=colors: state.has_any(c, world.player)
+        else:
+            colors = get_colors(data.color)
+            world.get_location(key).access_rule = lambda state, c=colors: state.has_any(c, world.player)
 
     # Custom Rules
     set_complex_color(world, "Smega Console - Chest Behind Motherboard Bool",
@@ -106,7 +110,7 @@ def set_colorsanity_location_rules(world: World, valid_types: LocationType) -> N
     set_complex_color(world, "Howler & Razor & Maggot Battle", [Color.green | Color.blue, Color.green | Color.orange], valid_types)
     set_complex_color(world, "Opus & Screech Battle", [Color.green | Color.blue, Color.green | Color.orange], valid_types)
 
-def set_additional_region_rules(world: World, valid_types: LocationType, door_keys: bool, colorsanity: bool) -> None:
+def set_additional_region_rules(world: World, valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool) -> None:
     # Todo: Doesn't handle region logic.
     for key, data in region_data_table.items():
         if data.include_type not in valid_types:
@@ -122,8 +126,12 @@ def set_additional_region_rules(world: World, valid_types: LocationType, door_ke
             if connection.location:
                 create_indirect(world, world.get_entrance(name), key, connection, valid_types, colorsanity)                
             elif connection.color != 0 and colorsanity:
-                colors = get_colors(connection.color)
-                world.get_entrance(name).access_rule = lambda state, c=colors: state.has_any(c, world.player)
+                if red_override and (connection.key == "Capsicum Battle" or connection.key == "Juice Master#4671 Battle"):
+                    colors = get_colors(Color.red)
+                    world.get_entrance(name).access_rule = lambda state, c=colors: state.has_any(c, world.player)
+                else:
+                    colors = get_colors(connection.color)
+                    world.get_entrance(name).access_rule = lambda state, c=colors: state.has_any(c, world.player)
 
 
 def set_complex_color(world: World, location: str, colors: list[Color], valid_types: LocationType) -> None:
