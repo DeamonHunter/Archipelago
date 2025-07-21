@@ -54,10 +54,10 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     ), 
     
     # Eternal War
-    "Eternal War - Tomato Rampages": Everhood2RegionData([Connection("Eternal War - Bridge And Dungeon", "Melon Battle")]), #Todo: Color Requirements
-    "Eternal War - Bridge And Dungeon": Everhood2RegionData([Connection("Eternal War - Tournament A", "Capsicum Battle")]), #Todo: Color Requirements
-    "Eternal War - Tournament A": Everhood2RegionData([Connection("Eternal War - Tournament B", "Carrot Mage Battle")]), #Todo: Color Requirements
-    "Eternal War - Tournament B": Everhood2RegionData([Connection("Eternal War - Post Win", "Juice Master#4671 Battle")]), #Todo: Color Requirements
+    "Eternal War - Tomato Rampages": Everhood2RegionData([Connection("Eternal War - Bridge And Dungeon", "Melon Battle")]), 
+    "Eternal War - Bridge And Dungeon": Everhood2RegionData([Connection("Eternal War - Tournament A", "Capsicum Battle")]),
+    "Eternal War - Tournament A": Everhood2RegionData([Connection("Eternal War - Tournament B", "Carrot Mage Battle")]),
+    "Eternal War - Tournament B": Everhood2RegionData([Connection("Eternal War - Post Win", "Juice Master#4671 Battle")]),
     "Eternal War - Post Win": Everhood2RegionData([]),
         
     "Marzian Era 0 - Mines A": Everhood2RegionData([Connection("Marzian Era 0 - Mines B", "Hyena Battle Screech")]),
