@@ -6,7 +6,7 @@ from typing import ClassVar, Type
 from Options import PerGameCommonOptions, OptionError
 
 from .Options import Everhood2Options, everhood2_option_groups
-from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys, colors
+from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys, colors, name_to_color
 from .Locations import Everhood2Location, all_locations, LocationType, Color
 from .Regions import region_data_table
 from .Rules import set_everhood2_rules
@@ -83,11 +83,11 @@ class Everhood2World(World):
 
         if self.options.colorsanity.value:
             for c in colors.keys():
-                if c == Color.blue and self.options.soul_color.value == self.options.soul_color.option_Blue:
+                if name_to_color[c] == Color.blue and self.options.soul_color.value == self.options.soul_color.option_Blue:
                     self.push_precollected(self.create_item(c))
-                elif c == Color.red and self.options.soul_color.value == self.options.soul_color.option_Red:
+                elif name_to_color[c] == Color.red and self.options.soul_color.value == self.options.soul_color.option_Red:
                     self.push_precollected(self.create_item(c))
-                elif c == Color.green and self.options.soul_color.value == self.options.soul_color.option_Green:
+                elif name_to_color[c] == Color.green and self.options.soul_color.value == self.options.soul_color.option_Green:
                     self.push_precollected(self.create_item(c))
                 else:
                     item_collection.append(self.create_item(c))

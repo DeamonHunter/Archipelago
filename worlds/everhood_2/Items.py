@@ -103,6 +103,16 @@ colors_to_name: dict[Color, str] = {
     Color.orange: "Orange"
 }
 
+name_to_color: dict[str, Color] = {
+    "Blue": Color.blue,
+    "Red": Color.red,
+    "Green": Color.green,
+    "Yellow": Color.yellow,
+    "Brown": Color.brown,
+    "Purple": Color.purple,
+    "Orange": Color.orange
+}
+
 cosmetics: dict[str, Everhood2ItemData] = {
     "Anime Hairstyle Cosmetic": Everhood2ItemData(400, ItemClassification.filler),
     "Wild Hairstyle Cosmetic": Everhood2ItemData(401, ItemClassification.filler),
