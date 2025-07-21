@@ -161,7 +161,7 @@ class Everhood2World(World):
         return valid_types
 
     def set_rules(self) -> None:
-        set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value == 1, self.options.colorsanity.value == 1,
+        set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value != 0, self.options.colorsanity.value != 0,
                             self.options.soul_color.value == self.options.soul_color.option_Red) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
@@ -180,5 +180,6 @@ class Everhood2World(World):
         return {
             "DragonGems": self.get_needed_dragon_gem_count(valid_types),
             "SoulColor": self.options.soul_color.value,
-            "DoorKeys": self.options.door_keys.value != 0
+            "DoorKeys": self.options.door_keys.value != 0,
+            "Colorsanity": self.options.colorsanity.value != 0,            
         }
