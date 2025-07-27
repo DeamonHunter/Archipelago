@@ -1,7 +1,8 @@
 ﻿from typing import TYPE_CHECKING
 from worlds.AutoWorld import World, CollectionState
 from BaseClasses import Location, Entrance
-from .Locations import LocationType, battle_locations, item_locations, Color, Everhood2LocationData
+
+from .Locations import LocationType, all_locations, Color, Everhood2LocationData
 from .Regions import region_data_table, Connection
 from .Items import colors_to_name
 
@@ -43,7 +44,7 @@ def set_door_key_rules(world: World, valid_types: LocationType, colorsanity: boo
                 raise Exception("Location Has More Rules than intended. MOVE TO TESTS")
                         
             if connection.location is not None:          
-                location = battle_locations[connection.location]
+                location = all_locations[connection.location]
                 if location.region == key and location.type in valid_types:
                     entrance = world.get_entrance(get_entrance_name(key, connection))
                     entrance.access_rule = lambda state, c=connection: \
@@ -70,12 +71,12 @@ def set_hillbert_rules(world: World, valid_types: LocationType) -> None:
 
 
 def hillbert_rule(world: World, location: Location, valid_types: LocationType, locA: str, locB: str | None = None):
-    battleA = battle_locations[locA]
+    battleA = all_locations[locA]
     if battleA.type not in valid_types:
         world.get_region(battleA.region).add_event(locA)
         
     if locB is not None:
-        battleB = battle_locations[locB]
+        battleB = all_locations[locB]
         if battleB.type not in valid_types:
             world.get_region(battleB.region).add_event(locB)
 
@@ -88,7 +89,7 @@ def hillbert_rule(world: World, location: Location, valid_types: LocationType, l
 
 def set_colorsanity_location_rules(world: World, valid_types: LocationType, red_override: bool) -> None:
     # Todo: Doesn't handle region logic.
-    for key, data in battle_locations.items():
+    for key, data in all_locations.items():
         # Certain fights feature plenty of white notes which will always be available.
         # Todo: Also lock white?
         if data.color == 0 or data.type not in valid_types:
@@ -135,10 +136,7 @@ def set_additional_region_rules(world: World, valid_types: LocationType, door_ke
 
 
 def set_complex_color(world: World, location: str, colors: list[Color], valid_types: LocationType) -> None:
-    data = battle_locations.get(location)
-    if data is None:
-        data = item_locations[location]
-    
+    data = all_locations.get(location)    
     if data.type not in valid_types:
         return 
     
@@ -185,7 +183,7 @@ def create_key_reach_rule(world: World, parent_region: str, connection: Connecti
                                              and state.can_reach_region(battle.region, world.player)
         
 def create_indirect(world: World, entrance: Entrance, parent_region: str, connection: Connection, valid_types: LocationType, colorsanity: bool):
-    battle = battle_locations[connection.location]
+    battle = all_locations[connection.location]
     if battle.region == parent_region:
         if battle.type in valid_types:
             entrance.access_rule = world.get_location(connection.location).access_rule
@@ -201,7 +199,7 @@ def create_indirect(world: World, entrance: Entrance, parent_region: str, connec
         world.multiworld.register_indirect_condition(world.get_region(battle.region), entrance)
 
 def create_indirect_key(world: World, entrance: Entrance, parent_region: str, connection: Connection, valid_types: LocationType):
-    battle = battle_locations[connection.location]
+    battle = all_locations[connection.location]
     if battle.region == parent_region:
         raise Exception("This shouldn't happen.")
     elif battle.type in valid_types:
