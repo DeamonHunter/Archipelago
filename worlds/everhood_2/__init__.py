@@ -165,9 +165,13 @@ class Everhood2World(World):
                             self.options.soul_color.value == self.options.soul_color.option_Red) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
-        gem_count = 5
+        # Todo: Auto Count locations and save?
+        gem_count = 3 
+        if LocationType.hillbert in valid_types:
+            gem_count += 2
         if LocationType.pre_dragon_doors in valid_types:
-            gem_count += 8
+            gem_count += 9
+            
         return gem_count
     
     def get_needed_dragon_gem_count(self, valid_types: LocationType):
