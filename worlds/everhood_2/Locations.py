@@ -50,7 +50,8 @@ class Everhood2Location(Location):
 
 
 item_locations: Dict[str, Everhood2LocationData] = {    
-    "Neon Jungle Chest Section 1 South East": Everhood2LocationData(ITEM_LOCATION_START + 0, "Neon City - Pre Homonculus", LocationType.item, "50xp"),
+    # Guarded by Pirahna
+    "Neon Jungle Chest Section 1 South East": Everhood2LocationData(ITEM_LOCATION_START + 0, "Neon City - Pre Homonculus", LocationType.item, "50xp", Color.blue | Color.green),
     "Neon Jungle Chest Section 1 North West": Everhood2LocationData(ITEM_LOCATION_START + 1, "Neon City - Pre Homonculus", LocationType.item, "75xp"),
     "Neon Jungle Chest Section 2 North West": Everhood2LocationData(ITEM_LOCATION_START + 2, "Neon City - Post Homonculus", LocationType.item, "50xp"),
     "Neon Jungle Chest Section 2 South East": Everhood2LocationData(ITEM_LOCATION_START + 3, "Neon City - Post Homonculus", LocationType.item, "75xp"),
