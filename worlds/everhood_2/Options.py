@@ -75,7 +75,17 @@ class PreventDragon3(DefaultOnToggle):
     When enabled, Dragon 3 will no longer appear if you fight the dragon after completing only a single starting zone.
     """
     display_name = "Prevent Dragon 3"
-
+    
+    
+class HealthMultiplier(Range):
+    """
+    Multiplies the Health of *ALL* enemies.
+    """
+    display_name = "Health Multiplier Percentage"
+    range_start = 50
+    range_end = 300
+    default = 100
+    
 
 # class Colloseum(Toggle):
 #     """
@@ -121,7 +131,8 @@ everhood2_option_groups = [
         # Colloseum,
     ]),
     OptionGroup("Difficulty", [
-        PreventDragon3
+        PreventDragon3,
+        HealthMultiplier,
     ]),
     # OptionGroup("Enemizer", [
     #     BattleRandomisation,
@@ -140,6 +151,7 @@ class Everhood2Options(PerGameCommonOptions):
     hillbert_hotel: HillbertHotel
     colorsanity: Colorsanity
     prevent_dragon: PreventDragon3
+    health_multiplier: HealthMultiplier
     # colloseum: Colloseum
     # Enemizer: BattleRandomisation
     # Enemizer_exclude: ExcludeFromEnemizer

@@ -187,4 +187,5 @@ class Everhood2World(World):
             "DoorKeys": self.options.door_keys.value != 0,
             "Colorsanity": self.options.colorsanity.value != 0,
             "PreventDragon": self.options.prevent_dragon.value != 0,
+            "HealthMultiplier": self.options.health_multiplier.value,
         }
