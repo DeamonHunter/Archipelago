@@ -185,5 +185,6 @@ class Everhood2World(World):
             "DragonGems": self.get_needed_dragon_gem_count(valid_types),
             "SoulColor": self.options.soul_color.value,
             "DoorKeys": self.options.door_keys.value != 0,
-            "Colorsanity": self.options.colorsanity.value != 0,            
+            "Colorsanity": self.options.colorsanity.value != 0,
+            "PreventDragon": self.options.prevent_dragon.value != 0,
         }

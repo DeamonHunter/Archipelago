@@ -1,4 +1,4 @@
-﻿from Options import Toggle, Choice, OptionSet, PerGameCommonOptions, OptionGroup, Range
+﻿from Options import Toggle, Choice, OptionSet, PerGameCommonOptions, OptionGroup, Range, DefaultOnToggle
 from dataclasses import dataclass
 from .Locations import battle_locations
 
@@ -70,6 +70,13 @@ class RandomizeBattleRewards(Choice):
     option_All = 3
 
 
+class PreventDragon3(DefaultOnToggle):
+    """
+    When enabled, Dragon 3 will no longer appear if you fight the dragon after completing only a single starting zone.
+    """
+    display_name = "Prevent Dragon 3"
+
+
 # class Colloseum(Toggle):
 #     """
 #     Whether to include the Colloseum and its battles to the pool. Does nothing without Battles
@@ -113,6 +120,9 @@ everhood2_option_groups = [
         HillbertHotel,
         # Colloseum,
     ]),
+    OptionGroup("Difficulty", [
+        PreventDragon3
+    ]),
     # OptionGroup("Enemizer", [
     #     BattleRandomisation,
     #     ExcludeFromEnemizer
@@ -129,6 +139,7 @@ class Everhood2Options(PerGameCommonOptions):
     battle_rewards: RandomizeBattleRewards
     hillbert_hotel: HillbertHotel
     colorsanity: Colorsanity
+    prevent_dragon: PreventDragon3
     # colloseum: Colloseum
     # Enemizer: BattleRandomisation
     # Enemizer_exclude: ExcludeFromEnemizer
