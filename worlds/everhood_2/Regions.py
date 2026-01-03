@@ -1,4 +1,6 @@
-from typing import Dict, List, NamedTuple
+from typing import Dict, List, NamedTuple, Callable
+
+from BaseClasses import CollectionState
 from .Locations import LocationType, Color
 
 class Connection(NamedTuple):
@@ -8,10 +10,11 @@ class Connection(NamedTuple):
     key_count: int = 1
     color: Color = 0
     entrance_name: str = None
+    custom_rule: Callable[[CollectionState], bool] = None
     
 class Everhood2RegionData(NamedTuple):
     connecting_regions: List[Connection]
-    include_type: LocationType = LocationType.item 
+    include_type: LocationType = LocationType.item
 
 # Todo: Properly name areas
 # These regions roughly replicate real regions, though are split via fights.
@@ -30,6 +33,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         Connection("Smega Console - Motherboard A", key="Smega Console Key"),
         Connection("Home Town", key="Home Town Key"),
         Connection("Lab - Pre Puzzle", key="Lab Key"),
+        Connection("Time Hub")
     ]),
 
     # Neon City Regions.
@@ -117,4 +121,29 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     # "Dunkey Room": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon), #Todo: Does this have anything?
     # "Sam's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.post_dragon),
     # "Lucy's House": Everhood2RegionData(["Hillbert Hotel"], LocationType.hillbert | LocationType.post_dragon),
+    
+    "Time Hub": Everhood2RegionData(
+        [
+            Connection("Mushroom Bureau - Entrance", key="Mushroom Door Key"),
+            Connection("Mushroom Dance Room", key="Smelly Key"),
+            Connection("Irvine Pocket Dimension", key="3 Dimensional Key"),
+        ],
+        LocationType.act_2
+    ),
+
+    "Mushroom Bureau - Entrance": Everhood2RegionData(
+        [
+            Connection("Mushroom Bureau - Sun"),
+            Connection("Mushroom Bureau - Moon"),
+            Connection("Mushroom Bureau - Finale", custom_rule= lambda state: state.has_any(["Moon Emblem", "Sun Emblem"])),
+        ],
+        LocationType.act_2
+    ),
+    "Mushroom Bureau - Sun": Everhood2RegionData([], LocationType.act_2),
+    "Mushroom Bureau - Moon": Everhood2RegionData([Connection("Mushroom Bureau - Gauntlet 1")], LocationType.act_2),
+    "Mushroom Bureau - Gauntlet 1": Everhood2RegionData([Connection("Mushroom Bureau - Gauntlet 2", color = Color.blue | Color.yellow)], LocationType.act_2),
+    "Mushroom Bureau - Gauntlet 2": Everhood2RegionData([Connection("Mushroom Bureau - Gauntlet 3", color = Color.yellow | Color.blue | Color.brown)], LocationType.act_2),
+    "Mushroom Bureau - Gauntlet 3": Everhood2RegionData([], LocationType.act_2, ),
+    "Mushroom Bureau - Finale": Everhood2RegionData([], LocationType.act_2 | LocationType.post_dragon),
+    
 }

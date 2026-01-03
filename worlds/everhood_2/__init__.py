@@ -63,9 +63,13 @@ class Everhood2World(World):
                 item_collection.append(self.create_item(data.item_name))
         
         item_count = len(item_collection)
+        act_number = self.get_act_number()
         
         if self.options.door_keys.value:
-            for key in door_randomizer_keys.keys():
+            for key, item in door_randomizer_keys.items():
+                if item.act > act_number:
+                    continue
+                
                 if key == "Neon Forest Key" and self.options.soul_color.value == self.options.soul_color.option_Blue:
                     self.push_precollected(self.create_item(key))
                 elif key == "Progressive Marzian Key":
@@ -138,7 +142,7 @@ class Everhood2World(World):
 
     def valid_location_types(self) -> LocationType:
         valid_types = LocationType.item
-        
+
         if self.options.cosmetics.value:
             valid_types |= LocationType.cosmetic
             
@@ -174,10 +178,13 @@ class Everhood2World(World):
             
         return gem_count
     
-    def get_needed_dragon_gem_count(self, valid_types: LocationType):
+    def get_needed_dragon_gem_count(self, valid_types: LocationType) -> int:
         multiplier = self.options.dragon_gems.value / 100.0
         gem_count = self.get_dragon_gem_count(valid_types)
         return max(1, floor(gem_count * multiplier))
+    
+    def get_act_number(self) -> int:
+        return self.options.act_completion.value
 
     def fill_slot_data(self):
         valid_types = self.valid_location_types()

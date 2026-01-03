@@ -18,8 +18,10 @@ class LocationType(IntFlag):
     hillbert = auto()
     colosseum = auto()
     pre_dragon_doors = auto()
-    post_dragon = auto()
     post_game = auto()
+    
+    act_2 = auto()
+    act_3 = auto()
 
 
 class Color(IntFlag):
@@ -115,10 +117,11 @@ item_locations: Dict[str, Everhood2LocationData] = {
 
     # "Marzian Era 4000 Chest": Everhood2LocationData(ITEM_LOCATION_START + 51, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Power Gem"),
 
-    # "Sun Insignia": Everhood2LocationData(ITEM_LOCATION_START + 52, "Mushroom Bureau - Sun", LocationType.item | LocationType.post_dragon, "Sun Insignia"),
-    # "Mushroom Bureau Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 53, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Power Gem"),
-    # "Moon Insignia": Everhood2LocationData(ITEM_LOCATION_START + 54, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Moon Insignia"),
-    # "Mushroom Bureau Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 55, "Mushroom Bureau - Moon", LocationType.item | LocationType.post_dragon, "Death Coin"),
+    "Sun Insignia": Everhood2LocationData(ITEM_LOCATION_START + 52, "Mushroom Bureau - Sun", LocationType.item | LocationType.act_2, "Sun Insignia", Color.yellow | Color.blue | Color.brown),
+    "Mushroom Bureau Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 53, "Mushroom Bureau - Moon", LocationType.item | LocationType.act_2, "Power Gem"),
+    "Moon Insignia": Everhood2LocationData(ITEM_LOCATION_START + 54, "Mushroom Bureau - Gauntlet 2", LocationType.item | LocationType.act_2, "Moon Insignia", Color.blue | Color.orange),
+    "Mushroom Bureau Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 55, "Mushroom Bureau - Finale", LocationType.item | LocationType.act_2, "Death Coin"),
+    "Mushroom Hat": Everhood2LocationData(ITEM_LOCATION_START + 116, "Mushroom Bureau - Moon", LocationType.item | LocationType.act_2 | LocationType.cosmetic, "Mushroom Hat Cosmetic"),
 
     # "Duality Artifact": Everhood2LocationData(ITEM_LOCATION_START + 56, "Lucy's Room", LocationType.item | LocationType.post_dragon, "Duality"),
     
@@ -281,12 +284,13 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     # "Shark Jailor (Era 4000)": Everhood2LocationData(BATTLE_LOCATION_START + 61, "Marzian Era 4000", LocationType.trash_battle | LocationType.post_dragon, "25xp"),
     # "Feugo Battle (Era 4000)": Everhood2LocationData(BATTLE_LOCATION_START + 62, "Marzian Era 4000", LocationType.major_battle | LocationType.post_dragon, "100xp"),
 
-    # "Brown Slow Mushroom Sun Battle": Everhood2LocationData(BATTLE_LOCATION_START + 63, "Mushroom Bureau - Sun", LocationType.major_battle | LocationType.post_dragon, "50xp"), # Todo: Are both mushroom fights the same?
-    # "Hydra Mushroom Battle": Everhood2LocationData(BATTLE_LOCATION_START + 64, "Mushroom Bureau - Moon", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
-    # "Smelly Gas Mushroom Battle": Everhood2LocationData(BATTLE_LOCATION_START + 65, "Mushroom Bureau - Moon", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
-    # "Brown Slow Mushroom Moon Battle": Everhood2LocationData(BATTLE_LOCATION_START + 66, "Mushroom Bureau - Moon", LocationType.unique_battle | LocationType.post_dragon, "50xp"),
-    # "Sun Knight Battle": Everhood2LocationData(BATTLE_LOCATION_START + 67, "Mushroom Bureau - Sun", LocationType.major_battle | LocationType.post_dragon, "100xp"),
-    # "Judge Mushroom Battle": Everhood2LocationData(BATTLE_LOCATION_START + 68, "Mushroom Bureau - Finale", LocationType.major_battle | LocationType.post_dragon, "100xp"),
+    "Brown Slow Mushroom Sun Battle": Everhood2LocationData(BATTLE_LOCATION_START + 63, "Mushroom Bureau - Sun", LocationType.major_battle | LocationType.act_2, "50xp", Color.yellow | Color.blue | Color.brown), # Todo: Are both mushroom fights the same?
+    "Hydra Mushroom Dance Room Battle": Everhood2LocationData(BATTLE_LOCATION_START + 64, "Mushroom Bureau - Moon", LocationType.unique_battle | LocationType.act_2, "50xp", Color.orange),
+    "Smelly Gas Mushroom Dance Room Battle": Everhood2LocationData(BATTLE_LOCATION_START + 65, "Mushroom Bureau - Moon", LocationType.unique_battle | LocationType.act_2, "50xp", Color.blue | Color.yellow),
+    "Smelly Gas Mushroom Gauntlet Battle": Everhood2LocationData(BATTLE_LOCATION_START + 137, "Mushroom Bureau - Gauntlet 1", LocationType.unique_battle | LocationType.act_2, "50xp", Color.blue | Color.yellow),
+    "Brown Slow Mushroom Gauntlet Battle": Everhood2LocationData(BATTLE_LOCATION_START + 66, "Mushroom Bureau - Gauntlet 2", LocationType.unique_battle | LocationType.act_2, "50xp", Color.yellow | Color.blue | Color.brown),
+    "Sun Knight Gauntlet Battle": Everhood2LocationData(BATTLE_LOCATION_START + 67, "Mushroom Bureau - Gauntlet 3", LocationType.major_battle | LocationType.act_2, "100xp", Color.blue | Color.orange),
+    "Judge Mushroom Battle": Everhood2LocationData(BATTLE_LOCATION_START + 68, "Mushroom Bureau - Finale", LocationType.major_battle | LocationType.act_2, "100xp"),
     
     # "Lucy Battle": Everhood2LocationData(BATTLE_LOCATION_START + 69, "Lucy's Room", LocationType.unique_battle | LocationType.post_dragon, "1000xp"),
 

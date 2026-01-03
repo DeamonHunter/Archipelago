@@ -85,6 +85,20 @@ class HealthMultiplier(Range):
     range_start = 50
     range_end = 300
     default = 100
+
+
+class CompletionCondition(Choice):
+    """
+    Chooses what battles will be added to the randomization. Their Battles and xps will be added.
+    - Major Battles: Unique Battles which are fought on the main path of any route.
+    - Unique Battles: Battles which feature a unique character.
+    - All Battles: All non-spaceship battles.
+    """
+    display_name = "Battle Rewards"
+    default = 3
+    option_Act1 = 1
+    option_Act2 = 2
+    option_Act3 = 3
     
 
 # class Colloseum(Toggle):
@@ -152,6 +166,7 @@ class Everhood2Options(PerGameCommonOptions):
     colorsanity: Colorsanity
     prevent_dragon: PreventDragon3
     health_multiplier: HealthMultiplier
+    act_completion: CompletionCondition
     # colloseum: Colloseum
     # Enemizer: BattleRandomisation
     # Enemizer_exclude: ExcludeFromEnemizer

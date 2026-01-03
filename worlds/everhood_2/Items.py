@@ -9,6 +9,7 @@ class Everhood2Item(Item):
 class Everhood2ItemData(NamedTuple):
     code: Optional[int] = None
     type: ItemClassification = ItemClassification.filler
+    act: int = 1 # Todo: change
 
 # Todo: Need to confirm names of various areas.
 
@@ -81,6 +82,9 @@ door_randomizer_keys: dict[str, Everhood2ItemData] = {
     "Smega Console Key": Everhood2ItemData(303, ItemClassification.progression),
     "Lab Key": Everhood2ItemData(304, ItemClassification.progression),
     "Home Town Key": Everhood2ItemData(305, ItemClassification.progression),
+    "Mushroom Door Key": Everhood2ItemData(306, ItemClassification.progression, act=2),
+    "3 Dimensional Key": Everhood2ItemData(307, ItemClassification.progression, act=2),
+    "Smelly Key": Everhood2ItemData(308, ItemClassification.progression, act=2),
 }
 
 colors: dict[str, Everhood2ItemData] = {
@@ -130,6 +134,7 @@ cosmetics: dict[str, Everhood2ItemData] = {
     "Jester Hat Cosmetic": Everhood2ItemData(413, ItemClassification.filler),
     "Knight Helmet Cosmetic": Everhood2ItemData(414, ItemClassification.filler),
     "Gas Mask Cosmetic": Everhood2ItemData(415, ItemClassification.filler),
+    "Mushroom Hat Cosmetic": Everhood2ItemData(415, ItemClassification.filler),
 }
 
 misc_items: dict[str, Everhood2ItemData] = {
