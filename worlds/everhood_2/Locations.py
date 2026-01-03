@@ -294,10 +294,10 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     
     # "Lucy Battle": Everhood2LocationData(BATTLE_LOCATION_START + 69, "Lucy's Room", LocationType.unique_battle | LocationType.post_dragon, "1000xp"),
 
-    # "Jest 3D Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 70, "Irvine Pocket Dimension", LocationType.trash_battle | LocationType.post_dragon, "100xp"),
-    # "Jest 3D Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 71, "Irvine Pocket Dimension", LocationType.trash_battle | LocationType.post_dragon, "100xp"),
-    # "Doopy Dragon 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 72, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.post_dragon, "35xp"),
-    # "Vanguard 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 73, "Irvine Pocket Dimension", LocationType.major_battle | LocationType.post_dragon, "250xp"),
+    "Manifested Evil Thought 1": Everhood2LocationData(BATTLE_LOCATION_START + 70, "Irvine Pocket Dimension", LocationType.trash_battle | LocationType.act_2, "100xp", Color.blue | Color.brown | Color.orange),
+    "Manifested Evil Thought 2": Everhood2LocationData(BATTLE_LOCATION_START + 71, "Irvine Pocket Dimension", LocationType.trash_battle | LocationType.act_2, "100xp", Color.blue | Color.brown | Color.orange),
+    "Doopy Dragon 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 72, "Irvine Pocket Dimension", LocationType.unique_battle | LocationType.act_2, "35xp", Color.red | Color.blue | Color.green),
+    "Vanguard 3D Battle": Everhood2LocationData(BATTLE_LOCATION_START + 73, "Irvine Pocket Dimension", LocationType.major_battle | LocationType.act_2, "250xp", Color.brown | Color.green),
     
     # "Door of the Dead Battle": Everhood2LocationData(BATTLE_LOCATION_START + 74, "Lab - Pre Puzzle", LocationType.unique_battle | LocationType.pre_dragon_doors, "0xp"), # White
     "Ghost Chunky Battle": Everhood2LocationData(BATTLE_LOCATION_START + 75, "Lab - Pre Puzzle", LocationType.unique_battle | LocationType.pre_dragon_doors, "35xp", Color.purple),
