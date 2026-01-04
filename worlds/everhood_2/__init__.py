@@ -204,4 +204,5 @@ class Everhood2World(World):
             "Colorsanity": self.options.colorsanity.value != 0,
             "PreventDragon": self.options.prevent_dragon.value != 0,
             "HealthMultiplier": self.options.health_multiplier.value,
+            "Goal": self.options.goal_condition.value,
         }
