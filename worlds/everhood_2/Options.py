@@ -89,16 +89,18 @@ class HealthMultiplier(Range):
 
 class CompletionCondition(Choice):
     """
-    Chooses what battles will be added to the randomization. Their Battles and xps will be added.
-    - Major Battles: Unique Battles which are fought on the main path of any route.
-    - Unique Battles: Battles which feature a unique character.
-    - All Battles: All non-spaceship battles.
+    Chooses the completion condition of the game.
+    - Dragon is the final multi-phase fight of the Infinity Hub
+    - Judge Creation is the final fight of the Time Hub
+    - Riley is the final fight of the game.
+    - Cat Gods Hairball is the final fight of the colloseum.
     """
     display_name = "Battle Rewards"
     default = 3
-    option_Act1 = 1
-    option_Act2 = 2
-    option_Act3 = 3
+    option_Dragon = 1
+    option_JudgeCreation = 2
+    option_Riley = 3
+    option_CatGodsHairball = 4
     
 
 # class Colloseum(Toggle):
@@ -132,7 +134,8 @@ class CompletionCondition(Choice):
 everhood2_option_groups = [
     OptionGroup("Setup", [
         SoulColor, # Todo: Add this to a different category with difficulty options
-        DragonPowerGemPercentage
+        DragonPowerGemPercentage,
+        CompletionCondition
     ]),
     OptionGroup("Features", [
         DoorKeys,
@@ -166,7 +169,7 @@ class Everhood2Options(PerGameCommonOptions):
     colorsanity: Colorsanity
     prevent_dragon: PreventDragon3
     health_multiplier: HealthMultiplier
-    act_completion: CompletionCondition
+    goal_condition: CompletionCondition
     # colloseum: Colloseum
     # Enemizer: BattleRandomisation
     # Enemizer_exclude: ExcludeFromEnemizer

@@ -15,10 +15,10 @@ class Everhood2ItemData(NamedTuple):
 
 major_items: dict[str, Everhood2ItemData] = {
     "Power Gem": Everhood2ItemData(100, ItemClassification.progression), # Todo: Give only a couple crystals progression
-    "Soul Coin": Everhood2ItemData(101, ItemClassification.progression), # Todo: Give only a couple crystals progression
-    "Red Soul Axe": Everhood2ItemData(102, ItemClassification.progression),
-    "Green Soul Spear": Everhood2ItemData(103, ItemClassification.progression),
-    "Blue Soul Knives": Everhood2ItemData(104, ItemClassification.progression),
+    "Death Coin": Everhood2ItemData(101, ItemClassification.progression), # Todo: Give only a couple crystals progression
+    "Red Soul Axe": Everhood2ItemData(102, ItemClassification.progression | ItemClassification.useful),
+    "Green Soul Spear": Everhood2ItemData(103, ItemClassification.progression | ItemClassification.useful),
+    "Blue Soul Knives": Everhood2ItemData(104, ItemClassification.progression | ItemClassification.useful),
     "Katana": Everhood2ItemData(105, ItemClassification.useful),
     "Floor 23 Key": Everhood2ItemData(106, ItemClassification.progression),
     "Gold Key": Everhood2ItemData(107, ItemClassification.progression),
@@ -26,12 +26,14 @@ major_items: dict[str, Everhood2ItemData] = {
     "Crimson Bandanna": Everhood2ItemData(109, ItemClassification.useful),
     "Power Gem x2": Everhood2ItemData(110, ItemClassification.progression),
     "Power Gem x3": Everhood2ItemData(111, ItemClassification.progression),
-    "Moon Emblem": Everhood2ItemData(112, ItemClassification.progression), # Todo: Is this actually needed?
-    "Sun Emblem": Everhood2ItemData(113, ItemClassification.progression), # Todo: Is this actually needed?
+    "Moon Emblem": Everhood2ItemData(112, ItemClassification.progression),
+    "Sun Emblem": Everhood2ItemData(113, ItemClassification.progression),
     "Stopwatch": Everhood2ItemData(116, ItemClassification.useful),
     "Pinecone Key": Everhood2ItemData(117, ItemClassification.progression),
     "Clover": Everhood2ItemData(118, ItemClassification.useful),
     "Bead Braclet": Everhood2ItemData(119, ItemClassification.useful),
+    "V.I.P. Ticket": Everhood2ItemData(120, ItemClassification.filler),
+    "Yellow Mask": Everhood2ItemData(121, ItemClassification.filler),
 }
 
 # Todo: Do we need level logic?
@@ -140,12 +142,14 @@ cosmetics: dict[str, Everhood2ItemData] = {
 misc_items: dict[str, Everhood2ItemData] = {
     "Tomato Seed": Everhood2ItemData(114, ItemClassification.filler),
     "Druffle": Everhood2ItemData(115, ItemClassification.filler), # Todo: Filler? Maybe keep the one druffle stuck to Sam
+    "V.I.P. Card": Everhood2ItemData(117, ItemClassification.filler),
+    "Long Plank": Everhood2ItemData(118, ItemClassification.filler),
 }
 
 all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, door_randomizer_keys, cosmetics, misc_items, colors)
 
 item_groups: dict[str, list[str]] = {
     "Soul Weapon": ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"],
-    "Cosmetic": cosmetics.keys(),
-    "XP": xp_items.keys(),
+    "Cosmetic": list(cosmetics.keys()),
+    "XP": list(xp_items.keys()),
 }

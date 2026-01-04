@@ -117,9 +117,9 @@ item_locations: Dict[str, Everhood2LocationData] = {
 
     # "Marzian Era 4000 Chest": Everhood2LocationData(ITEM_LOCATION_START + 51, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Power Gem"),
 
-    "Sun Insignia": Everhood2LocationData(ITEM_LOCATION_START + 52, "Mushroom Bureau - Sun", LocationType.item | LocationType.act_2, "Sun Insignia", Color.yellow | Color.blue | Color.brown),
+    "Sun Insignia": Everhood2LocationData(ITEM_LOCATION_START + 52, "Mushroom Bureau - Sun", LocationType.item | LocationType.act_2, "Sun Emblem", Color.yellow | Color.blue | Color.brown),
     "Mushroom Bureau Power Gem": Everhood2LocationData(ITEM_LOCATION_START + 53, "Mushroom Bureau - Moon", LocationType.item | LocationType.act_2, "Power Gem"),
-    "Moon Insignia": Everhood2LocationData(ITEM_LOCATION_START + 54, "Mushroom Bureau - Gauntlet 2", LocationType.item | LocationType.act_2, "Moon Insignia", Color.blue | Color.orange),
+    "Moon Insignia": Everhood2LocationData(ITEM_LOCATION_START + 54, "Mushroom Bureau - Gauntlet 2", LocationType.item | LocationType.act_2, "Moon Emblem", Color.blue | Color.orange),
     "Mushroom Bureau Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 55, "Mushroom Bureau - Finale", LocationType.item | LocationType.act_2, "Death Coin"),
     "Mushroom Hat": Everhood2LocationData(ITEM_LOCATION_START + 116, "Mushroom Bureau - Moon", LocationType.item | LocationType.act_2 | LocationType.cosmetic, "Mushroom Hat Cosmetic"),
 
@@ -137,8 +137,8 @@ item_locations: Dict[str, Everhood2LocationData] = {
 
     # "Floor Omega Chest": Everhood2LocationData(ITEM_LOCATION_START + 62, "Floor Omega", LocationType.item | LocationType.post_dragon, "Power Gem"),
 
-    # "Liminal Room Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 63, "Liminal Room", LocationType.item | LocationType.post_dragon, "Power Gem"), 
-    # "Liminal Room Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 64, "Liminal Room", LocationType.item | LocationType.post_dragon, "Power Gem"),
+    "Liminal Room Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 63, "Liminal Room", LocationType.item | LocationType.act_2, "Power Gem"), 
+    "Liminal Room Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 64, "Liminal Room", LocationType.item | LocationType.act_2, "Power Gem"),
 
     "Smega Console - 'D' Chest": Everhood2LocationData(ITEM_LOCATION_START + 65, "Smega Console - Motherboard A", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Smega Console - Chest Before Riley": Everhood2LocationData(ITEM_LOCATION_START + 66, "Smega Console - Motherboard A", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
@@ -165,20 +165,21 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Smega Console - Maze Chest South": Everhood2LocationData(ITEM_LOCATION_START + 87, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     
     # Todo: More Descriptive Names
-    # "Death Mountain Chest 1": Everhood2LocationData(ITEM_LOCATION_START + 88, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
-    # "Death Mountain Chest 2": Everhood2LocationData(ITEM_LOCATION_START + 89, "Death Mountain", LocationType.item | LocationType.post_dragon, "Power Gem"),
-    # "Death Mountain Chest 3": Everhood2LocationData(ITEM_LOCATION_START + 90, "Death Mountain", LocationType.item | LocationType.post_dragon, "Power Gem"),
-    # "Death Mountain Chest 4": Everhood2LocationData(ITEM_LOCATION_START + 91, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
-    # "Death Mountain Chest 5": Everhood2LocationData(ITEM_LOCATION_START + 92, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
-    # "Death Mountain Chest 6": Everhood2LocationData(ITEM_LOCATION_START + 93, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
-    # "Death Mountain Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 94, "Death Mountain", LocationType.item | LocationType.post_dragon, "Death Coin"),
-    # "Death Mountain Chest 8": Everhood2LocationData(ITEM_LOCATION_START + 95, "Death Mountain", LocationType.item | LocationType.post_dragon, "50xp"),
+    "Death Mountain Chest Near Entrance": Everhood2LocationData(ITEM_LOCATION_START + 88, "Death Mountain", LocationType.item | LocationType.act_2, "50xp"),
+    "Death Mountain Chest Past Blockade": Everhood2LocationData(ITEM_LOCATION_START + 89, "Death Mountain", LocationType.item | LocationType.act_2, "Power Gem"),
+    "Death Mountain Chest Near Rock Fall": Everhood2LocationData(ITEM_LOCATION_START + 90, "Death Mountain", LocationType.item | LocationType.act_2, "Power Gem"),
+    "Death Mountain Chest Behind Harpy": Everhood2LocationData(ITEM_LOCATION_START + 91, "Death Mountain", LocationType.item | LocationType.act_2, "50xp"), # Harpy spams white notes
+    "Death Mountain Chest Overlooking Cliff": Everhood2LocationData(ITEM_LOCATION_START + 92, "Death Mountain", LocationType.item | LocationType.act_2, "50xp"),
+    "Death Mountain Chest Near Harpy Village": Everhood2LocationData(ITEM_LOCATION_START + 93, "Death Mountain", LocationType.item | LocationType.act_2, "50xp"),
+    "Death Mountain Scholar Puzzle Chest": Everhood2LocationData(ITEM_LOCATION_START + 94, "Death Mountain", LocationType.item | LocationType.act_2, "Death Coin"),
+    "Death Mountain King Gordo Reward": Everhood2LocationData(ITEM_LOCATION_START + 95, "Death Mountain", LocationType.item | LocationType.act_2, "Death Coin"),
 
-    # "V.I.P. Ticket": Everhood2LocationData(ITEM_LOCATION_START + 96, "Everhood 1", LocationType.item | LocationType.post_dragon, "V.I.P. Ticket"),
-    # "Long Plank": Everhood2LocationData(ITEM_LOCATION_START + 97, "Everhood 1", LocationType.item | LocationType.post_dragon, "Long Plank"),
-    # "Yellow Mask": Everhood2LocationData(ITEM_LOCATION_START + 98, "Everhood 1", LocationType.item | LocationType.post_dragon, "Yellow Mask"),
-    # "Everhood 1 Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 99, "Everhood 1", LocationType.item | LocationType.post_dragon, "Death Coin"),
-    # "Light Being Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 100, "Everhood 1", LocationType.item | LocationType.post_dragon, "Blue Soul Knives"),
+    "V.I.P. Ticket": Everhood2LocationData(ITEM_LOCATION_START + 96, "Everhood 1 - Intro", LocationType.item | LocationType.act_2, "V.I.P. Ticket"),
+    # Todo: This is a blocker that may not want to be added?
+    # "Long Plank": Everhood2LocationData(ITEM_LOCATION_START + 97, "Everhood 1 - Intro", LocationType.item | LocationType.post_dragon, "Long Plank"),
+    "Yellow Mask": Everhood2LocationData(ITEM_LOCATION_START + 98, "Everhood 1 - Post Yellow", LocationType.item | LocationType.act_2, "Yellow Mask"),
+    "Everhood 1 Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 99, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Death Coin"),
+    "Light Being Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 100, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Blue Soul Knives"),
 
     # "Colosseum Reward 1": Everhood2LocationData(ITEM_LOCATION_START + 101, "Colosseum", LocationType.item | LocationType.colosseum, "Power Gem"),
     # "Knight Helmet Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 102, "Colosseum", LocationType.cosmetic | LocationType.colosseum, "Knight Helmet Cosmetic"),
@@ -334,26 +335,28 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Processor WHILE Battle": Everhood2LocationData(BATTLE_LOCATION_START + 101, "Smega Console - Processor B", LocationType.trash_battle | LocationType.pre_dragon_doors, "128xp", Color.blue | Color.green | Color.orange),
     "Corrupt Irvine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 102, "Smega Console - Processor B", LocationType.major_battle | LocationType.pre_dragon_doors, "1200xp", Color.red | Color.green | Color.blue | Color.orange | Color.purple),
     
-    # "Rock Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 103, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "200xp"),
-    # "Rock Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 104, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "200xp"),
-    # "Mimic Chest Battle": Everhood2LocationData(BATTLE_LOCATION_START + 105, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "250xp"),
-    # "Mimic Apple Battle": Everhood2LocationData(BATTLE_LOCATION_START + 106, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "300xp"),
-    # "Harpy Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 107, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "250xp"),
-    # "Zombie Battle 1": Everhood2LocationData(BATTLE_LOCATION_START + 108, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "300xp"),
-    # "Zombie Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 109, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "300xp"),
-    # "Zombie Battle 3": Everhood2LocationData(BATTLE_LOCATION_START + 110, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "300xp"),
-    # "Rock Battle 3": Everhood2LocationData(BATTLE_LOCATION_START + 111, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "200xp"),
-    # "Harpy Battle 2": Everhood2LocationData(BATTLE_LOCATION_START + 112, "Death Mountain", LocationType.trash_battle | LocationType.post_dragon, "250xp"),
-    # "Crab Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 113, "Death Mountain", LocationType.major_battle | LocationType.post_dragon, "1000xp"),
+    "Rock Battle Near Entrance Battle": Everhood2LocationData(BATTLE_LOCATION_START + 103, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "200xp", Color.brown | Color.purple | Color.yellow),
+    "Rock Battle Near Chest Mimic Battle": Everhood2LocationData(BATTLE_LOCATION_START + 104, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "200xp", Color.brown | Color.purple | Color.yellow),
+    "Mimic Chest Battle": Everhood2LocationData(BATTLE_LOCATION_START + 105, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "250xp", Color.yellow | Color.green),
+    "Rock Battle In Bottom Right Battle": Everhood2LocationData(BATTLE_LOCATION_START + 138, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "200xp", Color.brown | Color.purple | Color.yellow),
+    "Mimic Apple Battle": Everhood2LocationData(BATTLE_LOCATION_START + 106, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "300xp", Color.red | Color.blue),
+    "Harpy Over Cliff Battle": Everhood2LocationData(BATTLE_LOCATION_START + 107, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "250xp"), # Harpy spams white notes.
+    "Zombie King Bongo Battle": Everhood2LocationData(BATTLE_LOCATION_START + 108, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "300xp", Color.green | Color.brown),
+    "Zombie King Zorgo Battle": Everhood2LocationData(BATTLE_LOCATION_START + 109, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "300xp", Color.green | Color.brown),
+    "Zombie King Mongo Battle": Everhood2LocationData(BATTLE_LOCATION_START + 110, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "300xp", Color.green | Color.brown),
+    "Rock Battle Near Zombies": Everhood2LocationData(BATTLE_LOCATION_START + 111, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "200xp", Color.brown | Color.purple | Color.yellow),
+    "Harpy With Concussion Battle": Everhood2LocationData(BATTLE_LOCATION_START + 112, "Death Mountain", LocationType.trash_battle | LocationType.act_2, "250xp"), # Harpy spams white notes.
+    "Crab Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 113, "Death Mountain", LocationType.major_battle | LocationType.act_2, "1000xp", Color.red | Color.blue | Color.green),
     
-    # "Dmitri Battle": Everhood2LocationData(BATTLE_LOCATION_START + 114, "Tutorial Spaceship", LocationType.major_battle | LocationType.post_dragon, "650xp"),
+    # Todo: Get Working
+    # "Dmitri Battle": Everhood2LocationData(BATTLE_LOCATION_START + 114, "Tutorial Spaceship", LocationType.major_battle | LocationType.act_2, "650xp", Color.red | Color.blue | Color.purple),
     
-    # "Yellow Battle": Everhood2LocationData(BATTLE_LOCATION_START + 115, "Everhood 1", LocationType.major_battle | LocationType.post_dragon, "800xp"),
-    # "Cursed Castle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 116, "Everhood 1", LocationType.major_battle | LocationType.post_dragon, "800xp"),
-    # "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1", LocationType.unique_battle | LocationType.post_dragon, "600xp"),
-    # "Slot Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 118, "Everhood 1", LocationType.unique_battle | LocationType.post_dragon, "500xp"), #Todo: Keep skippable?
+    "Yellow Battle": Everhood2LocationData(BATTLE_LOCATION_START + 115, "Everhood 1 - Intro", LocationType.major_battle | LocationType.act_2, "800xp", Color.red | Color.green | Color.blue),
+    "Cursed Castle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 116, "Everhood 1 - Post Yellow", LocationType.major_battle | LocationType.act_2, "800xp", Color.purple | Color.yellow),
+    "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "600xp", Color.red | Color.green), # Blue is also there. But isn't in the final repeatable phase.
+    "Slot Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 118, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "500xp", Color.blue | Color.brown),
     
-    # "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.major_battle | LocationType.post_dragon, "0xp"),
+    "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.major_battle | LocationType.act_2, "0xp", Color.red | Color.green | Color.blue),
     
     # "Jean D'Arc Battle": Everhood2LocationData(BATTLE_LOCATION_START + 120, "Colosseum", LocationType.major_battle | LocationType.colosseum, "350xp"),
     # "Molly Battle": Everhood2LocationData(BATTLE_LOCATION_START + 121, "Colosseum", LocationType.major_battle | LocationType.colosseum, "888xp"),

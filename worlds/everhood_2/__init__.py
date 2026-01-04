@@ -162,11 +162,20 @@ class Everhood2World(World):
         if self.options.door_keys.value:
             valid_types |= LocationType.pre_dragon_doors
             
+        if self.options.goal_condition.value >= self.options.goal_condition.option_JudgeCreation:
+            valid_types |= LocationType.act_2
+
+        if self.options.goal_condition.value >= self.options.goal_condition.option_Riley:
+            valid_types |= LocationType.act_3
+
+        if self.options.goal_condition.value >= self.options.goal_condition.option_CatGodsHairball:
+            valid_types |= LocationType.post_game
+            
         return valid_types
 
     def set_rules(self) -> None:
         set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value != 0, self.options.colorsanity.value != 0,
-                            self.options.soul_color.value == self.options.soul_color.option_Red) 
+                            self.options.soul_color.value == self.options.soul_color.option_Red, self.options.goal_condition.value) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
         # Todo: Auto Count locations and save?
@@ -184,7 +193,7 @@ class Everhood2World(World):
         return max(1, floor(gem_count * multiplier))
     
     def get_act_number(self) -> int:
-        return self.options.act_completion.value
+        return self.options.goal_condition.value
 
     def fill_slot_data(self):
         valid_types = self.valid_location_types()

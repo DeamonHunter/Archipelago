@@ -3,18 +3,15 @@ from worlds.AutoWorld import World, CollectionState
 from BaseClasses import Location, Entrance
 
 from .Locations import LocationType, all_locations, Color, Everhood2LocationData
+from .Options import CompletionCondition
 from .Regions import region_data_table, Connection
 from .Items import colors_to_name
 
 if TYPE_CHECKING:
     from . import Everhood2World
 
-def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool) -> None:
-    if colorsanity:
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("Purple", world.player) and \
-            state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))                                                              
-    else:    
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
+def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool, goal: int) -> None:
+    set_goal(world, valid_types, colorsanity, goal)
     
     if world.options.door_keys.value:
         set_door_key_rules(world, valid_types, colorsanity)
@@ -27,6 +24,21 @@ def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door
 
     set_additional_region_rules(world, valid_types, door_keys, colorsanity, red_override)
 
+
+def set_goal(world: World, valid_types: LocationType, colorsanity: bool, goal: int) -> None:
+    if goal >= CompletionCondition.option_JudgeCreation:
+        if colorsanity:
+            world.multiworld.completion_condition[world.player] = lambda state: state.has_all(["Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange"], world.player) and \
+                                                                                state.can_reach_region("Deep Sea", world.player)
+        else:
+            world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_region("Deep Sea", world.player)
+    else:
+        if colorsanity:
+            world.multiworld.completion_condition[world.player] = lambda state: state.has("Purple", world.player) and \
+                                                                                state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
+        else:
+            world.multiworld.completion_condition[world.player] = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
+        
 def set_door_key_rules(world: World, valid_types: LocationType, colorsanity: bool) -> None:
     for key, data in region_data_table.items():
         if data.include_type not in valid_types:
@@ -42,7 +54,7 @@ def set_door_key_rules(world: World, valid_types: LocationType, colorsanity: boo
 
             if connection.color != 0:
                 raise Exception("Location Has More Rules than intended. MOVE TO TESTS")
-                        
+            
             if connection.location is not None:          
                 location = all_locations[connection.location]
                 if location.region == key and location.type in valid_types:
@@ -83,9 +95,7 @@ def hillbert_rule(world: World, location: Location, valid_types: LocationType, l
         location.access_rule = lambda state: state.can_reach_location(locA, world.player) and state.can_reach_location(locB, world.player)
     else:
         location.access_rule = lambda state: state.can_reach_location(locA, world.player)
-        
-            
-    
+
 
 def set_colorsanity_location_rules(world: World, valid_types: LocationType, red_override: bool) -> None:
     # Todo: Doesn't handle region logic.
@@ -121,6 +131,14 @@ def set_additional_region_rules(world: World, valid_types: LocationType, door_ke
         # Todo: Also lock white?
         for connection in data.connecting_regions:
             if connection.key is not None and door_keys:
+                continue
+                
+            if connection.custom_rule is not None:
+                world.get_entrance(get_entrance_name(key, connection)).access_rule = lambda state, c=connection: c.custom_rule(state, world)
+                continue
+
+            if connection.death_coin > 0:
+                world.get_entrance(get_entrance_name(key, connection)).access_rule = lambda state, c=connection: state.has("Death Coin", world.player, c.death_coin)
                 continue
 
             name = get_entrance_name(key, connection)                    

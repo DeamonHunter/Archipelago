@@ -1,4 +1,5 @@
-from typing import Dict, List, NamedTuple, Callable
+from typing import Dict, List, NamedTuple, Callable, Optional
+from worlds.AutoWorld import World
 
 from BaseClasses import CollectionState
 from .Locations import LocationType, Color
@@ -10,7 +11,9 @@ class Connection(NamedTuple):
     key_count: int = 1
     color: Color = 0
     entrance_name: str = None
-    custom_rule: Callable[[CollectionState], bool] = None
+    custom_rule: Callable[[CollectionState, World], bool] = None
+    doorsanity: Optional[bool] = None # If Enabled remove the connection based on Doorsanity
+    death_coin: int = 0
     
 class Everhood2RegionData(NamedTuple):
     connecting_regions: List[Connection]
@@ -30,10 +33,12 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         Connection("Marzian Era 0 - Mines A", key="Progressive Marzian Key"),
         Connection("Marzian Era 1000", "Dimension Master Battle", "Progressive Marzian Key", 2),
         Connection("Marzian Era 2000", "Dimension Portal Battle", "Progressive Marzian Key", 3),
-        Connection("Smega Console - Motherboard A", key="Smega Console Key"),
-        Connection("Home Town", key="Home Town Key"),
-        Connection("Lab - Pre Puzzle", key="Lab Key"),
-        Connection("Time Hub")
+        Connection("Time Hub"),
+        
+        # These Connections are added before the dragon fight. But only for Doorsanity
+        Connection("Smega Console - Motherboard A", key="Smega Console Key", doorsanity=True),
+        Connection("Home Town", key="Home Town Key", doorsanity=True),
+        Connection("Lab - Pre Puzzle", key="Lab Key", doorsanity=True),
     ]),
 
     # Neon City Regions.
@@ -79,9 +84,9 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     
     "Marzian Era 1000": Everhood2RegionData([]),
     "Marzian Era 2000": Everhood2RegionData([]),
-    "Marzian Era 3000": Everhood2RegionData([], LocationType.post_dragon),
-    "Marzian Era 4000": Everhood2RegionData([], LocationType.post_dragon),
-    "Marzian Era 5000": Everhood2RegionData([], LocationType.post_dragon),
+    "Marzian Era 3000": Everhood2RegionData([]),
+    "Marzian Era 4000": Everhood2RegionData([], LocationType.act_3),
+    "Marzian Era 5000": Everhood2RegionData([], LocationType.act_3),
     
     # Todo: Region Removal of irrelevant regions
     "Smega Console - Motherboard A": Everhood2RegionData([Connection("Smega Console - Motherboard B", "Motherboard INT Battle")], LocationType.pre_dragon_doors),
@@ -125,17 +130,24 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Time Hub": Everhood2RegionData(
         [
             Connection("Mushroom Bureau - Entrance", key="Mushroom Door Key"),
-            Connection("Mushroom Dance Room", key="Smelly Key"),
+            Connection("Liminal Room", key="Smelly Key", death_coin=2),
             Connection("Irvine Pocket Dimension", key="3 Dimensional Key"),
+            Connection("Home Town", doorsanity=False), # When Doorsanity is false, this is auto unlocked after beating Dragon
+            
+            # These connections are added as part of Doorsanity to make balancing better
+            Connection("Bird Island", doorsanity=True),
+            Connection("Everhood 1 - Intro", doorsanity=True),
         ],
         LocationType.act_2
     ),
+    
+    "Liminal Room": Everhood2RegionData([], LocationType.act_2),
 
     "Mushroom Bureau - Entrance": Everhood2RegionData(
         [
             Connection("Mushroom Bureau - Sun"),
             Connection("Mushroom Bureau - Moon"),
-            Connection("Mushroom Bureau - Finale", custom_rule= lambda state: state.has_any(["Moon Emblem", "Sun Emblem"])),
+            Connection("Mushroom Bureau - Finale", custom_rule= lambda state, world: state.has_any(["Moon Emblem", "Sun Emblem"], world.player)),
         ],
         LocationType.act_2
     ),
@@ -143,7 +155,55 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Mushroom Bureau - Moon": Everhood2RegionData([Connection("Mushroom Bureau - Gauntlet 1")], LocationType.act_2),
     "Mushroom Bureau - Gauntlet 1": Everhood2RegionData([Connection("Mushroom Bureau - Gauntlet 2", color = Color.blue | Color.yellow)], LocationType.act_2),
     "Mushroom Bureau - Gauntlet 2": Everhood2RegionData([Connection("Mushroom Bureau - Gauntlet 3", color = Color.yellow | Color.blue | Color.brown)], LocationType.act_2),
-    "Mushroom Bureau - Gauntlet 3": Everhood2RegionData([], LocationType.act_2, ),
-    "Mushroom Bureau - Finale": Everhood2RegionData([], LocationType.act_2 | LocationType.post_dragon),
+    "Mushroom Bureau - Gauntlet 3": Everhood2RegionData([], LocationType.act_2),
+    "Mushroom Bureau - Finale": Everhood2RegionData([], LocationType.act_2),
+
+    "Irvine Pocket Dimension": Everhood2RegionData(
+        [
+            Connection("Lab - Pre Puzzle", doorsanity=False),
+            Connection("Smega Console - Motherboard A", doorsanity=False),
+            Connection("Bird Island", doorsanity=False, color=Color.brown | Color.green)
+        ],
+        LocationType.act_2
+    ),
     
+    "Bird Island": Everhood2RegionData(
+        [
+            Connection("Death Mountain"),
+        ],
+        LocationType.act_2
+    ),
+    "Death Mountain": Everhood2RegionData(
+        [
+            Connection("Tutorial Spaceship"),
+        ],
+        LocationType.act_2
+    ),
+    "Tutorial Spaceship": Everhood2RegionData(
+        [
+            Connection("Everhood 1 - Intro", doorsanity=False),
+        ],
+        LocationType.act_2        
+    ),
+    
+    "Everhood 1 - Intro": Everhood2RegionData(
+        [
+            Connection("Everhood 1 - Post Yellow", color=Color.red | Color.green | Color.blue)
+        ],
+        LocationType.act_2
+    ),
+
+    "Everhood 1 - Post Yellow": Everhood2RegionData(
+        [
+            Connection("Everhood 1 - Post Castle", color=Color.purple | Color.yellow)
+        ],
+        LocationType.act_2
+    ),
+    "Everhood 1 - Post Castle": Everhood2RegionData([
+        Connection("Deep Sea")
+    ], LocationType.act_2),
+
+    "Deep Sea": Everhood2RegionData([
+        
+    ], LocationType.act_2)
 }
