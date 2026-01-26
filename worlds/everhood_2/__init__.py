@@ -47,6 +47,10 @@ class Everhood2World(World):
     location_name_to_id = {name: code.code for name, code in all_locations.items()}
     item_name_groups = item_groups
     
+    def generate_early(self) -> None:
+        if self.options.goal_condition.value >= self.options.goal_condition.option_Riley:
+            raise OptionError("Act 3 and beyond are not implemented yet. Please choose either Dragon or Judge Creation.")
+    
     def create_item(self, name: str) -> Item:
         item = all_items[name]
         return Everhood2Item(name, item.type, item.code, self.player)

@@ -96,7 +96,7 @@ class CompletionCondition(Choice):
     - Cat Gods Hairball is the final fight of the colloseum.
     """
     display_name = "Completion Condition"
-    default = 3
+    default = 2
     option_Dragon = 1
     option_Judge_Creation = 2
     option_Riley = 3
