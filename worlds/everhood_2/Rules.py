@@ -38,11 +38,13 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, colorsan
         world.place_victory_item("Dragon Soul Weapon")
         return
 
+    deep_sea = world.get_entrance("Deep Sea Entrance")
+    world.multiworld.register_indirect_condition(world.get_region("Everhood 1 - Post Castle"), deep_sea)
     if colorsanity:
-        world.get_entrance("Deep Sea Entrance").access_rule = lambda state: (state.has_all(["Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange"], world.player) 
+        deep_sea.access_rule = lambda state: (state.has_all(["Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange"], world.player) 
                                                                              and state.can_reach_region("Everhood 1 - Post Castle", world.player))
     else:
-        world.get_entrance("Deep Sea Entrance").access_rule = lambda state: state.can_reach_region("Everhood 1 - Post Castle", world.player)  
+        deep_sea.access_rule = lambda state: state.can_reach_region("Everhood 1 - Post Castle", world.player)  
     
     if LocationType.act_3 not in valid_types:
         world.place_victory_item("Judge Creation Battle")

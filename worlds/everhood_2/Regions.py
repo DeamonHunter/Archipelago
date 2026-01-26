@@ -84,9 +84,9 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     
     "Marzian Era 1000": Everhood2RegionData([]),
     "Marzian Era 2000": Everhood2RegionData([]),
-    "Marzian Era 3000": Everhood2RegionData([]),
+    "Marzian Era 3000": Everhood2RegionData([],  LocationType.act_3),
     "Marzian Era 4000": Everhood2RegionData([], LocationType.act_3),
-    "Marzian Era 5000": Everhood2RegionData([], LocationType.act_3),
+    # "Marzian Era 5000": Everhood2RegionData([], LocationType.act_3),
     
     # Todo: Region Removal of irrelevant regions
     "Smega Console - Motherboard A": Everhood2RegionData([Connection("Smega Console - Motherboard B", "Motherboard INT Battle")], LocationType.pre_dragon_doors),
