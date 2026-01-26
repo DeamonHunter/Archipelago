@@ -136,14 +136,14 @@ cosmetics: dict[str, Everhood2ItemData] = {
     "Jester Hat Cosmetic": Everhood2ItemData(413, ItemClassification.filler),
     "Knight Helmet Cosmetic": Everhood2ItemData(414, ItemClassification.filler),
     "Gas Mask Cosmetic": Everhood2ItemData(415, ItemClassification.filler),
-    "Mushroom Hat Cosmetic": Everhood2ItemData(415, ItemClassification.filler),
+    "Mushroom Hat Cosmetic": Everhood2ItemData(416, ItemClassification.filler),
 }
 
 misc_items: dict[str, Everhood2ItemData] = {
     "Tomato Seed": Everhood2ItemData(114, ItemClassification.filler),
     "Druffle": Everhood2ItemData(115, ItemClassification.filler), # Todo: Filler? Maybe keep the one druffle stuck to Sam
-    "V.I.P. Card": Everhood2ItemData(117, ItemClassification.filler),
-    "Long Plank": Everhood2ItemData(118, ItemClassification.filler),
+    "V.I.P. Card": Everhood2ItemData(122, ItemClassification.filler),
+    "Long Plank": Everhood2ItemData(123, ItemClassification.filler),
 }
 
 all_items: ChainMap[str, Everhood2ItemData] = ChainMap(major_items, xp_items, door_randomizer_keys, cosmetics, misc_items, colors)
