@@ -164,7 +164,6 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Smega Console - Chest After Processor Int": Everhood2LocationData(ITEM_LOCATION_START + 86, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     "Smega Console - Maze Chest South": Everhood2LocationData(ITEM_LOCATION_START + 87, "Smega Console - Processor B", LocationType.item | LocationType.pre_dragon_doors, "50xp"),
     
-    # Todo: More Descriptive Names
     "Death Mountain Chest Near Entrance": Everhood2LocationData(ITEM_LOCATION_START + 88, "Death Mountain", LocationType.item | LocationType.act_2, "50xp"),
     "Death Mountain Chest Past Blockade": Everhood2LocationData(ITEM_LOCATION_START + 89, "Death Mountain", LocationType.item | LocationType.act_2, "Power Gem"),
     "Death Mountain Chest Near Rock Fall": Everhood2LocationData(ITEM_LOCATION_START + 90, "Death Mountain", LocationType.item | LocationType.act_2, "Power Gem"),
@@ -356,7 +355,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "600xp", Color.red | Color.green), # Blue is also there. But isn't in the final repeatable phase.
     "Slot Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 118, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "500xp", Color.blue | Color.brown),
     
-    "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.major_battle | LocationType.act_2, "0xp", Color.red | Color.green | Color.blue),
+    "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.item | LocationType.act_2, "0xp", Color.red | Color.green | Color.blue),
     
     # "Jean D'Arc Battle": Everhood2LocationData(BATTLE_LOCATION_START + 120, "Colosseum", LocationType.major_battle | LocationType.colosseum, "350xp"),
     # "Molly Battle": Everhood2LocationData(BATTLE_LOCATION_START + 121, "Colosseum", LocationType.major_battle | LocationType.colosseum, "888xp"),

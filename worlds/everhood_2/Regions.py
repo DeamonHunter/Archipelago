@@ -33,7 +33,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         Connection("Marzian Era 0 - Mines A", key="Progressive Marzian Key"),
         Connection("Marzian Era 1000", "Dimension Master Battle", "Progressive Marzian Key", 2),
         Connection("Marzian Era 2000", "Dimension Portal Battle", "Progressive Marzian Key", 3),
-        Connection("Time Hub"),
+        Connection("Time Hub", entrance_name="Dragon Mirror Room"), # Rule Set Later.
         
         # These Connections are added before the dragon fight. But only for Doorsanity
         Connection("Smega Console - Motherboard A", key="Smega Console Key", doorsanity=True),
@@ -138,7 +138,6 @@ region_data_table: Dict[str, Everhood2RegionData] = {
             Connection("Bird Island", doorsanity=True),
             Connection("Everhood 1 - Intro", doorsanity=True),
         ],
-        LocationType.act_2
     ),
     
     "Liminal Room": Everhood2RegionData([], LocationType.act_2),
@@ -170,6 +169,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Bird Island": Everhood2RegionData(
         [
             Connection("Death Mountain"),
+            Connection("Deep Sea", entrance_name="Deep Sea Entrance")
         ],
         LocationType.act_2
     ),
@@ -199,10 +199,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         ],
         LocationType.act_2
     ),
-    "Everhood 1 - Post Castle": Everhood2RegionData([
-        Connection("Deep Sea")
-    ], LocationType.act_2),
-
+    "Everhood 1 - Post Castle": Everhood2RegionData([], LocationType.act_2),
     "Deep Sea": Everhood2RegionData([
         
     ], LocationType.act_2)

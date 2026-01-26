@@ -11,8 +11,8 @@ if TYPE_CHECKING:
     from . import Everhood2World
 
 def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool, goal: int) -> None:
-    set_goal(world, valid_types, colorsanity, goal)
-    
+    setup_act_rules(world, valid_types, colorsanity, goal)
+        
     if world.options.door_keys.value:
         set_door_key_rules(world, valid_types, colorsanity)
 
@@ -25,19 +25,30 @@ def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door
     set_additional_region_rules(world, valid_types, door_keys, colorsanity, red_override)
 
 
-def set_goal(world: World, valid_types: LocationType, colorsanity: bool, goal: int) -> None:
-    if goal >= CompletionCondition.option_JudgeCreation:
-        if colorsanity:
-            world.multiworld.completion_condition[world.player] = lambda state: state.has_all(["Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange"], world.player) and \
-                                                                                state.can_reach_region("Deep Sea", world.player)
-        else:
-            world.multiworld.completion_condition[world.player] = lambda state: state.can_reach_region("Deep Sea", world.player)
+def setup_act_rules(world: "Everhood2World", valid_types: LocationType, colorsanity: bool, goal: int) -> None:
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+    
+    if colorsanity:
+        world.get_entrance("Dragon Mirror Room").access_rule = lambda state: state.has("Purple", world.player) and \
+                                                                             state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
     else:
-        if colorsanity:
-            world.multiworld.completion_condition[world.player] = lambda state: state.has("Purple", world.player) and \
-                                                                                state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
-        else:
-            world.multiworld.completion_condition[world.player] = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
+        world.get_entrance("Dragon Mirror Room").access_rule = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
+    
+    if goal <= world.options.goal_condition.option_Dragon:
+        world.place_victory_item("Dragon Soul Weapon")
+        return
+
+    if colorsanity:
+        world.get_entrance("Deep Sea Entrance").access_rule = lambda state: (state.has_all(["Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange"], world.player) 
+                                                                             and state.can_reach_region("Everhood 1 - Post Castle", world.player))
+    else:
+        world.get_entrance("Deep Sea Entrance").access_rule = lambda state: state.can_reach_region("Everhood 1 - Post Castle", world.player)  
+    
+    if LocationType.act_3 not in valid_types:
+        world.place_victory_item("Judge Creation Battle")
+        return
+    
+    raise NotImplementedError
         
 def set_door_key_rules(world: World, valid_types: LocationType, colorsanity: bool) -> None:
     for key, data in region_data_table.items():

@@ -1,7 +1,7 @@
 ﻿from math import floor
 
 from worlds.AutoWorld import World, WebWorld
-from BaseClasses import Region, Item, Tutorial
+from BaseClasses import Region, Item, Tutorial, ItemClassification
 from typing import ClassVar, Type
 from Options import PerGameCommonOptions, OptionError
 
@@ -58,6 +58,9 @@ class Everhood2World(World):
         item_collection = []
         valid_types = self.valid_location_types()
         for location in self.get_locations():
+            if location.item is not None:
+                continue
+            
             data = all_locations[location.name]
             if data.type in valid_types:
                 item_collection.append(self.create_item(data.item_name))
@@ -194,6 +197,11 @@ class Everhood2World(World):
     
     def get_act_number(self) -> int:
         return self.options.goal_condition.value
+    
+    def place_victory_item(self, location_name: str) -> None:
+        location = self.get_location(location_name)
+        location.address = None
+        location.place_locked_item(Everhood2Item("Victory", ItemClassification.progression, None, self.player))
 
     def fill_slot_data(self):
         valid_types = self.valid_location_types()
