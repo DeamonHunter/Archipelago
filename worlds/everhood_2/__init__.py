@@ -62,10 +62,12 @@ class Everhood2World(World):
         soul_weapons = ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"]
         self.random.shuffle(soul_weapons)
         
+        skipped = 0
         item_collection = []
         valid_types = self.valid_location_types()
         for location in self.get_locations():
             if location.item is not None:
+                skipped += 1
                 continue
             
             data = all_locations[location.name]
@@ -75,7 +77,7 @@ class Everhood2World(World):
                 else:
                     item_collection.append(self.create_item(data.item_name))
         
-        item_count = len(item_collection)
+        item_count = len(item_collection) + skipped
         act_number = self.get_act_number()
         
         if self.options.door_keys.value:
