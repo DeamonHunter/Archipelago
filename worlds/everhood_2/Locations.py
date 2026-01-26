@@ -129,7 +129,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # "Crystal Key": Everhood2LocationData(ITEM_LOCATION_START + 57, "Sam's Room", LocationType.item | LocationType.post_dragon, "Crystal Key"),
 
     # Todo: Determine how soul weapons are placed.
-    # "Marzian Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 58, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Green Soul Spear"),
+    # "Marzian Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 58, "Marzian Era 4000", LocationType.item | LocationType.post_dragon, "Soul Weapon"),
 
     "Lab Entrance Chest": Everhood2LocationData(ITEM_LOCATION_START + 59, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "35xp"),
     "Clover Artifact": Everhood2LocationData(ITEM_LOCATION_START + 60, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "Clover"),
@@ -178,7 +178,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # "Long Plank": Everhood2LocationData(ITEM_LOCATION_START + 97, "Everhood 1 - Intro", LocationType.item | LocationType.post_dragon, "Long Plank"),
     "Yellow Mask": Everhood2LocationData(ITEM_LOCATION_START + 98, "Everhood 1 - Post Yellow", LocationType.item | LocationType.act_2, "Yellow Mask"),
     "Everhood 1 Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 99, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Death Coin"),
-    "Light Being Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 100, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Blue Soul Knives"),
+    "Light Being Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 100, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Soul Weapon"),
 
     # "Colosseum Reward 1": Everhood2LocationData(ITEM_LOCATION_START + 101, "Colosseum", LocationType.item | LocationType.colosseum, "Power Gem"),
     # "Knight Helmet Cosmetic": Everhood2LocationData(ITEM_LOCATION_START + 102, "Colosseum", LocationType.cosmetic | LocationType.colosseum, "Knight Helmet Cosmetic"),
@@ -192,7 +192,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # "Torment Room Chest": Everhood2LocationData(ITEM_LOCATION_START + 109, "Colosseum", LocationType.item | LocationType.post_dragon, "Power Gem"),
     
     "Katana": Everhood2LocationData(ITEM_LOCATION_START + 110, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "Katana"), #Technically requires white
-    # "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Raven Hub", LocationType.item | LocationType.post_dragon, "Red Soul Axe"),
+    "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Time Hub", LocationType.item, "Soul Weapon"),
     "Pet the Orange Cat": Everhood2LocationData(ITEM_LOCATION_START + 112, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
     "Pet the Grey Cat": Everhood2LocationData(ITEM_LOCATION_START + 113, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
     "Pet the Black Cat": Everhood2LocationData(ITEM_LOCATION_START + 114, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "-2xp"),

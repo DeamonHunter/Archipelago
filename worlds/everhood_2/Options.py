@@ -95,12 +95,12 @@ class CompletionCondition(Choice):
     - Riley is the final fight of the game.
     - Cat Gods Hairball is the final fight of the colloseum.
     """
-    display_name = "Battle Rewards"
+    display_name = "Completion Condition"
     default = 3
     option_Dragon = 1
-    option_JudgeCreation = 2
+    option_Judge_Creation = 2
     option_Riley = 3
-    option_CatGodsHairball = 4
+    option_Cat_Gods_Hairball = 4
     
 
 # class Colloseum(Toggle):

@@ -55,6 +55,9 @@ class Everhood2World(World):
         return self.random.choice([x for x in misc_items.keys()])
 
     def create_items(self) -> None:
+        soul_weapons = ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"]
+        self.random.shuffle(soul_weapons)
+        
         item_collection = []
         valid_types = self.valid_location_types()
         for location in self.get_locations():
@@ -63,7 +66,10 @@ class Everhood2World(World):
             
             data = all_locations[location.name]
             if data.type in valid_types:
-                item_collection.append(self.create_item(data.item_name))
+                if data.item_name == "Soul Weapon":
+                    item_collection.append(self.create_item(soul_weapons.pop()))
+                else:
+                    item_collection.append(self.create_item(data.item_name))
         
         item_count = len(item_collection)
         act_number = self.get_act_number()
@@ -165,13 +171,13 @@ class Everhood2World(World):
         if self.options.door_keys.value:
             valid_types |= LocationType.pre_dragon_doors
             
-        if self.options.goal_condition.value >= self.options.goal_condition.option_JudgeCreation:
+        if self.options.goal_condition.value >= self.options.goal_condition.option_Judge_Creation:
             valid_types |= LocationType.act_2
 
         if self.options.goal_condition.value >= self.options.goal_condition.option_Riley:
             valid_types |= LocationType.act_3
 
-        if self.options.goal_condition.value >= self.options.goal_condition.option_CatGodsHairball:
+        if self.options.goal_condition.value >= self.options.goal_condition.option_Cat_Gods_Hairball:
             valid_types |= LocationType.post_game
             
         return valid_types
