@@ -9,7 +9,7 @@ from .Options import Everhood2Options, everhood2_option_groups
 from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys, colors, name_to_color
 from .Locations import Everhood2Location, all_locations, LocationType, Color
 from .Regions import region_data_table
-from .Rules import set_everhood2_rules
+from .Rules import set_everhood2_rules, setup_act_rules
 # from .Presets import Everhood2Presets
 
 
@@ -62,12 +62,10 @@ class Everhood2World(World):
         soul_weapons = ["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"]
         self.random.shuffle(soul_weapons)
         
-        skipped = 0
         item_collection = []
         valid_types = self.valid_location_types()
         for location in self.get_locations():
-            if location.item is not None:
-                skipped += 1
+            if location.address is None:
                 continue
             
             data = all_locations[location.name]
@@ -77,7 +75,7 @@ class Everhood2World(World):
                 else:
                     item_collection.append(self.create_item(data.item_name))
         
-        item_count = len(item_collection) + skipped
+        item_count = len(item_collection)
         act_number = self.get_act_number()
         
         if self.options.door_keys.value:
@@ -155,6 +153,8 @@ class Everhood2World(World):
             region = created_regions[location_data.region]
             region.add_locations({location_name: location_data.code}, Everhood2Location)
 
+        setup_act_rules(self, self.valid_location_types(), self.options.colorsanity.value != 0, self.options.goal_condition.value)
+
     def valid_location_types(self) -> LocationType:
         valid_types = LocationType.item
 
@@ -210,10 +210,12 @@ class Everhood2World(World):
     def get_act_number(self) -> int:
         return self.options.goal_condition.value
     
-    def place_victory_item(self, location_name: str) -> None:
-        location = self.get_location(location_name)
-        location.address = None
+    def create_victory_event(self, region_name: str) -> None:
+        region = self.get_region(region_name)
+        location = Everhood2Location(self.player, "Victory", None, region)
         location.place_locked_item(Everhood2Item("Victory", ItemClassification.progression, None, self.player))
+        region.locations.append(location)
+        
 
     def fill_slot_data(self):
         valid_types = self.valid_location_types()

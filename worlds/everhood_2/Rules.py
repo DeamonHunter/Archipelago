@@ -10,9 +10,7 @@ from .Items import colors_to_name
 if TYPE_CHECKING:
     from . import Everhood2World
 
-def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool, goal: int) -> None:
-    setup_act_rules(world, valid_types, colorsanity, goal)
-        
+def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, door_keys: bool, colorsanity: bool, red_override: bool, goal: int) -> None:        
     if world.options.door_keys.value:
         set_door_key_rules(world, valid_types, colorsanity)
 
@@ -35,7 +33,7 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, colorsan
         world.get_entrance("Dragon Mirror Room").access_rule = lambda state: state.has("Power Gem", world.player, world.get_needed_dragon_gem_count(valid_types))
     
     if goal <= world.options.goal_condition.option_Dragon:
-        world.place_victory_item("Dragon Soul Weapon")
+        world.create_victory_event("Time Hub")
         return
 
     deep_sea = world.get_entrance("Deep Sea Entrance")
@@ -47,7 +45,7 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, colorsan
         deep_sea.access_rule = lambda state: state.can_reach_region("Everhood 1 - Post Castle", world.player)  
     
     if LocationType.act_3 not in valid_types:
-        world.place_victory_item("Judge Creation Battle")
+        world.create_victory_event("Deep Sea")
         return
     
     raise NotImplementedError

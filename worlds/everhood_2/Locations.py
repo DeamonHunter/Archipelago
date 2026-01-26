@@ -192,7 +192,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
     # "Torment Room Chest": Everhood2LocationData(ITEM_LOCATION_START + 109, "Colosseum", LocationType.item | LocationType.post_dragon, "Power Gem"),
     
     "Katana": Everhood2LocationData(ITEM_LOCATION_START + 110, "Lab - Pre Puzzle", LocationType.item | LocationType.pre_dragon_doors, "Katana"), #Technically requires white
-    "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Time Hub", LocationType.item, "Soul Weapon"),
+    "Dragon Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 111, "Time Hub", LocationType.item | LocationType.act_2, "Soul Weapon"),
     "Pet the Orange Cat": Everhood2LocationData(ITEM_LOCATION_START + 112, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
     "Pet the Grey Cat": Everhood2LocationData(ITEM_LOCATION_START + 113, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
     "Pet the Black Cat": Everhood2LocationData(ITEM_LOCATION_START + 114, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "-2xp"),
@@ -355,7 +355,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "600xp", Color.red | Color.green), # Blue is also there. But isn't in the final repeatable phase.
     "Slot Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 118, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "500xp", Color.blue | Color.brown),
     
-    "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.item | LocationType.act_2, "0xp", Color.red | Color.green | Color.blue),
+    "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.item | LocationType.act_3, "0xp", Color.red | Color.green | Color.blue),
     
     # "Jean D'Arc Battle": Everhood2LocationData(BATTLE_LOCATION_START + 120, "Colosseum", LocationType.major_battle | LocationType.colosseum, "350xp"),
     # "Molly Battle": Everhood2LocationData(BATTLE_LOCATION_START + 121, "Colosseum", LocationType.major_battle | LocationType.colosseum, "888xp"),
