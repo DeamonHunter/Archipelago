@@ -142,7 +142,6 @@ cosmetics: dict[str, Everhood2ItemData] = {
 misc_items: dict[str, Everhood2ItemData] = {
     "Tomato Seed": Everhood2ItemData(114, ItemClassification.filler),
     "Druffle": Everhood2ItemData(115, ItemClassification.filler), # Todo: Filler? Maybe keep the one druffle stuck to Sam
-    "V.I.P. Card": Everhood2ItemData(122, ItemClassification.filler),
     "Long Plank": Everhood2ItemData(123, ItemClassification.filler),
 }
 
