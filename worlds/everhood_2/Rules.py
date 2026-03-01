@@ -37,12 +37,17 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, colorsan
         return
 
     deep_sea = world.get_entrance("Deep Sea Entrance")
+    space_ship = world.get_entrance("Space Ship Entrance")
+    
     world.multiworld.register_indirect_condition(world.get_region("Everhood 1 - Post Castle"), deep_sea)
+    deep_sea.access_rule = lambda state: state.can_reach_region("Everhood 1 - Post Castle", world.player)
+    
     if colorsanity:
-        deep_sea.access_rule = lambda state: (state.has_all(["Red", "Blue", "Green", "Yellow", "Brown", "Purple", "Orange"], world.player) 
-                                                                             and state.can_reach_region("Everhood 1 - Post Castle", world.player))
+        space_ship.access_rule = lambda state: (state.has_all(["Red", "Green", "Blue", "Yellow", "Brown", "Purple", "Orange", "Death Coin"], world.player)
+                                                and state.has_any(["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"], world.player))        
     else:
-        deep_sea.access_rule = lambda state: state.can_reach_region("Everhood 1 - Post Castle", world.player)  
+        space_ship.access_rule = lambda state: (state.has("Death Coin", world.player)
+                                                and state.has_any(["Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"], world.player))
     
     if LocationType.act_3 not in valid_types:
         world.create_victory_event("Deep Sea")

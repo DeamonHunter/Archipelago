@@ -175,19 +175,19 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Bird Island": Everhood2RegionData(
         [
             Connection("Death Mountain"),
-            Connection("Deep Sea", entrance_name="Deep Sea Entrance")
         ],
         LocationType.act_2
     ),
     "Death Mountain": Everhood2RegionData(
         [
-            Connection("Tutorial Spaceship"),
+            Connection("Tutorial Spaceship", entrance_name="Space Ship Entrance")
         ],
         LocationType.act_2
     ),
     "Tutorial Spaceship": Everhood2RegionData(
         [
             Connection("Everhood 1 - Intro", doorsanity=False),
+            Connection("Deep Sea", entrance_name="Deep Sea Entrance") #Physically at Bird Island, but this allows us to avoid an indirect connection
         ],
         LocationType.act_2        
     ),
