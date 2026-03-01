@@ -32,7 +32,7 @@ major_items: dict[str, Everhood2ItemData] = {
     "Pinecone Key": Everhood2ItemData(117, ItemClassification.progression),
     "Clover": Everhood2ItemData(118, ItemClassification.useful),
     "Bead Braclet": Everhood2ItemData(119, ItemClassification.useful),
-    "V.I.P. Ticket": Everhood2ItemData(120, ItemClassification.filler),
+    "V.I.P. Ticket": Everhood2ItemData(120, ItemClassification.progression),
     "Yellow Mask": Everhood2ItemData(121, ItemClassification.filler),
 }
 

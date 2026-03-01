@@ -110,7 +110,13 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Lab - Post Junkie": Everhood2RegionData([], LocationType.pre_dragon_doors),
     
     # Hillbert Hotel Rooms Todo: Maybe make an option to exclude these areas
-    "Floor 23": Everhood2RegionData([Connection("Floor 23 - Smega", color=(Color.green | Color.blue)), Connection("Floor 23 - Rewards", "Rasputin Battle")], LocationType.hillbert),
+    "Floor 23": Everhood2RegionData(
+        [
+            Connection("Floor 23 - Smega", color=(Color.green | Color.blue)), 
+            Connection("Floor 23 - Rewards", "Rasputin Battle")
+        ], 
+        LocationType.hillbert
+    ),
     "Floor 23 - Smega": Everhood2RegionData([], LocationType.hillbert),
     "Floor 23 - Rewards": Everhood2RegionData([], LocationType.hillbert),
     
@@ -187,6 +193,13 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     ),
     
     "Everhood 1 - Intro": Everhood2RegionData(
+        [
+            Connection("Everhood 1 - Ticket Block", custom_rule= lambda state, world: state.has("V.I.P. Ticket", world.player))
+        ],
+        LocationType.act_2
+    ),
+    
+    "Everhood 1 - Ticket Block": Everhood2RegionData(
         [
             Connection("Everhood 1 - Post Yellow", color=Color.red | Color.green | Color.blue)
         ],
