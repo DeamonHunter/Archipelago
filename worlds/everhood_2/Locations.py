@@ -175,7 +175,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
 
     "V.I.P. Ticket": Everhood2LocationData(ITEM_LOCATION_START + 96, "Everhood 1 - Intro", LocationType.item | LocationType.act_2, "V.I.P. Ticket"),
     # Todo: This is a blocker that may not want to be added?
-    # "Long Plank": Everhood2LocationData(ITEM_LOCATION_START + 97, "Everhood 1 - Intro", LocationType.item | LocationType.post_dragon, "Long Plank"),
+    # "Long Plank": Everhood2LocationData(ITEM_LOCATION_START + 97, "Everhood 1 - Ticket Block", LocationType.item | LocationType.post_dragon, "Long Plank"),
     "Yellow Mask": Everhood2LocationData(ITEM_LOCATION_START + 98, "Everhood 1 - Post Yellow", LocationType.item | LocationType.act_2, "Yellow Mask"),
     "Everhood 1 Death Coin": Everhood2LocationData(ITEM_LOCATION_START + 99, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Death Coin"),
     "Light Being Soul Weapon": Everhood2LocationData(ITEM_LOCATION_START + 100, "Everhood 1 - Post Castle", LocationType.item | LocationType.act_2, "Soul Weapon"),
@@ -290,7 +290,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     "Smelly Gas Mushroom Gauntlet Battle": Everhood2LocationData(BATTLE_LOCATION_START + 137, "Mushroom Bureau - Gauntlet 1", LocationType.unique_battle | LocationType.act_2, "50xp", Color.blue | Color.yellow),
     "Brown Slow Mushroom Gauntlet Battle": Everhood2LocationData(BATTLE_LOCATION_START + 66, "Mushroom Bureau - Gauntlet 2", LocationType.unique_battle | LocationType.act_2, "50xp", Color.yellow | Color.blue | Color.brown),
     "Sun Knight Gauntlet Battle": Everhood2LocationData(BATTLE_LOCATION_START + 67, "Mushroom Bureau - Gauntlet 3", LocationType.major_battle | LocationType.act_2, "100xp", Color.blue | Color.orange),
-    "Judge Mushroom Battle": Everhood2LocationData(BATTLE_LOCATION_START + 68, "Mushroom Bureau - Finale", LocationType.major_battle | LocationType.act_2, "100xp"),
+    # "Judge Mushroom Battle": Everhood2LocationData(BATTLE_LOCATION_START + 68, "Mushroom Bureau - Finale", LocationType.major_battle | LocationType.act_2, "100xp"),
     
     # "Lucy Battle": Everhood2LocationData(BATTLE_LOCATION_START + 69, "Lucy's Room", LocationType.unique_battle | LocationType.post_dragon, "1000xp"),
 
@@ -352,7 +352,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
     
     "Yellow Battle": Everhood2LocationData(BATTLE_LOCATION_START + 115, "Everhood 1 - Intro", LocationType.major_battle | LocationType.act_2, "800xp", Color.red | Color.green | Color.blue),
     "Cursed Castle Battle": Everhood2LocationData(BATTLE_LOCATION_START + 116, "Everhood 1 - Post Yellow", LocationType.major_battle | LocationType.act_2, "800xp", Color.purple | Color.yellow),
-    "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "600xp", Color.red | Color.green), # Blue is also there. But isn't in the final repeatable phase.
+    "Light Being Battle": Everhood2LocationData(BATTLE_LOCATION_START + 117, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "600xp", Color.red | Color.green), # TODO: Need to change to & as I believe there are no reds in the first phase
     "Slot Machine Battle": Everhood2LocationData(BATTLE_LOCATION_START + 118, "Everhood 1 - Post Castle", LocationType.unique_battle | LocationType.act_2, "500xp", Color.blue | Color.brown),
     
     "Judge Creation Battle": Everhood2LocationData(BATTLE_LOCATION_START + 119, "Deep Sea", LocationType.item | LocationType.act_3, "0xp", Color.red | Color.green | Color.blue),
