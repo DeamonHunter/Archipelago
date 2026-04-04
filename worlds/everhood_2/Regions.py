@@ -1,5 +1,6 @@
 from typing import Dict, List, NamedTuple, Callable, Optional
 from worlds.AutoWorld import World
+from rule_builder.rules import Rule, HasAny
 
 from BaseClasses import CollectionState
 from .Locations import LocationType, Color
@@ -9,10 +10,11 @@ class Connection(NamedTuple):
     location: str = None
     key: str = None
     key_count: int = 1
+    always_include_key: bool = False
     color: Color = 0
     entrance_name: str = None
-    custom_rule: Callable[[CollectionState, World], bool] = None
-    doorsanity: Optional[bool] = None # If Enabled remove the connection based on Doorsanity
+    custom_rule: Rule = None
+    door_sanity: Optional[bool] = None # If Enabled remove the connection based on Doorsanity
     death_coin: int = 0
     
 class Everhood2RegionData(NamedTuple):
@@ -36,9 +38,9 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         Connection("Time Hub", entrance_name="Dragon Mirror Room"), # Rule Set Later.
         
         # These Connections are added before the dragon fight. But only for Doorsanity
-        Connection("Smega Console - Motherboard A", key="Smega Console Key", doorsanity=True),
-        Connection("Home Town", key="Home Town Key", doorsanity=True),
-        Connection("Lab - Pre Puzzle", key="Lab Key", doorsanity=True),
+        Connection("Smega Console - Motherboard A", key="Smega Console Key", door_sanity=True),
+        Connection("Home Town", key="Home Town Key", door_sanity=True),
+        Connection("Lab - Pre Puzzle", key="Lab Key", door_sanity=True),
     ]),
 
     # Neon City Regions.
@@ -52,10 +54,10 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         [
             # Removed because unnecessary without ER
             # "Infinity Hub", "Hangout Hub", "End Hub", 
-            Connection("Floor 23", key="Floor 23 Key"),
-            Connection("Floor Gold", key="Gold Key"),
-            Connection("Floor Green", key="Green Key"),
-            Connection("Floor Pinecone", key="Pinecone Key"),
+            Connection("Floor 23", key="Floor 23 Key", always_include_key = True),
+            Connection("Floor Gold", key="Gold Key", always_include_key = True),
+            Connection("Floor Green", key="Green Key", always_include_key = True),
+            Connection("Floor Pinecone", key="Pinecone Key", always_include_key = True),
             # Not Implemented Yet
             # "Battle Colosseum", "Dunkey Room", "Sam's House", "Lucy's House", "Mushroom Dance Room" Temporarily Disabled
             # Also "Toilet A Room", "Toilet B Room". Useless rooms but can be for ER
@@ -138,11 +140,11 @@ region_data_table: Dict[str, Everhood2RegionData] = {
             Connection("Mushroom Bureau - Entrance", key="Mushroom Door Key"),
             Connection("Liminal Room", key="Smelly Key", death_coin=2),
             Connection("Irvine Pocket Dimension", key="3 Dimensional Key"),
-            Connection("Home Town", doorsanity=False), # When Doorsanity is false, this is auto unlocked after beating Dragon
+            Connection("Home Town", door_sanity=False), # When Doorsanity is false, this is auto unlocked after beating Dragon
             
             # These connections are added as part of Doorsanity to make balancing better
-            Connection("Bird Island", doorsanity=True),
-            Connection("Everhood 1 - Intro", doorsanity=True),
+            Connection("Bird Island", door_sanity=True, key="Bird Island Key"),
+            Connection("Everhood 1 - Intro", door_sanity=True, key="Everhood Key"),
         ],
     ),
     
@@ -152,7 +154,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         [
             Connection("Mushroom Bureau - Sun"),
             Connection("Mushroom Bureau - Moon"),
-            Connection("Mushroom Bureau - Finale", custom_rule= lambda state, world: state.has_any(["Moon Emblem", "Sun Emblem"], world.player)),
+            Connection("Mushroom Bureau - Finale", custom_rule=HasAny("Moon Emblem", "Sun Emblem")),
         ],
         LocationType.act_2
     ),
@@ -165,9 +167,9 @@ region_data_table: Dict[str, Everhood2RegionData] = {
 
     "Irvine Pocket Dimension": Everhood2RegionData(
         [
-            Connection("Lab - Pre Puzzle", doorsanity=False),
-            Connection("Smega Console - Motherboard A", doorsanity=False),
-            Connection("Bird Island", doorsanity=False, color=Color.brown | Color.green)
+            Connection("Lab - Pre Puzzle", door_sanity=False),
+            Connection("Smega Console - Motherboard A", door_sanity=False),
+            Connection("Bird Island", door_sanity=False, color=Color.brown | Color.green)
         ],
         LocationType.act_2
     ),
@@ -186,7 +188,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     ),
     "Tutorial Spaceship": Everhood2RegionData(
         [
-            Connection("Everhood 1 - Intro", doorsanity=False),
+            Connection("Everhood 1 - Intro", door_sanity=False),
             Connection("Deep Sea", entrance_name="Deep Sea Entrance") #Physically at Bird Island, but this allows us to avoid an indirect connection
         ],
         LocationType.act_2        
@@ -194,7 +196,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     
     "Everhood 1 - Intro": Everhood2RegionData(
         [
-            Connection("Everhood 1 - Ticket Block", custom_rule= lambda state, world: state.has("V.I.P. Ticket", world.player))
+            Connection("Everhood 1 - Ticket Block", key="V.I.P. Ticket", always_include_key=True)
         ],
         LocationType.act_2
     ),

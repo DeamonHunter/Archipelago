@@ -9,7 +9,7 @@ from .Options import Everhood2Options, everhood2_option_groups
 from .Items import Everhood2Item, all_items, item_groups, misc_items, door_randomizer_keys, colors, name_to_color
 from .Locations import Everhood2Location, all_locations, LocationType, Color
 from .Regions import region_data_table
-from .Rules import set_everhood2_rules, setup_act_rules
+from .Rules import set_everhood2_rules, setup_act_rules, get_soul_count
 # from .Presets import Everhood2Presets
 
 
@@ -98,15 +98,21 @@ class Everhood2World(World):
                     item_collection.append(self.create_item(key))
                         
 
+        soul_count = get_soul_count(valid_types)
         if self.options.colorsanity.value:
             for c in colors.keys():
+                count = soul_count
                 if name_to_color[c] == Color.blue and self.options.soul_color.value == self.options.soul_color.option_Blue:
                     self.push_precollected(self.create_item(c))
+                    count = count - 1
                 elif name_to_color[c] == Color.red and self.options.soul_color.value == self.options.soul_color.option_Red:
                     self.push_precollected(self.create_item(c))
+                    count = count - 1
                 elif name_to_color[c] == Color.green and self.options.soul_color.value == self.options.soul_color.option_Green:
                     self.push_precollected(self.create_item(c))
-                else:
+                    count = count - 1
+                    
+                for i in range(count):
                     item_collection.append(self.create_item(c))
            
         # At this point in time, the extra keys need to replace xp. We have a ton of 50xp available so lets replace those.
@@ -134,26 +140,36 @@ class Everhood2World(World):
         valid_types = self.valid_location_types()
         created_regions = {x: Region(x, self.player, self.multiworld) for x, y in region_data_table.items() if y.include_type in valid_types}
 
-        for region_name, region_data in region_data_table.items():
-            if not region_data.include_type in valid_types:
-                continue
-            
+        # Make all relevant regions
+        for region_name, region_data in created_regions.items():
             region = created_regions[region_name]
             self.multiworld.regions.append(region)
-            
-            for data in region_data.connecting_regions:
+
+            for data in region_data_table[region_name].connecting_regions:
                 connection = created_regions.get(data.connect_to)
                 if connection is not None:
                     region.connect(connection, data.entrance_name)
-        
+
+        # Make all normal locations
         for location_name, location_data in all_locations.items():
             if not location_data.type in valid_types:
                 continue
-                
+
             region = created_regions[location_data.region]
             region.add_locations({location_name: location_data.code}, Everhood2Location)
 
-        setup_act_rules(self, self.valid_location_types(), self.options.colorsanity.value != 0, self.options.goal_condition.value)
+        # Make event locations for missing locations (i.e. End of Route Battles for non Battle Sanity options)
+        for region_name, region_data in created_regions.items():
+            for data in region_data_table[region_name].connecting_regions:
+                if data.location is None:
+                    continue
+                
+                loc = self.get_location(data.location)
+                if loc is not None:
+                    continue
+
+                r = created_regions[data.region]
+                r.add_event(data.location, "Reached " + data.location)
 
     def valid_location_types(self) -> LocationType:
         valid_types = LocationType.item
@@ -189,8 +205,8 @@ class Everhood2World(World):
         return valid_types
 
     def set_rules(self) -> None:
-        set_everhood2_rules(self, self.valid_location_types(), self.options.door_keys.value != 0, self.options.colorsanity.value != 0,
-                            self.options.soul_color.value == self.options.soul_color.option_Red, self.options.goal_condition.value) 
+        set_everhood2_rules(self, self.valid_location_types(), self.options.soul_color.value == self.options.soul_color.option_Red, 
+                            self.options.goal_condition.value) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
         # Todo: Auto Count locations and save?

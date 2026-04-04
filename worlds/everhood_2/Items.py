@@ -1,7 +1,7 @@
 ﻿from typing import NamedTuple, Optional
 from BaseClasses import Item, ItemClassification
 from collections import ChainMap
-from .Locations import Color
+from .Locations import Color, colors_to_name
 
 class Everhood2Item(Item):
     game: str = "Everhood 2"
@@ -9,7 +9,6 @@ class Everhood2Item(Item):
 class Everhood2ItemData(NamedTuple):
     code: Optional[int] = None
     type: ItemClassification = ItemClassification.filler
-    act: int = 1 # Todo: change
 
 # Todo: Need to confirm names of various areas.
 
@@ -84,39 +83,31 @@ door_randomizer_keys: dict[str, Everhood2ItemData] = {
     "Smega Console Key": Everhood2ItemData(303, ItemClassification.progression),
     "Lab Key": Everhood2ItemData(304, ItemClassification.progression),
     "Home Town Key": Everhood2ItemData(305, ItemClassification.progression),
-    "Mushroom Door Key": Everhood2ItemData(306, ItemClassification.progression, act=2),
-    "3 Dimensional Key": Everhood2ItemData(307, ItemClassification.progression, act=2),
-    "Smelly Key": Everhood2ItemData(308, ItemClassification.progression, act=2),
+    "Mushroom Door Key": Everhood2ItemData(306, ItemClassification.progression),
+    "3 Dimensional Key": Everhood2ItemData(307, ItemClassification.progression),
+    "Smelly Key": Everhood2ItemData(308, ItemClassification.progression),
+    "Bird Island Key": Everhood2ItemData(309, ItemClassification.progression),
+    "Everhood Key": Everhood2ItemData(310, ItemClassification.progression),
 }
 
 colors: dict[str, Everhood2ItemData] = {
-    "Blue": Everhood2ItemData(350, ItemClassification.progression),
-    "Red": Everhood2ItemData(351, ItemClassification.progression),
-    "Green": Everhood2ItemData(352, ItemClassification.progression),
-    "Yellow": Everhood2ItemData(353, ItemClassification.progression),
-    "Brown": Everhood2ItemData(354, ItemClassification.progression),
-    "Purple": Everhood2ItemData(355, ItemClassification.progression),
-    "Orange": Everhood2ItemData(356, ItemClassification.progression),
-}
-
-colors_to_name: dict[Color, str] = {
-    Color.blue: "Blue",
-    Color.red: "Red",
-    Color.green: "Green",
-    Color.yellow: "Yellow",
-    Color.brown: "Brown",
-    Color.purple: "Purple",
-    Color.orange: "Orange"
+    colors_to_name[Color.blue]: Everhood2ItemData(350, ItemClassification.progression),
+    colors_to_name[Color.red]: Everhood2ItemData(351, ItemClassification.progression),
+    colors_to_name[Color.green]: Everhood2ItemData(352, ItemClassification.progression),
+    colors_to_name[Color.yellow]: Everhood2ItemData(353, ItemClassification.progression),
+    colors_to_name[Color.brown]: Everhood2ItemData(354, ItemClassification.progression),
+    colors_to_name[Color.purple]: Everhood2ItemData(355, ItemClassification.progression),
+    colors_to_name[Color.orange]: Everhood2ItemData(356, ItemClassification.progression),
 }
 
 name_to_color: dict[str, Color] = {
-    "Blue": Color.blue,
-    "Red": Color.red,
-    "Green": Color.green,
-    "Yellow": Color.yellow,
-    "Brown": Color.brown,
-    "Purple": Color.purple,
-    "Orange": Color.orange
+    colors_to_name[Color.blue]: Color.blue,
+    colors_to_name[Color.red]: Color.red,
+    colors_to_name[Color.green]: Color.green,
+    colors_to_name[Color.yellow]: Color.yellow,
+    colors_to_name[Color.brown]: Color.brown,
+    colors_to_name[Color.purple]: Color.purple,
+    colors_to_name[Color.orange]: Color.orange
 }
 
 cosmetics: dict[str, Everhood2ItemData] = {
