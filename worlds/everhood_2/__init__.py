@@ -141,6 +141,8 @@ class Everhood2World(World):
         created_regions = {x: Region(x, self.player, self.multiworld) for x, y in region_data_table.items() if y.include_type in valid_types}
 
         door_sanity_connections = self.options.door_keys.value
+        created_locations = set()
+
         # Make all relevant regions
         for region_name, region_data in created_regions.items():
             region = created_regions[region_name]
@@ -159,21 +161,33 @@ class Everhood2World(World):
             if not location_data.type in valid_types:
                 continue
 
+            created_locations.add(location_name)
             region = created_regions[location_data.region]
             region.add_locations({location_name: location_data.code}, Everhood2Location)
 
         # Make event locations for missing locations (i.e. End of Route Battles for non Battle Sanity options)
-        for region_name, region_data in created_regions.items():
+        for region_name in created_regions.keys():
             for data in region_data_table[region_name].connecting_regions:
                 if data.location is None:
                     continue
                 
-                loc = self.get_location(data.location)
-                if loc is not None:
+                if data.location in created_locations:
                     continue
 
-                r = created_regions[data.region]
+                r = created_regions[all_locations[data.location].region]
                 r.add_event(data.location, "Reached " + data.location)
+                
+        for location_name, location_data in all_locations.items():
+            if location_data.locations is None or location_name not in created_locations:
+                continue            
+            
+            for location in location_data.locations:
+                if location in created_locations:
+                    continue
+
+                r = created_regions[all_locations[location].region]
+                r.add_event(location, "Reached " + location)
+
 
     def valid_location_types(self) -> LocationType:
         valid_types = LocationType.item
