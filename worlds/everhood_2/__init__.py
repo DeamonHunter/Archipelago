@@ -208,7 +208,7 @@ class Everhood2World(World):
         if self.options.hillbert_hotel.value:
             valid_types |= LocationType.hillbert
 
-        if self.options.door_keys.value:
+        if self.options.door_keys.value or self.options.goal_condition.value >= self.options.goal_condition.option_Judge_Creation:
             valid_types |= LocationType.pre_dragon_doors
             
         if self.options.goal_condition.value >= self.options.goal_condition.option_Judge_Creation:
