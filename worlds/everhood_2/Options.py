@@ -27,7 +27,7 @@ class Colorsanity(Choice):
     Determines if you can reflect all colors of projectiles, or whether you need to get an item first.
     - Off: Can reflect any projectile back to enemies.
     - Single: Reflecting a color requires only a Soul Piece of that color.
-    - Multiple: Color requirements scale based on which hub the fight is connected to. Infinity Hub = 1, Time Hub = 2, Cosmic Hub = 3
+    - Multiple: Color requirements scale based on which hub the fight is connected to. Cosmic Hub = 1, Time Hub = 2, Infinity Hub = 3
     """
     display_name = "Randomise Reflect Colors"
     default = 2
@@ -97,7 +97,7 @@ class HealthMultiplier(Range):
 class CompletionCondition(Choice):
     """
     Chooses the completion condition of the game.
-    - Dragon is the final multi-phase fight of the Infinity Hub
+    - Dragon is the final multi-phase fight of the Cosmic Hub
     - Judge Creation is the final fight of the Time Hub
     - Riley is the final fight of the game.
     - Cat Gods Hairball is the final fight of the colloseum.

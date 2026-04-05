@@ -26,10 +26,10 @@ class Everhood2RegionData(NamedTuple):
 region_data_table: Dict[str, Everhood2RegionData] = {
     "Menu": Everhood2RegionData([Connection("Tutorial Hub")]),
     # Physically this is connected through a route, but you can always get through your starting route.
-    "Tutorial Hub": Everhood2RegionData([Connection("Infinity Hub")]),     
+    "Tutorial Hub": Everhood2RegionData([Connection("Cosmic Hub")]),     
     
     #Starting Hub.
-    "Infinity Hub": Everhood2RegionData([
+    "Cosmic Hub": Everhood2RegionData([
         Connection("Eternal War - Tomato Rampages", key="Eternal War Key"),
         Connection("Neon City - Pre Homonculus", key="Neon Forest Key"),
         Connection("Marzian Era 0 - Mines A", key="Progressive Marzian Key"),
@@ -53,7 +53,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     "Hillbert Hotel": Everhood2RegionData(
         [
             # Removed because unnecessary without ER
-            # "Infinity Hub", "Hangout Hub", "End Hub", 
+            # "Cosmic Hub", "Time Hub", "End Hub", 
             Connection("Floor 23", key="Floor 23 Key", always_include_key = True),
             Connection("Floor Gold", key="Gold Key", always_include_key = True),
             Connection("Floor Green", key="Green Key", always_include_key = True),

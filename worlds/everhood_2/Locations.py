@@ -113,7 +113,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Floor Gold Chest": Everhood2LocationData(ITEM_LOCATION_START + 36, "Floor Gold", LocationType.item | LocationType.hillbert, "50xp"),
     "Green Key": Everhood2LocationData(ITEM_LOCATION_START + 37, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Green Key", locations=["Dimension Portal Battle"]),
     
-    "Stopwatch Artifact": Everhood2LocationData(ITEM_LOCATION_START + 39, "Infinity Hub", LocationType.item, "Stopwatch"), # Technically in tutorial area, but not modelling that.
+    "Stopwatch Artifact": Everhood2LocationData(ITEM_LOCATION_START + 39, "Cosmic Hub", LocationType.item, "Stopwatch"), # Technically in tutorial area, but not modelling that.
     
     "Floor Green Reward Chest": Everhood2LocationData(ITEM_LOCATION_START + 41, "Floor Green", LocationType.item | LocationType.hillbert, "Power Gem"),
     "Pinecone Key": Everhood2LocationData(ITEM_LOCATION_START + 42, "Hillbert Hotel", LocationType.item | LocationType.hillbert, "Pinecone Key", locations=["Blue Stonegrunt Battle"]),
