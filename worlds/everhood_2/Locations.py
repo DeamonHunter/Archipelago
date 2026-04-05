@@ -52,7 +52,7 @@ class Everhood2LocationData(NamedTuple):
     color: Color = 0
     locations: list[str] = None
     skip_on_red_soul: bool = False
-    custom_rule: Rule = None
+    custom_color_rule: Rule = None
 
 
 class Everhood2EventData(NamedTuple):
@@ -160,7 +160,7 @@ item_locations: Dict[str, Everhood2LocationData] = {
         "Smega Console - Motherboard B", 
         LocationType.item | LocationType.pre_dragon_doors, 
         "Power Gem",
-        custom_rule= HasAny(colors_to_name[Color.red], colors_to_name[Color.green], colors_to_name[Color.purple]) &
+        custom_color_rule= HasAny(colors_to_name[Color.red], colors_to_name[Color.green], colors_to_name[Color.purple]) &
                      HasAny(colors_to_name[Color.blue], colors_to_name[Color.red]) &
                      HasAny(colors_to_name[Color.orange], colors_to_name[Color.blue])
     ),
@@ -255,7 +255,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
         "Marzian Era 0 - Mines B", 
         LocationType.major_battle, 
         "50xp",
-        custom_rule=HasAny(colors_to_name[Color.green], colors_to_name[Color.blue]) &
+        custom_color_rule=HasAny(colors_to_name[Color.green], colors_to_name[Color.blue]) &
                     HasAny(colors_to_name[Color.green], colors_to_name[Color.orange])
     ),
     "Feugo Battle": Everhood2LocationData(BATTLE_LOCATION_START + 22, "Marzian Era 0 - Mines C", LocationType.major_battle, "100xp", Color.green | Color.blue | Color.red), #Also has a single purple
@@ -268,7 +268,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
         "Marzian Era 0 - Base C", 
         LocationType.trash_battle,
         "75xp",
-        custom_rule=HasAny(colors_to_name[Color.green], colors_to_name[Color.blue]) &
+        custom_color_rule=HasAny(colors_to_name[Color.green], colors_to_name[Color.blue]) &
                     HasAny(colors_to_name[Color.green], colors_to_name[Color.orange])
     ),
     "Dimension Master Battle": Everhood2LocationData(BATTLE_LOCATION_START + 26, "Marzian Era 0 - Base D", LocationType.major_battle, "200xp", Color.green | Color.blue | Color.red),
@@ -322,7 +322,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
         "Marzian Era 0 - Base C", 
         LocationType.trash_battle, 
         "80xp",
-        custom_rule=HasAny(colors_to_name[Color.green], colors_to_name[Color.blue]) &
+        custom_color_rule=HasAny(colors_to_name[Color.green], colors_to_name[Color.blue]) &
                     HasAny(colors_to_name[Color.green], colors_to_name[Color.orange])
     ),
 
@@ -373,7 +373,7 @@ battle_locations: Dict[str, Everhood2LocationData] = {
         "Smega Console - Motherboard B", 
         LocationType.trash_battle | LocationType.pre_dragon_doors, 
         "192xp",
-        custom_rule=HasAny(colors_to_name[Color.red], colors_to_name[Color.green], colors_to_name[Color.purple]) &
+        custom_color_rule=HasAny(colors_to_name[Color.red], colors_to_name[Color.green], colors_to_name[Color.purple]) &
                     HasAny(colors_to_name[Color.blue], colors_to_name[Color.red]) &
                     HasAny(colors_to_name[Color.orange], colors_to_name[Color.blue])
     ), 

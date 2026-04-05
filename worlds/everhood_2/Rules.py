@@ -1,6 +1,6 @@
 ﻿from typing import TYPE_CHECKING
 from worlds.AutoWorld import World
-from rule_builder.rules import Rule, CanReachRegion, CanReachLocation, Has, HasAny, HasAll, OptionFilter, True_, False_
+from rule_builder.rules import Rule, CanReachRegion, CanReachLocation, Has, HasAny, HasAll, OptionFilter, True_, HasAnyCount, Filtered
 
 from .Locations import  LocationType, all_locations, Color, Everhood2LocationData
 from .Options import Colorsanity, SoulColor, DoorKeys
@@ -9,6 +9,8 @@ from .Items import colors_to_name
 
 if TYPE_CHECKING:
     from . import Everhood2World
+    
+COLOR_OPTION = [OptionFilter(Colorsanity, Colorsanity.option_SingleSoulPiece, "ge")]
 
 def get_soul_count(location_type: LocationType) -> int:
     if LocationType.act_3 in location_type:
@@ -19,11 +21,9 @@ def get_soul_count(location_type: LocationType) -> int:
 
 def get_color_rule(colors: Color, location_type: LocationType) -> Rule:
     soul_count = get_soul_count(location_type)
-    rule = False_()
-    for color in colors:
-        rule = rule | Has(colors_to_name[color], soul_count)
-
-    return rule & OptionFilter(Colorsanity, 1)
+    items = {colors_to_name[c]: soul_count for c in colors}
+    rule = HasAnyCount(items, filtered_resolution=True, options=COLOR_OPTION)
+    return rule
 
 def get_entrance_name(parent_region: str, connection: Connection):
     name = connection.entrance_name
@@ -41,7 +41,8 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, goal: in
     world.set_completion_rule(Has("Victory"))
     
     dragon_mirror = world.get_entrance("Dragon Mirror Room")
-    world.set_rule(dragon_mirror, Has("Purple Soul Piece", options=[OptionFilter(Colorsanity, 1)]) & Has("Power Gem", world.get_needed_dragon_gem_count(valid_types)))
+    world.set_rule(dragon_mirror, Has("Purple Soul Piece", options=COLOR_OPTION, filtered_resolution=True) 
+                   & Has("Power Gem", world.get_needed_dragon_gem_count(valid_types)))
         
     if goal <= world.options.goal_condition.option_Dragon:
         world.create_victory_event("Time Hub")
@@ -52,7 +53,7 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, goal: in
     
     space_ship = world.get_entrance("Space Ship Entrance")    
     world.set_rule(space_ship, HasAll("Red Soul Piece", "Green Soul Piece", "Blue Soul Piece", "Yellow Soul Piece", 
-                                      "Brown Soul Piece", "Purple Soul Piece", "Orange Soul Piece", options=[OptionFilter(Colorsanity, 1)])
+                                      "Brown Soul Piece", "Purple Soul Piece", "Orange Soul Piece", options=COLOR_OPTION, filtered_resolution=True)
                                & Has("Death Coin") & HasAny("Red Soul Axe", "Green Soul Spear", "Blue Soul Knives"))
             
     if LocationType.act_3 not in valid_types:
@@ -78,7 +79,7 @@ def set_connection_rules(world: World, valid_types: LocationType):
                 if connection.always_include_key:
                     rule = rule & Has(connection.key, connection.key_count)
                 else:
-                    rule = rule & Has(connection.key, connection.key_count, options=[OptionFilter(DoorKeys, 1)])
+                    rule = rule & Has(connection.key, connection.key_count, filtered_resolution=True, options=[OptionFilter(DoorKeys, 1)])
                 
             if connection.death_coin > 0:
                 rule = rule & Has("Death Coin", connection.death_coin)
@@ -110,7 +111,7 @@ def set_location_rules(world: World, red_override:bool):
             for loc in location_data.locations:
                 rule = rule & CanReachLocation(loc)
                 
-        if location_data.custom_rule is not None:
-            rule = rule & location_data.custom_rule
+        if location_data.custom_color_rule is not None:
+            rule = rule & Filtered(location_data.custom_color_rule, options=COLOR_OPTION, filtered_resolution=True)
         
         world.set_rule(location, rule)

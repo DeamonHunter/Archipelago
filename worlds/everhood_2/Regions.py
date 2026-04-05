@@ -114,7 +114,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
     # Hillbert Hotel Rooms Todo: Maybe make an option to exclude these areas
     "Floor 23": Everhood2RegionData(
         [
-            Connection("Floor 23 - Smega", color=(Color.green | Color.blue)), 
+            Connection("Floor 23 - Smega", color=Color.green | Color.blue), 
             Connection("Floor 23 - Rewards", "Rasputin Battle")
         ], 
         LocationType.hillbert
