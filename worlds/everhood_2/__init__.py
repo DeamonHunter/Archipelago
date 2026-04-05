@@ -140,12 +140,16 @@ class Everhood2World(World):
         valid_types = self.valid_location_types()
         created_regions = {x: Region(x, self.player, self.multiworld) for x, y in region_data_table.items() if y.include_type in valid_types}
 
+        door_sanity_connections = self.options.door_keys.value
         # Make all relevant regions
         for region_name, region_data in created_regions.items():
             region = created_regions[region_name]
             self.multiworld.regions.append(region)
 
             for data in region_data_table[region_name].connecting_regions:
+                if data.door_sanity is not None and data.door_sanity != door_sanity_connections:
+                    continue
+
                 connection = created_regions.get(data.connect_to)
                 if connection is not None:
                     region.connect(connection, data.entrance_name)
