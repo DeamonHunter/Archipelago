@@ -34,8 +34,8 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         Connection("Eternal War - Tomato Rampages", key="Eternal War Key"),
         Connection("Neon City - Pre Homonculus", key="Neon Forest Key"),
         Connection("Marzian Era 0 - Mines A", key="Progressive Marzian Key"),
-        Connection("Marzian Era 1000", "Dimension Master Battle", "Progressive Marzian Key", 2),
-        Connection("Marzian Era 2000", "Dimension Portal Battle", "Progressive Marzian Key", 3),
+        Connection("Marzian Era 1000", "Dimension Master Battle", key="Progressive Marzian Key", key_count=2),
+        Connection("Marzian Era 2000", "Dimension Portal Battle", key="Progressive Marzian Key", key_count=3),
         Connection("Time Hub", entrance_name="Dragon Mirror Room"), # Rule Set Later.
         
         # These Connections are added before the dragon fight. But only for Doorsanity
