@@ -29,7 +29,7 @@ class Colorsanity(Choice):
     - Single: Reflecting a color requires only a Soul Piece of that color.
     - Multiple: Color requirements scale based on which hub the fight is connected to. Cosmic Hub = 1, Time Hub = 2, Infinity Hub = 3
     """
-    display_name = "Randomise Reflect Colors"
+    display_name = "Randomise Color Reflects"
     default = 2
     option_Off = 0
     option_SingleSoulPiece = 1
