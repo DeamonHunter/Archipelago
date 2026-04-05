@@ -62,12 +62,14 @@ def setup_act_rules(world: "Everhood2World", valid_types: LocationType, goal: in
     raise NotImplementedError
 
 def set_connection_rules(world: World, valid_types: LocationType):
+    created_entrances = {e.name:e for e in world.get_entrances()}
+    
     for region_name, region_data in region_data_table.items():
         if region_data.include_type not in valid_types:
             continue
             
         for connection in region_data.connecting_regions:
-            entrance = world.get_entrance(get_entrance_name(region_name, connection))
+            entrance = created_entrances.get(get_entrance_name(region_name, connection))
             if entrance is None:
                 continue                
                                
