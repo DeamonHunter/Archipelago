@@ -15,18 +15,25 @@ class SoulColor(Choice):
     """
     Determines which soul color the player will be when the run is started. If combined with Door Keys, the starting route's key will be given to you.
     """
-    display_name = "Soul Color"
+    display_name = "Starting Soul Color"
     default = 1
     option_Blue = 1
     option_Green = 2
     option_Red = 3
 
 
-class Colorsanity(Toggle):
+class Colorsanity(Choice):
     """
-    When enabled, you can only reflect colors that have been given to you. By default, you start with your soul color.
+    Determines if you can reflect all colors of projectiles, or whether you need to get an item first.
+    - Off: Can reflect any projectile back to enemies.
+    - Single: Reflecting a color requires only a Soul Piece of that color.
+    - Multiple: Color requirements scale based on which hub the fight is connected to. Infinity Hub = 1, Time Hub = 2, Cosmic Hub = 3
     """
-    display_name = "Colorsanity"
+    display_name = "Randomise Reflect Colors"
+    default = 2
+    option_Off = 0
+    option_SingleSoulPiece = 1
+    option_MultipleSoulPieces = 2
 
 
 class DragonPowerGemPercentage(Range):
