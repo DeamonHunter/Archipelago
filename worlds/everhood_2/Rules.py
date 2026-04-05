@@ -88,7 +88,10 @@ def set_connection_rules(world: World, valid_types: LocationType):
                 rule = rule & get_color_rule(connection.color, region_data.include_type)
                 
             if connection.location is not None:
-                rule = rule & CanReachLocation(connection.location)
+                if connection.skip_location_in_doorkeys:
+                    rule = rule & CanReachLocation(connection.location, filtered_resolution=True, options=[OptionFilter(DoorKeys, 0)])
+                else:
+                    rule = rule & CanReachLocation(connection.location)
             
             if connection.custom_rule is not None:
                 rule = rule & connection.custom_rule

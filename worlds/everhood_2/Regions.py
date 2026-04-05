@@ -8,6 +8,7 @@ from .Locations import LocationType, Color
 class Connection(NamedTuple):
     connect_to: str
     location: str = None
+    skip_location_in_doorkeys: bool = False
     key: str = None
     key_count: int = 1
     always_include_key: bool = False
@@ -139,7 +140,7 @@ region_data_table: Dict[str, Everhood2RegionData] = {
         [
             Connection("Mushroom Bureau - Entrance", key="Mushroom Door Key"),
             Connection("Liminal Room", key="Smelly Key", death_coin=2),
-            Connection("Irvine Pocket Dimension", key="3 Dimensional Key"),
+            Connection("Irvine Pocket Dimension", key="3 Dimensional Key", location="Mushroom Bureau Death Coin", skip_location_in_doorkeys=True),
             Connection("Home Town", door_sanity=False), # When Doorsanity is false, this is auto unlocked after beating Dragon
             
             # These connections are added as part of Doorsanity to make balancing better
