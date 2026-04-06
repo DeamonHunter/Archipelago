@@ -200,6 +200,9 @@ class Everhood2World(World):
                 r = created_regions[all_locations[location].region]
                 r.add_event(location, "Reached " + location)
 
+        # Finally set up the victory location. Which adds a victory event so its needed to be done here.
+        setup_act_rules(self, valid_types, self.options.goal_condition.value)
+
 
     def valid_location_types(self) -> LocationType:
         valid_types = LocationType.item
@@ -235,8 +238,7 @@ class Everhood2World(World):
         return valid_types
 
     def set_rules(self) -> None:
-        set_everhood2_rules(self, self.valid_location_types(), self.options.soul_color.value == self.options.soul_color.option_Red, 
-                            self.options.goal_condition.value) 
+        set_everhood2_rules(self, self.valid_location_types(), self.options.soul_color.value == self.options.soul_color.option_Red) 
         
     def get_dragon_gem_count(self, valid_types: LocationType) -> int:
         # Todo: Auto Count locations and save?

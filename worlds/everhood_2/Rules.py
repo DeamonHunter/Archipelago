@@ -31,10 +31,9 @@ def get_entrance_name(parent_region: str, connection: Connection):
         name = parent_region + " -> " + connection.connect_to
     return name
 
-def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, red_override: bool, goal: int) -> None:   
+def set_everhood2_rules(world: "Everhood2World", valid_types: LocationType, red_override: bool) -> None:   
     set_connection_rules(world, valid_types)
     set_location_rules(world, red_override)
-    setup_act_rules(world, valid_types, goal)
 
 
 def setup_act_rules(world: "Everhood2World", valid_types: LocationType, goal: int) -> None:
