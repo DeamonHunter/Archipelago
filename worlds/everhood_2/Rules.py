@@ -99,8 +99,10 @@ def set_connection_rules(world: World, valid_types: LocationType):
 
 
 def set_location_rules(world: World, red_override:bool):
-    for location in world.get_locations():
-        location_data = all_locations[location.name]
+    for location in world.get_locations():        
+        location_data = all_locations.get(location.name)
+        if location_data is None:
+            continue
         
         if location_data.skip_on_red_soul and red_override:
             continue
