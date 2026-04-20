@@ -70,7 +70,7 @@ def set_connection_rules(world: World, valid_types: LocationType):
             
         for connection in region_data.connecting_regions:
             entrance = created_entrances.get(get_entrance_name(region_name, connection))
-            if entrance is None:
+            if entrance is None or entrance.access_rule is not None:
                 continue                
                                
             rule = True_()
@@ -100,6 +100,9 @@ def set_connection_rules(world: World, valid_types: LocationType):
 
 def set_location_rules(world: World, red_override:bool):
     for location in world.get_locations():        
+        if location.access_rule is not None:
+            continue
+        
         location_data = all_locations.get(location.name)
         if location_data is None:
             continue
