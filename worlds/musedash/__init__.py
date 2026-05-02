@@ -1,6 +1,6 @@
 from worlds.AutoWorld import World, WebWorld
 from BaseClasses import Region, Item, ItemClassification, Tutorial
-from typing import List, ClassVar, Type, Set
+from typing import List, ClassVar, Type, Set, Any
 from math import floor
 from Options import PerGameCommonOptions, OptionError
 from rule_builder.rules import Has
@@ -76,8 +76,19 @@ class MuseDashWorld(World):
     included_songs: List[str]
     needed_token_count: int
     location_count: int
-
+    
+    # Universal Tracker
+    ut_can_gen_without_yaml = True
+    ut_note_count: int | None = None
+    
     def generate_early(self):
+        # Universal Tracker
+        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
+        if re_gen_passthrough and self.game in re_gen_passthrough:
+            self.ut_note_count: int | None = re_gen_passthrough[self.game].get("musicSheetWinCount")
+            if self.ut_note_count is not None:
+                return
+                
         dlc_songs = {key for key in self.options.dlc_packs.value}
 
         streamer_mode = self.options.streamer_mode_enabled
@@ -209,6 +220,9 @@ class MuseDashWorld(World):
         return self.random.choices(self.filler_item_names, self.filler_item_weights)[0]
 
     def create_items(self) -> None:
+        if self.ut_note_count is not None:
+            return
+        
         song_keys_in_pool = self.included_songs.copy()
 
         # Note: Item count will be off if plando is involved.
@@ -276,11 +290,14 @@ class MuseDashWorld(World):
         # Doing it in this order ensures that starting songs are first in line to getting 2 locations.
         # Final song is excluded as for the purpose of this rando, it doesn't matter.
 
-        all_selected_locations = self.starting_songs.copy()
-        included_song_copy = self.included_songs.copy()
+        if self.ut_note_count is None:
+            all_selected_locations = self.starting_songs.copy()
+            included_song_copy = self.included_songs.copy()
 
-        self.random.shuffle(included_song_copy)
-        all_selected_locations.extend(included_song_copy)
+            self.random.shuffle(included_song_copy)
+            all_selected_locations.extend(included_song_copy)            
+        else:
+            all_selected_locations = list(self.md_collection.song_items.keys())
 
         # Adds 2 item locations per song/album to the menu region.
         for i in range(0, len(all_selected_locations)):
@@ -315,6 +332,9 @@ class MuseDashWorld(World):
         return max(1, floor(song_count * multiplier))
 
     def get_music_sheet_win_count(self) -> int:
+        if self.ut_note_count is not None:
+            return self.ut_note_count
+        
         multiplier = self.options.music_sheet_win_count_percentage.value / 100.0
         sheet_count = self.get_music_sheet_count()
         return max(1, floor(sheet_count * multiplier))
@@ -353,3 +373,7 @@ class MuseDashWorld(World):
             "musicSheetWinCount": self.get_music_sheet_win_count(),
             "gradeNeeded": self.options.grade_needed.value,
         }
+
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
+        return slot_data
