@@ -170,7 +170,7 @@ class Everhood2World(World):
 
         # Make all normal locations
         for location_name, location_data in all_locations.items():
-            if not location_data.type in valid_types:
+            if not location_data.type in valid_types or location_data.region not in created_regions:
                 continue
 
             created_locations.add(location_name)
@@ -180,13 +180,14 @@ class Everhood2World(World):
         # Make event locations for missing locations (i.e. End of Route Battles for non Battle Sanity options)
         for region_name in created_regions.keys():
             for data in region_data_table[region_name].connecting_regions:
-                if data.location is None:
-                    continue
-                
-                if data.location in created_locations:
+                if data.location is None or data.location in created_locations:
+                    continue                
+                    
+                name = all_locations[data.location].region
+                if name not in created_regions:
                     continue
 
-                r = created_regions[all_locations[data.location].region]
+                r = created_regions[name]
                 r.add_event(data.location, "Reached " + data.location)
                 
         for location_name, location_data in all_locations.items():
