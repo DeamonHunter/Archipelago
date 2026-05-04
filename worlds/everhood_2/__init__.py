@@ -2,7 +2,7 @@
 
 from worlds.AutoWorld import World, WebWorld
 from BaseClasses import Region, Item, Tutorial, ItemClassification
-from typing import ClassVar, Type
+from typing import ClassVar, Type, Any
 from Options import PerGameCommonOptions, OptionError
 
 from .Options import Everhood2Options, everhood2_option_groups
@@ -42,26 +42,19 @@ class Everhood2World(World):
     web = Everhood2WebWorld()
 
     # Necessary Data
-    
     item_name_to_id = {name: code.code for name, code in all_items.items()}
     location_name_to_id = {name: code.code for name, code in all_locations.items()}
     item_name_groups = item_groups
-    
+
     # UT Yaml-less flag
     ut_can_gen_without_yaml = True
+    ut_dragon_gem_count: int | None = None
     
     def generate_early(self) -> None:
         if self.options.goal_condition.value >= self.options.goal_condition.option_Riley:
             raise OptionError("Act 3 and beyond are not implemented yet. Please choose either Dragon or Judge Creation.")
 
-        # Implement Universal Tracker support - reset all options to those from UT's gen if applicable.
-        if hasattr(self.multiworld, "re_gen_passthrough"):
-            if "Everhood 2" in self.multiworld.re_gen_passthrough:
-                for key, val in self.multiworld.re_gen_passthrough["Everhood 2"].items():
-                    try:
-                        getattr(self.options, key).value = val
-                    except AttributeError:
-                        pass
+        self.setup_ut()
     
     def create_item(self, name: str) -> Item:
         item = all_items[name]
@@ -252,6 +245,9 @@ class Everhood2World(World):
         return gem_count
     
     def get_needed_dragon_gem_count(self, valid_types: LocationType) -> int:
+        if self.ut_dragon_gem_count is not None:
+            return self.ut_dragon_gem_count
+
         multiplier = self.options.dragon_gems.value / 100.0
         gem_count = self.get_dragon_gem_count(valid_types)
         return max(1, floor(gem_count * multiplier))
@@ -264,7 +260,8 @@ class Everhood2World(World):
         location = Everhood2Location(self.player, "Victory", None, region)
         location.place_locked_item(Everhood2Item("Victory", ItemClassification.progression, None, self.player))
         region.locations.append(location)
-        
+
+    # Universal Tracker Functions
 
     def fill_slot_data(self):
         valid_types = self.valid_location_types()
@@ -276,4 +273,31 @@ class Everhood2World(World):
             "PreventDragon": self.options.prevent_dragon.value != 0,
             "HealthMultiplier": self.options.health_multiplier.value,
             "Goal": self.options.goal_condition.value,
+
+            # For UT
+            "ut_Cosmetics": self.options.cosmetics.value != 0,
+            "ut_BattleRewards": self.options.battle_rewards.value,
+            "ut_HillberHotel": self.options.hillbert_hotel.value  != 0
         }
+
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
+        return slot_data
+
+    def setup_ut(self):
+        if not hasattr(self.multiworld, "re_gen_passthrough"):
+            return
+
+        options = self.options
+        slot_data: dict[str, Any] = self.multiworld.re_gen_passthrough[self.game]
+        ut_dragon_gem_count = slot_data["DragonGems"]
+        options.soul_color.value = slot_data["SoulColor"]
+        options.door_keys.value = slot_data["DoorKeys"]
+        options.colorsanity.value = slot_data["ColorSoulPieces"]
+        options.goal_condition.value = slot_data["Goal"]
+
+        # These values technically have no effect on rules.
+        options.cosmetics.value = slot_data.get("ut_Cosmetics", True)
+        options.battle_rewards.value = slot_data.get("ut_BattleRewards", options.battle_rewards.option_All)
+        options.hillbert_hotel.value = slot_data.get("ut_HillberHotel", True)
+
