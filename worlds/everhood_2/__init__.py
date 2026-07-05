@@ -290,7 +290,7 @@ class Everhood2World(World):
 
         options = self.options
         slot_data: dict[str, Any] = self.multiworld.re_gen_passthrough[self.game]
-        ut_dragon_gem_count = slot_data["DragonGems"]
+        self.ut_dragon_gem_count = slot_data["DragonGems"]
         options.soul_color.value = slot_data["SoulColor"]
         options.door_keys.value = slot_data["DoorKeys"]
         options.colorsanity.value = slot_data["ColorSoulPieces"]
