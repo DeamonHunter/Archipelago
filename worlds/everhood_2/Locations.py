@@ -218,6 +218,8 @@ item_locations: Dict[str, Everhood2LocationData] = {
     "Pet the Grey Cat": Everhood2LocationData(ITEM_LOCATION_START + 113, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "5xp"),
     "Pet the Black Cat": Everhood2LocationData(ITEM_LOCATION_START + 114, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "-2xp"),
     "Bead Braclet": Everhood2LocationData(ITEM_LOCATION_START + 115, "Home Town", LocationType.item | LocationType.pre_dragon_doors, "Bead Braclet"),
+
+    "Irvine's Postbox": Everhood2LocationData(ITEM_LOCATION_START + 117, "Time Hub", LocationType.item | LocationType.act_2, "Catnip"),
 }
 
 battle_locations: Dict[str, Everhood2LocationData] = {
