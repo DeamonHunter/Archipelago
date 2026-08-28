@@ -741,4 +741,10 @@ SONG_DATA: Dict[str, SongData] = {
     "It's TV Time!": SongData(2900865, "99-5", "Song of Determination & Power", False, 5, 7, 9),
     "BIG SHOT": SongData(2900866, "99-6", "Song of Determination & Power", False, 3, 5, 8),
     "GUARDIAN": SongData(2900867, "99-7", "Song of Determination & Power", False, 5, 7, 9),
+    "OTOGEMA": SongData(2900868, "100-0", "maimai DX Limited Suite_Vol.02", False, 5, 7, 10),
+    "QuiQ": SongData(2900869, "100-1", "maimai DX Limited Suite_Vol.02", False, 7, 9, 11),
+    "Straight into the lights": SongData(2900870, "100-2", "maimai DX Limited Suite_Vol.02", False, 7, 9, 11),
+    "UROSOUSETSU": SongData(2900871, "100-3", "maimai DX Limited Suite_Vol.02", False, 7, 9, 11),
+    "World's end loneliness": SongData(2900872, "100-4", "maimai DX Limited Suite_Vol.02", False, 6, 8, 10),
+    "Go! Run! Sh1ne!": SongData(2900873, "100-5", "maimai DX Limited Suite_Vol.02", False, 6, 8, 10),
 }
